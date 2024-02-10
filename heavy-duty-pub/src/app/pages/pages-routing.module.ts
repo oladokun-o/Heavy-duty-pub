@@ -1,12 +1,51 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PagesComponent } from './pages.component';
+import { HomeComponent } from './home/home.component';
+import { ProductsComponent } from './products/products.component';
+import { AboutUsComponent } from './about-us/about-us.component';
+import { ServicesComponent } from './services/services.component';
+import { NewsComponent } from './news/news.component';
+import { ContactComponent } from './contact/contact.component';
 
 const routes: Routes = [
   {
     path: '',
     component: PagesComponent,
-    children: []
+    children: [
+      {
+        path: '',
+        component: HomeComponent,
+      },
+      {
+        path: 'home',
+        redirectTo: ''
+      },
+      {
+        path: 'products',
+        component: ProductsComponent
+      },
+      {
+        path: 'products/:productId',
+        component: ProductsComponent
+      },
+      {
+        path: 'about-us',
+        component: AboutUsComponent
+      },
+      {
+        path: 'services',
+        component: ServicesComponent
+      },
+      {
+        path: 'news',
+        component: NewsComponent
+      },
+      {
+        path: 'contact',
+        component: ContactComponent
+      }
+    ]
   }
 ];
 
