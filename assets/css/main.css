@@ -2,7 +2,7 @@
 
 @font-face {
   font-display: swap;
-  src: url("../fonts/Barlow-ExtraLight.woff") format("woff"), url("../fonts/Barlow-ExtraLight.woff2") format("woff2");
+  src: url("/assets/fonts/Barlow-ExtraLight.woff") format("woff"), url("/assets/fonts/Barlow-ExtraLight.woff2") format("woff2");
   font-family: "Barlow";
   font-style: normal;
   font-weight: 100;
@@ -10,7 +10,7 @@
 
 @font-face {
   font-display: swap;
-  src: url("../fonts/Barlow-Thin.woff") format("woff"), url("../fonts/Barlow-Thin.woff2") format("woff2");
+  src: url("/assets/fonts/Barlow-Thin.woff") format("woff"), url("/assets/fonts/Barlow-Thin.woff2") format("woff2");
   font-family: "Barlow";
   font-style: normal;
   font-weight: 200;
@@ -18,7 +18,7 @@
 
 @font-face {
   font-display: swap;
-  src: url("../fonts/Barlow-Light.woff") format("woff"), url("../fonts/Barlow-Light.woff2") format("woff2");
+  src: url("/assets/fonts/Barlow-Light.woff") format("woff"), url("/assets/fonts/Barlow-Light.woff2") format("woff2");
   font-family: "Barlow";
   font-style: normal;
   font-weight: 300;
@@ -26,7 +26,7 @@
 
 @font-face {
   font-display: swap;
-  src: url("../fonts/Barlow-Regular.woff") format("woff"), url("../fonts/Barlow-Regular.woff2") format("woff2");
+  src: url("/assets/fonts/Barlow-Regular.woff") format("woff"), url("/assets/fonts/Barlow-Regular.woff2") format("woff2");
   font-family: "Barlow";
   font-style: normal;
   font-weight: 400;
@@ -34,7 +34,7 @@
 
 @font-face {
   font-display: swap;
-  src: url("../fonts/Barlow-Italic.woff") format("woff"), url("../fonts/Barlow-Italic.woff2") format("woff2");
+  src: url("/assets/fonts/Barlow-Italic.woff") format("woff"), url("/assets/fonts/Barlow-Italic.woff2") format("woff2");
   font-family: "Barlow";
   font-style: italic;
   font-weight: 400;
@@ -42,7 +42,7 @@
 
 @font-face {
   font-display: swap;
-  src: url("../fonts/Barlow-Medium.woff") format("woff"), url("../fonts/Barlow-Medium.woff2") format("woff2");
+  src: url("/assets/fonts/Barlow-Medium.woff") format("woff"), url("/assets/fonts/Barlow-Medium.woff2") format("woff2");
   font-family: "Barlow";
   font-style: normal;
   font-weight: 500;
@@ -50,7 +50,7 @@
 
 @font-face {
   font-display: swap;
-  src: url("../fonts/Barlow-SemiBold.woff") format("woff"), url("../fonts/Barlow-SemiBold.woff2") format("woff2");
+  src: url("/assets/fonts/Barlow-SemiBold.woff") format("woff"), url("/assets/fonts/Barlow-SemiBold.woff2") format("woff2");
   font-family: "Barlow";
   font-style: normal;
   font-weight: 600;
@@ -58,7 +58,7 @@
 
 @font-face {
   font-display: swap;
-  src: url("../fonts/Barlow-Bold.woff") format("woff"), url("../fonts/Barlow-Bold.woff2") format("woff2");
+  src: url("/assets/fonts/Barlow-Bold.woff") format("woff"), url("/assets/fonts/Barlow-Bold.woff2") format("woff2");
   font-family: "Barlow";
   font-style: normal;
   font-weight: 700;
@@ -66,7 +66,7 @@
 
 @font-face {
   font-display: swap;
-  src: url("../fonts/Barlow-ExtraBold.woff") format("woff"), url("../fonts/Barlow-ExtraBold.woff2") format("woff2");
+  src: url("/assets/fonts/Barlow-ExtraBold.woff") format("woff"), url("/assets/fonts/Barlow-ExtraBold.woff2") format("woff2");
   font-family: "Barlow";
   font-style: normal;
   font-weight: 800;
@@ -74,7 +74,7 @@
 
 @font-face {
   font-display: swap;
-  src: url("../fonts/Barlow-Black.woff") format("woff"), url("../fonts/Barlow-Black.woff2") format("woff2");
+  src: url("/assets/fonts/Barlow-Black.woff") format("woff"), url("/assets/fonts/Barlow-Black.woff2") format("woff2");
   font-family: "Barlow";
   font-style: normal;
   font-weight: 900;
@@ -110,6 +110,10 @@ h6 {
   font-weight: 700;
 }
 
+header h2 {
+  margin: 0 !important;
+}
+
 .section-title {
   position: relative;
   margin-bottom: 30px;
@@ -133,7 +137,7 @@ h6 {
   width: 22px;
   height: 30px;
   margin-right: 10px;
-  background-image: url(../img/svgico/logo-icon.svg);
+  background-image: url(/assets/img/svgico/logo-icon.svg);
   content: '';
 }
 
@@ -187,8 +191,8 @@ a.more .uk-icon {
 }
 
 @font-face {
-  src: url("../fonts/icons.eot");
-  src: url("../fonts/icons.eot?#iefix") format("eot"), url("../fonts/icons.woff") format("woff"), url("../fonts/icons.woff2") format("woff2"), url("../fonts/icons.ttf") format("truetype"), url("../fonts/icons.svg#icons") format("svg");
+  src: url("/assets/fonts/icons.eot");
+  src: url("/assets/fonts/icons.eot?#iefix") format("eot"), url("/assets/fonts/icons.woff") format("woff"), url("/assets/fonts/icons.woff2") format("woff2"), url("/assets/fonts/icons.ttf") format("truetype"), url("/assets/fonts/icons.svg#icons") format("svg");
   font-family: "icons";
 }
 
@@ -401,8 +405,8 @@ a:hover {
 }
 
 @font-face {
-  src: url("../fonts/footable.eot");
-  src: url("../fonts/footable.eot") format("embedded-opentype"), url("../fonts/footable.woff2") format("woff2"), url("../fonts/footable.woff") format("woff"), url("../fonts/footable.ttf") format("truetype"), url("../fonts/footable.svg") format("svg");
+  src: url("/assets/fonts/footable.eot");
+  src: url("/assets/fonts/footable.eot") format("embedded-opentype"), url("/assets/fonts/footable.woff2") format("woff2"), url("/assets/fonts/footable.woff") format("woff"), url("/assets/fonts/footable.ttf") format("truetype"), url("/assets/fonts/footable.svg") format("svg");
   font-family: 'footable';
   font-style: normal;
   font-weight: normal;
@@ -1482,7 +1486,7 @@ textarea.uk-form-large {
 
 .page-header.--two-line .contacts-block {
   padding-left: 50px;
-  background-image: url(../img/ico-info-1.png);
+  background-image: url(/assets/img/ico-info-1.png);
   background-repeat: no-repeat;
   background-size: 40px;
 }
@@ -1514,7 +1518,7 @@ textarea.uk-form-large {
   display: block;
   position: relative;
   background-color: #2196f3;
-  background-image: url(../img/bg_newsletter.png);
+  background-image: url(/assets/img/bg_newsletter.png);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -2852,7 +2856,7 @@ textarea.uk-form-large {
   justify-content: center;
   padding: 0 125px;
   padding: 0 6.51042vw;
-  background-image: url(../img/bg_hero.jpg);
+  background-image: url(/assets/img/bg_hero.jpg);
   background-size: cover;
 }
 
@@ -3019,7 +3023,7 @@ textarea.uk-form-large {
 .s-about {
   display: block;
   position: relative;
-  background-image: url(../img/bg_logo.png);
+  background-image: url(/assets/img/bg_logo.png);
   background-position: left 95% center;
   background-repeat: no-repeat;
 }
@@ -3220,7 +3224,7 @@ textarea.uk-form-large {
   justify-content: center;
   padding: 40px 150px;
   padding: 40px 7.8125vw;
-  background-image: url(../img/bg_video.png);
+  background-image: url(/assets/img/bg_video.png);
   color: #fff;
 }
 
@@ -3684,7 +3688,7 @@ textarea.uk-form-large {
   display: block;
   position: relative;
   background-color: #f9f9f9;
-  background-image: url(../img/bg_info-card.png);
+  background-image: url(/assets/img/bg_info-card.png);
   background-position: right 70px top 70px;
   background-repeat: no-repeat;
 }
@@ -3992,7 +3996,7 @@ textarea.uk-form-large {
   display: block;
   position: relative;
   border-top: 1px solid #eee;
-  background-image: url(../img/bg_logo.png);
+  background-image: url(/assets/img/bg_logo.png);
   background-position: right 95% center;
   background-repeat: no-repeat;
 }
@@ -4375,7 +4379,7 @@ ul.time-work {
   margin-bottom: 50px;
   padding-top: 100px;
   background-color: #222;
-  background-image: url(../img/bg_brands.jpg);
+  background-image: url(/assets/img/bg_brands.jpg);
   background-position: center;
   background-size: cover;
 }
@@ -4643,7 +4647,7 @@ ul.time-work {
 
 .equipment-item__prices ul li {
   padding-left: 25px;
-  background-image: url(../img/arrow-circle.png);
+  background-image: url(/assets/img/arrow-circle.png);
   background-position: left center;
   background-repeat: no-repeat;
   color: #222;
@@ -4656,7 +4660,7 @@ ul.time-work {
   display: block;
   position: relative;
   background-color: #f9f9f9;
-  background-image: url(../img/bg_latest-offers.jpg);
+  background-image: url(/assets/img/bg_latest-offers.jpg);
   background-position: left center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -4732,7 +4736,7 @@ ul.time-work {
 
 .s-reasons-choose {
   background-color: #222;
-  background-image: url(../img/bg_brands.jpg);
+  background-image: url(/assets/img/bg_brands.jpg);
   background-position: center;
   background-size: cover;
 }
@@ -4829,7 +4833,7 @@ ul.time-work {
   width: 150px;
   height: 150px;
   transform: translate(-50%, -50%);
-  background-image: url(../img/icons/ico-video.png);
+  background-image: url(/assets/img/icons/ico-video.png);
   content: '';
 }
 
@@ -5018,7 +5022,7 @@ ul.time-work {
   left: 35px;
   width: 27px;
   height: 19px;
-  background-image: url(../img/quote-blockquote.png);
+  background-image: url(/assets/img/quote-blockquote.png);
   background-position: center;
   background-repeat: no-repeat;
   content: '';
@@ -5076,7 +5080,7 @@ ul.time-work {
   left: 0;
   width: 100%;
   height: 13px;
-  background-image: url(../img/decor/decor-lines-grey.png);
+  background-image: url(/assets/img/decor/decor-lines-grey.png);
   content: '';
 }
 
@@ -5144,7 +5148,7 @@ ul.time-work {
   left: 0;
   width: 100%;
   height: 13px;
-  background-image: url(../img/decor/decor-lines-grey.png);
+  background-image: url(/assets/img/decor/decor-lines-grey.png);
   content: '';
 }
 
@@ -5206,7 +5210,7 @@ ul.time-work {
   width: 22px;
   height: 30px;
   margin-right: 10px;
-  background-image: url(../img/svgico/logo-icon.svg);
+  background-image: url(/assets/img/svgico/logo-icon.svg);
   content: '';
 }
 
@@ -5451,7 +5455,7 @@ ul.time-work {
   width: 150px;
   height: 150px;
   transform: translate(-50%, -50%);
-  background-image: url(../img/ico-video.png);
+  background-image: url(/assets/img/ico-video.png);
   content: '';
 }
 
@@ -5676,7 +5680,7 @@ ul.time-work {
   width: 22px;
   height: 30px;
   margin-right: 10px;
-  background-image: url(../img/svgico/logo-icon.svg);
+  background-image: url(/assets/img/svgico/logo-icon.svg);
   content: '';
 }
 
@@ -5852,7 +5856,7 @@ ul.time-work {
   border: none;
   border-radius: 0;
   background-color: transparent;
-  background-image: url(../img/ico-range-slider.svg);
+  background-image: url(/assets/img/ico-range-slider.svg);
   background-size: cover;
   box-shadow: none;
 }
