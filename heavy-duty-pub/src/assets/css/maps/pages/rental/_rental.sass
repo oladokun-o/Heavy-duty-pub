@@ -1,0 +1,308 @@
+.js-filter-content.sidebar {
+  @include r(1199) {
+    background: none;
+    padding-top: 20px; }
+  &::after {
+    @include r(1199) {
+      display: none; } } }
+
+.range-box {
+  display: block;
+  position: relative;
+  text-align: center;
+
+  .irs--round {
+    height: 20px;
+    top: -25px; }
+
+  .irs--round .irs-line {
+    background-color: #ddd; }
+
+  .irs--round .irs-bar {
+    background-color: #575964; }
+
+  .irs--round .irs-handle {
+    top: 15px;
+    width: 45px;
+    height: 45px;
+    border: none;
+    background-color: transparent;
+    background-image: url(../img/ico-range-slider.svg);
+    background-size: cover;
+    border-radius: 0;
+    box-shadow: none; }
+
+  &__desc {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    color: #222;
+    font-size: 16px;
+    font-weight: 500;
+    font-style: normal;
+    letter-spacing: normal;
+    line-height: 1;
+    margin-top: 20px;
+    border-bottom: 1px solid #222;
+    input {
+      display: inline-block;
+      background: none;
+      outline: none;
+      border: none;
+      width: 40px;
+      min-width: auto;
+      text-align: center;
+      color: #222;
+      font-size: 16px;
+      font-weight: 500;
+      font-style: normal;
+      letter-spacing: normal;
+      line-height: 1;
+      pointer-events: none;
+      margin-top: 2px; } } }
+
+.js-filter-content {
+  display: block;
+  @include r(959) {
+    display: none; } }
+
+.rental-item {
+  display: flex;
+  justify-content: space-between;
+  @include r(959) {
+    flex-wrap: wrap; }
+
+  & + .rental-item {
+    margin-top: 45px;
+    @include r(639) {
+      margin-top: 20px; } }
+
+  &__media {
+    display: block;
+    position: relative;
+    @include r(959) {
+      width: 48%;
+      order: 1; }
+    @include r(639) {
+      width: 100%;
+      order: 1; }
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center; } }
+
+  &__links {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 30px;
+    a {
+      color: $accent;
+      font-size: 14px;
+      @include fz(14, 12);
+      font-weight: 400;
+
+      & + a {
+        margin-left: 13px;
+        padding-left: 13px;
+        border-left: 1px solid #dfdfdf; } } }
+
+  &__desc {
+    margin: 0 30px;
+    flex: 1;
+    border-bottom: 1px solid #eee;
+    @include r(959) {
+      width: 100%;
+      order: 3;
+      margin: 30px 0 0 0;
+      border-bottom: none; }
+    @include r(639) {
+      width: 100%;
+      order: 2;
+      margin: 20px 0; } }
+
+  &__title {
+    color: #222222;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 5px; }
+
+
+  &__specifications {
+    ul {
+      margin: 0;
+      column-gap: 10px;
+      li {
+        padding-left: 20px;
+        color: #222222;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1.1;
+        &::before {
+          width: 5px;
+          left: -15px;
+          color: $accent; } } } }
+
+  &__price {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    @include r(959) {
+      width: 48%;
+      order: 2;
+      text-align: center; }
+    @include r(639) {
+      width: 100%;
+      order: 3; } }
+
+  &__price-box {
+    background-color: #ffffff;
+    text-align: center;
+    padding: 30px 20px;
+    border: 1px solid #eee;
+    border-bottom: none;
+    flex-grow: 1; }
+
+  &__price-title {
+    color: #222222;
+    font-size: 14px;
+    margin-bottom: 22px;
+    strong {
+      display: block;
+      font-weight: 600;
+      line-height: 1.1; }
+    span {
+      display: block;
+      line-height: 1.1;
+      font-weight: 400; } }
+
+  &__price-current {
+    color: #222;
+    font-size: 34px;
+    font-weight: 700;
+    line-height: 1; }
+
+  &__price-old {
+    color: #393939;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 32px;
+    text-decoration: line-through; }
+
+  &__price-btn {
+    @include r(959) {
+      width: 100%; }
+    .uk-button {
+      @include r(959) {
+        width: 100%; } } } }
+
+.widjet-filter {
+
+  .uk-form-label {
+    color: #888;
+    font-size: 16px;
+    font-weight: 400; }
+
+  input {
+    border: none;
+    border-bottom: 1px solid #eee;
+    background: none;
+    border-radius: 0;
+    padding-left: 0;
+    color: #222;
+    font-size: 18px;
+    font-weight: 500;
+    @include placeholder() {
+      color: #222;
+      font-size: 18px;
+      font-weight: 500; } }
+
+
+  .nice-select {
+    border: none;
+    border-bottom: 1px solid #eee;
+    background: none;
+    border-radius: 0;
+    padding-left: 0;
+    .current {
+      color: #222;
+      font-size: 18px;
+      font-weight: 500; } } }
+
+
+.equipment-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f9f9f9;
+  padding-left: 30px;
+  margin-bottom: 60px;
+  color: #555;
+  font-size: 18px;
+  line-height: 30px;
+  font-weight: 300;
+  @include fz(18, 12);
+  @include r(767) {
+    padding-left: 5px;
+    margin-bottom: 20px; }
+  & > * {
+    display: flex;
+    align-items: center; }
+  &>div:first-child {
+    @include r(767) {
+      display: none; } }
+  &>div:last-child {
+    @include r(767) {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-grow: 1; } } }
+
+.sort-box {
+  display: flex;
+  align-items: center;
+  & > span {
+    color: #555;
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 30px;
+    @include fz(18, 12);
+    @include r(767) {
+      display: none; } }
+  .nice-select {
+    border: none;
+    background: none;
+    border-radius: 0;
+    padding-left: 15px;
+    height: auto;
+    .current {
+      color: #222;
+      font-size: 18px;
+      font-weight: 500;
+      @include fz(18, 12); } } }
+
+.view-box {
+  display: flex;
+  justify-content: flex-end;
+  border-left: 1px solid #dfe1ee;
+  margin-left: 30px; }
+.view-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70px;
+  height: 70px;
+  color: #222;
+  @include r(767) {
+    width: 50px;
+    height: 50px; }
+  @include h {
+    color: #222; }
+  &.active {
+    background: #222;
+    color: #fff;
+    @include h {
+      color: #fff; } } }

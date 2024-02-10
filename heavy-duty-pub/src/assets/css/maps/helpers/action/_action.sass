@@ -1,0 +1,120 @@
+.action-group {
+  display: inline-block!important;
+  position: relative;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+
+  &.is-show {
+    .action-group-drop {
+      visibility: visible;
+      opacity: 1;
+      pointer-events: all; } } }
+
+.action-group-btn {
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  flex: 0 0 30px;
+  border-radius: 50%;
+  color: #B3B3B3;
+  cursor: pointer;
+  font-size: 10px;
+  background-color: #F0F1F4;
+  @include tr(0.3s);
+  @include h {
+    background-color: #929DA5;
+    color: #fff; } }
+
+.action-group-drop {
+  -webkit-transition: 0.5s;
+  -o-transition: 0.5s;
+  display: block;
+  visibility: hidden;
+  z-index: 3;
+  position: absolute;
+  top: -13px;
+  right: -13px;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.5s;
+  background: #FFFFFF;
+  border: 1.5px solid #E1E3EA;
+  overflow: hidden;
+  box-sizing: border-box;
+  box-shadow: 0px 15px 30px -20px rgba(146, 157, 165, 0.2);
+  border-radius: 30px 0px 30px 30px; }
+
+.action-group-list {
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.16);
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 10px 5px;
+  overflow: hidden;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.16);
+  list-style-type: none;
+
+
+  li {
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+    @include tr(0.3s);
+    margin: 0 5px;
+
+    &.is-active {
+      button {
+        background-color: #929DA5;
+        color: #fff; } }
+
+    button,
+    a {
+      width: 35px;
+      height: 35px;
+      flex: 0 0 35px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      border: 0;
+      background: none;
+      color: #929DA5!important;
+      pointer-events: all;
+      cursor: pointer;
+      background: #F0F1F4;
+      font-size: 20px;
+      border-radius: 50%;
+      @include tr(0.3s);
+      @include h {
+        color: $accent!important; }
+
+      .ico_edit {
+        font-size: 15px; }
+
+      .ico_close {
+        font-size: 16px; } }
+
+    &:last-child {
+      button {
+        background-color: #fff;
+        @include h {
+          color: $accent!important; } } } } }
