@@ -12,6 +12,7 @@ import { ContactComponent } from './contact/contact.component';
 import { ProductsComponent } from './products/products.component';
 import { NewsComponent } from './news/news.component';
 import { LayoutModule } from '../layout/layout.module';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const components = [
   HomeComponent,
@@ -24,7 +25,8 @@ const components = [
 @NgModule({
   declarations: [
     PagesComponent,
-    ...components
+    ...components,
+    PageNotFoundComponent
   ],
   imports: [
     CommonModule,

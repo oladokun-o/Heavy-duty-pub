@@ -27,6 +27,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css",
               "src/assets/css/libs.min.css",
               "src/assets/css/main.css"
@@ -99,13 +100,22 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/styles.css",
+              "src/assets/css/libs.min.css",
+              "src/assets/css/main.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/js/libs.js",
+              "src/assets/js/main.js"
+            ]
           }
         }
       }
     }
   },
-  "defaultProject": "heavy-duty-pub"
+  "defaultProject": "heavy-duty-pub",
+  "cli": {
+    "analytics": false
+  }
 }
