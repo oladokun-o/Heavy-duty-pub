@@ -13,6 +13,7 @@ import { ProductsComponent } from './products/products.component';
 import { NewsComponent } from './news/news.component';
 import { LayoutModule } from '../layout/layout.module';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { SharedModule } from '../shared/shared.module';
 
 const components = [
   HomeComponent,
@@ -32,7 +33,9 @@ const components = [
     CommonModule,
     PagesRoutingModule,
     RouterModule,
-    LayoutModule
+    LayoutModule,
+    SharedModule,
+    RouterModule
   ]
 })
 export class PagesModule { }

@@ -130,10 +130,11 @@ h6 {
 
 .section-title span:before {
   display: inline-block;
-  width: 22px;
+  width: 30px;
   height: 30px;
   margin-right: 10px;
   background-image: url(/assets/img/svgico/logo-icon.svg);
+  background-repeat: no-repeat;
   content: '';
 }
 
@@ -1237,7 +1238,7 @@ textarea.uk-form-large {
 }
 
 .page-header__mainmenu .uk-navbar-nav > li > a:hover {
-  color: #2196f3;
+  color: #ff9800;
 }
 
 .page-header__mainmenu .uk-navbar-nav > li > a::before {
@@ -1273,7 +1274,7 @@ textarea.uk-form-large {
 }
 
 .page-header__mainmenu .uk-navbar-nav > li.uk-active > a {
-  color: #2196f3;
+  color: #ff9800;
 }
 
 .page-header__mainmenu .uk-navbar-nav > li.uk-active > a:before,
@@ -1311,13 +1312,13 @@ textarea.uk-form-large {
   padding-top: 25px;
   padding-bottom: 25px;
   padding-left: 50px;
-  border-left: 1px solid #eee;
+  /* border-left: 1px solid #eee; */
 }
 
 .page-header__mobile-menu-btn {
   display: none;
-  border-right: 1px solid #eee;
-  border-left: 1px solid #eee;
+  /* border-right: 1px solid #eee;
+  border-left: 1px solid #eee; */
 }
 
 .page-header__mobile-menu-btn button {
@@ -1388,7 +1389,7 @@ textarea.uk-form-large {
   top: 50%;
   left: 0;
   margin-top: -25px;
-  color: #2196f3;
+  color: #ff9800;
   font-size: 50px;
 }
 
@@ -1961,7 +1962,7 @@ textarea.uk-form-large {
 
 .uk-offcanvas-bar .uk-offcanvas-close {
   right: 20px;
-  color: #2196f3;
+  color: #ff9800;
   opacity: 1;
 }
 
@@ -4656,7 +4657,7 @@ ul.time-work {
   display: block;
   position: relative;
   background-color: #f9f9f9;
-  background-image: url(/assets/img/bg_latest-offers.jpg);
+  background-image: url(/assets/img/asphalt-1.jpg);
   background-position: left center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -6638,11 +6639,11 @@ ul.time-work {
   }
 
   .page-header__search {
-    border-left: 1px solid #eee;
+    /* border-left: 1px solid #eee; */
   }
 
   .page-header__user .uk-icon-button {
-    border-left: 1px solid #eee;
+    /* border-left: 1px solid #eee; */
   }
 
   .page-header__contacts {
@@ -8082,3 +8083,7 @@ ul.time-work {
   }
 }
 /*# sourceMappingURL=maps/main.css.map */
+
+.uk-offcanvas-bar .uk-nav-default > li.uk-active > a {
+  color: #ff9800;
+}

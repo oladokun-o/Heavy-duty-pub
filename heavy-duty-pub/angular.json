@@ -34,7 +34,7 @@
             ],
             "scripts": [
               "src/assets/js/libs.js",
-              "src/assets/js/main.js"
+              "src/assets/js/index.js"
             ]
           },
           "configurations": {
@@ -107,7 +107,7 @@
             ],
             "scripts": [
               "src/assets/js/libs.js",
-              "src/assets/js/main.js"
+              "src/assets/js/index.js"
             ]
           }
         }
