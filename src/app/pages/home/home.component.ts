@@ -19,10 +19,16 @@ export class HomeComponent {
       {
         imageUrl: 'assets/img/hero-slider-3.jpg'
       },
+      {
+        imageUrl: 'assets/img/hero-slider-4.jpg'
+      },
+      {
+        imageUrl: 'assets/img/hero-slider-5.jpg'
+      },
     ],
     config: {
       autoplay: {
-        delay: 3000
+        delay: 5000
       }
     }
   }

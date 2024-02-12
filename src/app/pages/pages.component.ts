@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter, map } from 'rxjs/operators';
+import { NavList } from '../core/interfaces/nav.interface';
 
 @Component({
   selector: 'app-pages',
@@ -9,7 +10,21 @@ import { filter, map } from 'rxjs/operators';
 })
 export class PagesComponent {
   currentPage: string = 'home';
-  pages: Array<string> = ['home', 'products', 'services', 'about-us', 'news', 'contact'];
+  pages: Array<NavList> = [
+    { label: 'home', route: 'home' },
+    { label: 'products', route: 'products' },
+    { label: 'services', route: 'services', children: [
+      {label: 'Project Management', route: 'services'},
+      {label: 'Design', route: 'services'},
+      {label: 'Road Rehabilitaion', route: 'services'},
+      {label: 'Full Construction', route: 'services'},
+      {label: 'Street Light Installation', route: 'services'},
+      {label: 'More', route: 'services'}
+    ] },
+    { label: 'about-us', route: 'us' },
+    { label: 'news', route: 'news' },
+    { label: 'contact', route: 'contact' },
+  ];
 
   constructor(private router: Router) { }
 
@@ -29,7 +44,7 @@ export class PagesComponent {
 
   getCurrentPage(): string {
     const currentUrl = this.router.url;
-    const currentPage = this.pages.find(page => currentUrl.includes(page));
-    return currentPage || 'home';
+    const currentPage = this.pages.find(page => currentUrl.includes(page.label));
+    return currentPage?.label || 'home';
   }
 }

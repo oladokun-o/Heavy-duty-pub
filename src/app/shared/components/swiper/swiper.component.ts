@@ -1,8 +1,8 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Slide } from 'src/app/core/interfaces/slider.interface';
-import SwiperCore, { Autoplay, Swiper, SwiperOptions } from 'swiper';
+import SwiperCore, { Autoplay, EffectCreative, EffectFade, Navigation, Pagination, Swiper, SwiperOptions } from 'swiper';
 
-SwiperCore.use([Autoplay]);
+SwiperCore.use([Autoplay, Pagination, Navigation, EffectFade, EffectCreative]);
 
 @Component({
   selector: 'app-swiper',

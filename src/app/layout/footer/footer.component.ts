@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { NavList } from 'src/app/core/interfaces/nav.interface';
 
 @Component({
   selector: 'app-footer',
@@ -7,7 +8,7 @@ import { Component, Input } from '@angular/core';
 })
 export class FooterComponent {
   @Input() currentPage: string = '';
-  @Input() pages: Array<string> = [];
+  @Input() pages: Array<NavList> = [];
 
   onCloseSideBar(el: HTMLDivElement) {
     el.classList.remove('uk-offcanvas-overlay', 'uk-open');

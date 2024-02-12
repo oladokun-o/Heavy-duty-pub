@@ -1,14 +1,31 @@
 <section class="container-fluid px-0 home-slider">
-  <app-swiper [slides]="slidesAndConfig.slides" [config]="slidesAndConfig.config"></app-swiper>
+  <app-swiper [slides]="slidesAndConfig.slides" [config]="slidesAndConfig.config">
+  </app-swiper>
+  <div class="overlay">
+    <div class="col-12 col-md-7">
+      <div class="carousel-overlay">
+        <h2 class="fs-1">Discover How We Simplify Construction Projects</h2>
+        <p class="fs-4">Explore our comprehensive range of equipment and services for hassle-free construction.</p>
+        <a routerLink="/services" class="uk-button uk-button-danger uk-button-large">Learn About Our Solutions</a>
+      </div>
+    </div>
+  </div>
 </section>
 
-<app-about></app-about>
+<app-about>
 
-<app-asphalts></app-asphalts>
+</app-about>
+
+<app-asphalts>
+
+</app-asphalts>
 
 <section class="s-equipments">
   <div class="uk-section uk-container uk-container-large">
-    <div class="section-title --center"><span>[Premier Equipment Rental Service]</span>
+    <div class="section-title --center">
+      <span>
+
+      </span>
       <h3>Popular Equipments On Rent</h3>
     </div>
     <div class="section-content">
@@ -18,13 +35,15 @@
             <li>
               <div class="equipment-item">
                 <div class="equipment-item__box">
-                  <div class="equipment-item__media"><a href="07_equipment-detail.html"><img
-                        src="assets/img/equipment-1.jpg" alt="Standard Excavator 8T" /></a></div>
+                  <div class="equipment-item__media">
+                    <a href="07_equipment-detail.html">
+                      <img src="assets/img/equipment-1.jpg" alt="Standard Excavator 8T" />
+                    </a>
+                  </div>
                   <div class="equipment-item__info">
-                    <div class="equipment-item__title"><a href="07_equipment-detail.html">Standard Excavator 8T</a>
+                    <div class="equipment-item__title">
+                      <a href="07_equipment-detail.html">Standard Excavator 8T</a>
                     </div>
-                    <div class="equipment-item__links"><a href="03_equipment-categories.html">View Catelogue</a><a
-                        href="04_equipment-categories.html">Print Quotation</a></div>
                     <div class="equipment-item__list">
                       <ul>
                         <li>Brand: Wacker Neuson</li>
@@ -34,36 +53,43 @@
                       </ul>
                     </div>
                     <div class="equipment-item__price-box">
-                      <div class="equipment-item__price-title">Total Rental Price<small>(Incl. Taxes)</small></div>
+                      <div class="equipment-item__price-title">Total Rental Price<small>(Incl. Taxes)</small>
+                      </div>
                       <div class="equipment-item__price">
-                        <div class="equipment-item__price-current">$425.00</div>
-                        <div class="equipment-item__price-old">$899.00</div>
+                        <div class="equipment-item__price-current">₦425,000.00</div>
                       </div>
                     </div>
                     <div class="equipment-item__prices">
                       <ul>
-                        <li>$125 / Day</li>
-                        <li>$425 / Week</li>
-                        <li>$1350 / Month</li>
+                        <li>₦50,000 / Day</li>
+                        <li>₦100,000 / Week</li>
+                        <li>₦425,000 / Month</li>
                       </ul>
                     </div>
                   </div>
-                  <div class="equipment-item__btn"><button
-                      class="uk-button uk-button-default uk-button-large uk-width-1-1" type="button"><span>Book
-                        now</span><span data-uk-icon="arrow-right"></span></button></div>
+                  <div class="equipment-item__btn">
+                    <button routerLink="/products/1" class="uk-button uk-button-default uk-button-large uk-width-1-1" type="button">
+                      <span>Order Now</span>
+                      <span data-uk-icon="arrow-right">
+                      </span>
+                    </button>
+                  </div>
                 </div>
               </div>
             </li>
             <li>
               <div class="equipment-item">
                 <div class="equipment-item__box">
-                  <div class="equipment-item__media"><a href="07_equipment-detail.html"><img
-                        src="assets/img/equipment-2.jpg" alt="Standard Excavator 8T" /></a></div>
+                  <div class="equipment-item__media">
+                    <a href="07_equipment-detail.html">
+                      <img src="assets/img/equipment-2.jpg" alt="Standard Excavator 8T" />
+                    </a>
+                  </div>
                   <div class="equipment-item__info">
-                    <div class="equipment-item__title"><a href="07_equipment-detail.html">Standard Excavator 8T</a>
+                    <div class="equipment-item__title">
+                      <a href="07_equipment-detail.html">Standard Excavator 8T</a>
                     </div>
-                    <div class="equipment-item__links"><a href="03_equipment-categories.html">View Catelogue</a><a
-                        href="04_equipment-categories.html">Print Quotation</a></div>
+
                     <div class="equipment-item__list">
                       <ul>
                         <li>Brand: Wacker Neuson</li>
@@ -73,36 +99,44 @@
                       </ul>
                     </div>
                     <div class="equipment-item__price-box">
-                      <div class="equipment-item__price-title">Total Rental Price<small>(Incl. Taxes)</small></div>
+                      <div class="equipment-item__price-title">Total Rental Price<small>(Incl. Taxes)</small>
+                      </div>
                       <div class="equipment-item__price">
-                        <div class="equipment-item__price-current">$425.00</div>
-                        <div class="equipment-item__price-old">$899.00</div>
+                        <div class="equipment-item__price-current">₦425,000.00</div>
                       </div>
                     </div>
                     <div class="equipment-item__prices">
                       <ul>
-                        <li>$125 / Day</li>
-                        <li>$425 / Week</li>
-                        <li>$1350 / Month</li>
+                        <li>₦50,000 / Day</li>
+                        <li>₦100,000 / Week</li>
+                        <li>₦425,000 / Month</li>
                       </ul>
                     </div>
                   </div>
-                  <div class="equipment-item__btn"><button
-                      class="uk-button uk-button-default uk-button-large uk-width-1-1" type="button"><span>Book
-                        now</span><span data-uk-icon="arrow-right"></span></button></div>
+                  <div class="equipment-item__btn">
+                    <button routerLink="/products/1" class="uk-button uk-button-default uk-button-large uk-width-1-1" type="button">
+                      <span>Order Now</span>
+                      <span data-uk-icon="arrow-right">
+
+                      </span>
+                    </button>
+                  </div>
                 </div>
               </div>
             </li>
             <li>
               <div class="equipment-item">
                 <div class="equipment-item__box">
-                  <div class="equipment-item__media"><a href="07_equipment-detail.html"><img
-                        src="assets/img/equipment-3.jpg" alt="Standard Excavator 8T" /></a></div>
+                  <div class="equipment-item__media">
+                    <a href="07_equipment-detail.html">
+                      <img src="assets/img/equipment-3.jpg" alt="Standard Excavator 8T" />
+                    </a>
+                  </div>
                   <div class="equipment-item__info">
-                    <div class="equipment-item__title"><a href="07_equipment-detail.html">Standard Excavator 8T</a>
+                    <div class="equipment-item__title">
+                      <a href="07_equipment-detail.html">Standard Excavator 8T</a>
                     </div>
-                    <div class="equipment-item__links"><a href="03_equipment-categories.html">View Catelogue</a><a
-                        href="04_equipment-categories.html">Print Quotation</a></div>
+
                     <div class="equipment-item__list">
                       <ul>
                         <li>Brand: Wacker Neuson</li>
@@ -112,36 +146,44 @@
                       </ul>
                     </div>
                     <div class="equipment-item__price-box">
-                      <div class="equipment-item__price-title">Total Rental Price<small>(Incl. Taxes)</small></div>
+                      <div class="equipment-item__price-title">Total Rental Price<small>(Incl. Taxes)</small>
+                      </div>
                       <div class="equipment-item__price">
-                        <div class="equipment-item__price-current">$425.00</div>
-                        <div class="equipment-item__price-old">$899.00</div>
+                        <div class="equipment-item__price-current">₦425,000.00</div>
                       </div>
                     </div>
                     <div class="equipment-item__prices">
                       <ul>
-                        <li>$125 / Day</li>
-                        <li>$425 / Week</li>
-                        <li>$1350 / Month</li>
+                        <li>₦50,000 / Day</li>
+                        <li>₦100,000 / Week</li>
+                        <li>₦425,000 / Month</li>
                       </ul>
                     </div>
                   </div>
-                  <div class="equipment-item__btn"><button
-                      class="uk-button uk-button-default uk-button-large uk-width-1-1" type="button"><span>Book
-                        now</span><span data-uk-icon="arrow-right"></span></button></div>
+                  <div class="equipment-item__btn">
+                    <button routerLink="/products/1" class="uk-button uk-button-default uk-button-large uk-width-1-1" type="button">
+                      <span>Order Now</span>
+                      <span data-uk-icon="arrow-right">
+
+                      </span>
+                    </button>
+                  </div>
                 </div>
               </div>
             </li>
             <li>
               <div class="equipment-item">
                 <div class="equipment-item__box">
-                  <div class="equipment-item__media"><a href="07_equipment-detail.html"><img
-                        src="assets/img/equipment-1.jpg" alt="Standard Excavator 8T" /></a></div>
+                  <div class="equipment-item__media">
+                    <a href="07_equipment-detail.html">
+                      <img src="assets/img/equipment-1.jpg" alt="Standard Excavator 8T" />
+                    </a>
+                  </div>
                   <div class="equipment-item__info">
-                    <div class="equipment-item__title"><a href="07_equipment-detail.html">Standard Excavator 8T</a>
+                    <div class="equipment-item__title">
+                      <a href="07_equipment-detail.html">Standard Excavator 8T</a>
                     </div>
-                    <div class="equipment-item__links"><a href="03_equipment-categories.html">View Catelogue</a><a
-                        href="04_equipment-categories.html">Print Quotation</a></div>
+
                     <div class="equipment-item__list">
                       <ul>
                         <li>Brand: Wacker Neuson</li>
@@ -151,36 +193,44 @@
                       </ul>
                     </div>
                     <div class="equipment-item__price-box">
-                      <div class="equipment-item__price-title">Total Rental Price<small>(Incl. Taxes)</small></div>
+                      <div class="equipment-item__price-title">Total Rental Price<small>(Incl. Taxes)</small>
+                      </div>
                       <div class="equipment-item__price">
-                        <div class="equipment-item__price-current">$425.00</div>
-                        <div class="equipment-item__price-old">$899.00</div>
+                        <div class="equipment-item__price-current">₦425,000.00</div>
                       </div>
                     </div>
                     <div class="equipment-item__prices">
                       <ul>
-                        <li>$125 / Day</li>
-                        <li>$425 / Week</li>
-                        <li>$1350 / Month</li>
+                        <li>₦50,000 / Day</li>
+                        <li>₦100,000 / Week</li>
+                        <li>₦425,000 / Month</li>
                       </ul>
                     </div>
                   </div>
-                  <div class="equipment-item__btn"><button
-                      class="uk-button uk-button-default uk-button-large uk-width-1-1" type="button"><span>Book
-                        now</span><span data-uk-icon="arrow-right"></span></button></div>
+                  <div class="equipment-item__btn">
+                    <button routerLink="/products/1" class="uk-button uk-button-default uk-button-large uk-width-1-1" type="button">
+                      <span>Order Now</span>
+                      <span data-uk-icon="arrow-right">
+
+                      </span>
+                    </button>
+                  </div>
                 </div>
               </div>
             </li>
             <li>
               <div class="equipment-item">
                 <div class="equipment-item__box">
-                  <div class="equipment-item__media"><a href="07_equipment-detail.html"><img
-                        src="assets/img/equipment-2.jpg" alt="Standard Excavator 8T" /></a></div>
+                  <div class="equipment-item__media">
+                    <a href="07_equipment-detail.html">
+                      <img src="assets/img/equipment-2.jpg" alt="Standard Excavator 8T" />
+                    </a>
+                  </div>
                   <div class="equipment-item__info">
-                    <div class="equipment-item__title"><a href="07_equipment-detail.html">Standard Excavator 8T</a>
+                    <div class="equipment-item__title">
+                      <a href="07_equipment-detail.html">Standard Excavator 8T</a>
                     </div>
-                    <div class="equipment-item__links"><a href="03_equipment-categories.html">View Catelogue</a><a
-                        href="04_equipment-categories.html">Print Quotation</a></div>
+
                     <div class="equipment-item__list">
                       <ul>
                         <li>Brand: Wacker Neuson</li>
@@ -190,29 +240,36 @@
                       </ul>
                     </div>
                     <div class="equipment-item__price-box">
-                      <div class="equipment-item__price-title">Total Rental Price<small>(Incl. Taxes)</small></div>
+                      <div class="equipment-item__price-title">Total Rental Price<small>(Incl. Taxes)</small>
+                      </div>
                       <div class="equipment-item__price">
-                        <div class="equipment-item__price-current">$425.00</div>
-                        <div class="equipment-item__price-old">$899.00</div>
+                        <div class="equipment-item__price-current">₦425,000.00</div>
                       </div>
                     </div>
                     <div class="equipment-item__prices">
                       <ul>
-                        <li>$125 / Day</li>
-                        <li>$425 / Week</li>
-                        <li>$1350 / Month</li>
+                        <li>₦50,000 / Day</li>
+                        <li>₦100,000 / Week</li>
+                        <li>₦425,000 / Month</li>
                       </ul>
                     </div>
                   </div>
-                  <div class="equipment-item__btn"><button
-                      class="uk-button uk-button-default uk-button-large uk-width-1-1" type="button"><span>Book
-                        now</span><span data-uk-icon="arrow-right"></span></button></div>
+                  <div class="equipment-item__btn">
+                    <button routerLink="/products/1" class="uk-button uk-button-default uk-button-large uk-width-1-1" type="button">
+                      <span>Order Now</span>
+                      <span data-uk-icon="arrow-right">
+
+                      </span>
+                    </button>
+                  </div>
                 </div>
               </div>
             </li>
           </ul>
         </div>
-        <ul class="uk-slider-nav uk-dotnav uk-flex-center uk-margin-medium-top"></ul>
+        <ul class="uk-slider-nav uk-dotnav uk-flex-center uk-margin-medium-top">
+
+        </ul>
       </div>
     </div>
   </div>
@@ -220,7 +277,8 @@
 
 <section class="s-reviews">
   <div class="uk-section uk-container">
-    <div class="section-title --center"><span>Testimonials</span>
+    <div class="section-title --center">
+      <span>Testimonials</span>
       <h3>Words From Loyal Customers</h3>
     </div>
     <div class="section-content">
@@ -231,24 +289,40 @@
               <div class="review-item">
                 <div class="review-item__box">
                   <div class="review-item__desc">
-                    <div class="review-item__icon"><span data-uk-icon="quote-right"></span></div>
+                    <div class="review-item__icon">
+                      <span data-uk-icon="quote-right">
+
+                      </span>
+                    </div>
                     <h4 class="review-item__title">Satisfying Services.</h4>
                     <p class="review-item__text">At dolore magna aliqua umt enim ad mini veniam quis ulamco aliquip com
                       da consequat duis aute irue derit vol ptate cillum dolore afugiat.</p>
                   </div>
                   <div class="review-item__user">
                     <div class="user">
-                      <div class="user__avatar"><img src="assets/img/user-1.png" alt="avatar"></div>
+                      <div class="user__avatar">
+                        <img src="assets/img/user-1.png" alt="avatar">
+                      </div>
                       <div class="user__info">
                         <div class="user__name">Donald James</div>
                         <div class="user__position">Rental Customer</div>
                         <div class="user__rating">
                           <ul class="rating-list">
-                            <li class="active" data-uk-icon="star"></li>
-                            <li class="active" data-uk-icon="star"></li>
-                            <li class="active" data-uk-icon="star"></li>
-                            <li class="active" data-uk-icon="star"></li>
-                            <li data-uk-icon="star"></li>
+                            <li class="active" data-uk-icon="star">
+
+                            </li>
+                            <li class="active" data-uk-icon="star">
+
+                            </li>
+                            <li class="active" data-uk-icon="star">
+
+                            </li>
+                            <li class="active" data-uk-icon="star">
+
+                            </li>
+                            <li data-uk-icon="star">
+
+                            </li>
                           </ul>
                         </div>
                       </div>
@@ -261,24 +335,40 @@
               <div class="review-item">
                 <div class="review-item__box">
                   <div class="review-item__desc">
-                    <div class="review-item__icon"><span data-uk-icon="quote-right"></span></div>
+                    <div class="review-item__icon">
+                      <span data-uk-icon="quote-right">
+
+                      </span>
+                    </div>
                     <h4 class="review-item__title">Well-Performed Equip.</h4>
                     <p class="review-item__text">At dolore magna aliqua umt enim ad mini veniam quis ulamco aliquip com
                       da consequat duis aute irue derit vol ptate cillum dolore afugiat.</p>
                   </div>
                   <div class="review-item__user">
                     <div class="user">
-                      <div class="user__avatar"><img src="assets/img/user-2.png" alt="avatar"></div>
+                      <div class="user__avatar">
+                        <img src="assets/img/user-2.png" alt="avatar">
+                      </div>
                       <div class="user__info">
                         <div class="user__name">Sheggy O’Brain</div>
                         <div class="user__position">Rental Customer</div>
                         <div class="user__rating">
                           <ul class="rating-list">
-                            <li class="active" data-uk-icon="star"></li>
-                            <li class="active" data-uk-icon="star"></li>
-                            <li class="active" data-uk-icon="star"></li>
-                            <li data-uk-icon="star"></li>
-                            <li data-uk-icon="star"></li>
+                            <li class="active" data-uk-icon="star">
+
+                            </li>
+                            <li class="active" data-uk-icon="star">
+
+                            </li>
+                            <li class="active" data-uk-icon="star">
+
+                            </li>
+                            <li data-uk-icon="star">
+
+                            </li>
+                            <li data-uk-icon="star">
+
+                            </li>
                           </ul>
                         </div>
                       </div>
@@ -291,24 +381,40 @@
               <div class="review-item">
                 <div class="review-item__box">
                   <div class="review-item__desc">
-                    <div class="review-item__icon"><span data-uk-icon="quote-right"></span></div>
+                    <div class="review-item__icon">
+                      <span data-uk-icon="quote-right">
+
+                      </span>
+                    </div>
                     <h4 class="review-item__title">Working Excavators.</h4>
                     <p class="review-item__text">At dolore magna aliqua umt enim ad mini veniam quis ulamco aliquip com
                       da consequat duis aute irue derit vol ptate cillum dolore afugiat.</p>
                   </div>
                   <div class="review-item__user">
                     <div class="user">
-                      <div class="user__avatar"><img src="assets/img/user-3.png" alt="avatar"></div>
+                      <div class="user__avatar">
+                        <img src="assets/img/user-3.png" alt="avatar">
+                      </div>
                       <div class="user__info">
                         <div class="user__name">Albert D’Souza</div>
                         <div class="user__position">Rental Customer</div>
                         <div class="user__rating">
                           <ul class="rating-list">
-                            <li class="active" data-uk-icon="star"></li>
-                            <li class="active" data-uk-icon="star"></li>
-                            <li class="active" data-uk-icon="star"></li>
-                            <li class="active" data-uk-icon="star"></li>
-                            <li data-uk-icon="star"></li>
+                            <li class="active" data-uk-icon="star">
+
+                            </li>
+                            <li class="active" data-uk-icon="star">
+
+                            </li>
+                            <li class="active" data-uk-icon="star">
+
+                            </li>
+                            <li class="active" data-uk-icon="star">
+
+                            </li>
+                            <li data-uk-icon="star">
+
+                            </li>
                           </ul>
                         </div>
                       </div>
@@ -320,59 +426,19 @@
           </div>
         </div>
         <div class="slider-nav uk-margin-large-top">
-          <div class="swiper-pagination"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<section class="s-info">
-  <div class="uk-container uk-container-xlarge">
-    <div class="uk-grid uk-grid-collapse uk-child-width-1-2@l" data-uk-grid>
-      <div>
-        <div class="info-card --accent">
-          <div class="info-card__box">
-            <div class="info-card__head"><img src="assets/img/ico-info-1.png" alt="ico-info"><span>Do you need our
-                Assistance while Renting an Equipment?</span></div>
-            <div class="info-card__title">Contact our Customer Care Team to Better Assist for your Needs.</div>
-            <div class="info-card__btn"><a class="uk-button uk-button-default uk-button-large"
-                href="about-us.html"><span>Get assistance</span><span data-uk-icon="arrow-right"></span></a></div>
-            <div class="info-card__progress">
-              <div class="progress-item">
-                <h6>Machinery Help</h6><progress class="uk-progress" value="95" max="100"></progress><span>95%</span>
-              </div>
-              <div class="progress-item">
-                <h6>Choose an Equip.</h6><progress class="uk-progress" value="90" max="100"></progress><span>90%</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div>
-        <div class="info-card">
-          <div class="info-card__box">
-            <div class="info-card__head"><img src="assets/img/ico-info-2.png" alt="ico-info"><span>Do you want to Buy a
-                Part or Equipment? Suprek can Help you!</span></div>
-            <div class="info-card__title">Buy a Part or Equipment in Best Shape with Fully Maintainence.</div>
-            <div class="info-card__btn"><a class="uk-button uk-button-default uk-button-large"
-                href="about-us.html"><span>Start searching</span><span data-uk-icon="arrow-right"></span></a></div>
-            <div class="info-card__progress">
-              <div class="progress-item">
-                <h6>Rent Equipment</h6><progress class="uk-progress" value="95" max="100"></progress><span>95%</span>
-              </div>
-              <div class="progress-item">
-                <h6>Delivery Timing</h6><progress class="uk-progress" value="90" max="100"></progress><span>90%</span>
-              </div>
-            </div>
+          <div class="swiper-pagination">
+
           </div>
         </div>
       </div>
     </div>
   </div>
 </section>
+
 <section class="s-news">
   <div class="uk-section uk-container">
-    <div class="section-title --center"><span>[Premier Equipment Rental Service]</span>
+    <div class="section-title --center">
+      <span>[Premier Equipment Rental Service]</span>
       <h3>Read Latest From Blog</h3>
     </div>
     <div class="section-content">
@@ -380,37 +446,52 @@
         <div class="swiper">
           <div class="swiper-wrapper">
             <div class="swiper-slide">
-              <div class="new-item"><a class="new-item__box" href="blog-post.html">
-                  <div class="new-item__media"><img src="assets/img/new-item-1.jpg" alt="news"></div>
+              <div class="new-item">
+                <a class="new-item__box" href="blog-post.html">
+                  <div class="new-item__media">
+                    <img src="assets/img/new-item-1.jpg" alt="news">
+                  </div>
                   <div class="new-item__body">
-                    <div class="new-item__title"><span>[Rent Equipment]</span>
+                    <div class="new-item__title">
+                      <span>[Rent Equipment]</span>
                       <h4>Basic Tips to Motivate Your Team and Increase Production</h4>
                     </div>
                     <div class="new-item__date">March 12, 2021</div>
                   </div>
-                </a></div>
+                </a>
+              </div>
             </div>
             <div class="swiper-slide">
-              <div class="new-item"><a class="new-item__box" href="blog-post.html">
-                  <div class="new-item__media"><img src="assets/img/new-item-2.jpg" alt="news"></div>
+              <div class="new-item">
+                <a class="new-item__box" href="blog-post.html">
+                  <div class="new-item__media">
+                    <img src="assets/img/new-item-2.jpg" alt="news">
+                  </div>
                   <div class="new-item__body">
-                    <div class="new-item__title"><span>[Rent Equipment]</span>
+                    <div class="new-item__title">
+                      <span>[Rent Equipment]</span>
                       <h4>Excavator Components & Parts Which You Should Know How to Rent</h4>
                     </div>
                     <div class="new-item__date">March 12, 2021</div>
                   </div>
-                </a></div>
+                </a>
+              </div>
             </div>
             <div class="swiper-slide">
-              <div class="new-item"><a class="new-item__box" href="blog-post.html">
-                  <div class="new-item__media"><img src="assets/img/new-item-3.jpg" alt="news"></div>
+              <div class="new-item">
+                <a class="new-item__box" href="blog-post.html">
+                  <div class="new-item__media">
+                    <img src="assets/img/new-item-3.jpg" alt="news">
+                  </div>
                   <div class="new-item__body">
-                    <div class="new-item__title"><span>[Rent Equipment]</span>
+                    <div class="new-item__title">
+                      <span>[Rent Equipment]</span>
                       <h4>Safe Driving Tips from Our Drivers and Techs to Yours Warehouse</h4>
                     </div>
                     <div class="new-item__date">March 12, 2021</div>
                   </div>
-                </a></div>
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -418,21 +499,25 @@
     </div>
   </div>
 </section>
+
 <section class="s-form">
   <div class="uk-section-large uk-container">
     <div class="uk-grid uk-flex-middle" data-uk-grid>
       <div class="uk-width-2-5@m">
-        <div class="section-title"><span>[Equipment Rental Industry]</span>
+        <div class="section-title">
+          <span>Heavy Duty Pub</span>
           <h3>Need an Equipment on Rent? Get Expert’s Help</h3>
         </div>
         <div class="section-content">
           <p>Send your query today & our team would be happy to assist you because we care industry to utilizing heavy
             equipment.</p>
           <div class="contacts-box">
-            <div class="contacts-box__img"><img src="assets/img/avatar.png" alt="image"></div>
+            <div class="contacts-box__img">
+              <img src="assets/img/call-center.png" width="80" alt="image">
+            </div>
             <div class="contacts-box__desc">
-              <div class="contacts-box__label">Need Help? Call Us</div><a class="contacts-box__phone"
-                href="tel:17881239911">(+1) 788-123-9911</a>
+              <div class="contacts-box__label">Need Help? Call Us</div>
+              <a class="contacts-box__phone" href="tel:17881239911">(+234) 080-0000-000</a>
             </div>
           </div>
           <ul class="time-work">
@@ -449,14 +534,30 @@
           <input type="hidden" name="form_subject" value="Get Expert’s Help">
           <!-- END Hidden Required Fields -->
           <div class="uk-grid uk-child-width-1-2@s uk-grid-small" data-uk-grid>
-            <div><input class="uk-input uk-form-large" type="text" name="name" placeholder="Your name"></div>
-            <div><input class="uk-input uk-form-large" type="text" name="email" placeholder="Email"></div>
-            <div><input class="uk-input uk-form-large" type="text" name="phone" placeholder="Phone #"></div>
-            <div><input class="uk-input uk-form-large" type="text" name="subject" placeholder="Subject"></div>
-            <div class="uk-width-1-1"><textarea class="uk-textarea uk-form-large" name="message"
-                placeholder="Message / Question"></textarea></div>
-            <div class="uk-width-1-1"><button class="uk-button uk-button-default uk-button-large"
-                type="submit"><span>Send now</span><span data-uk-icon="arrow-right"></span></button></div>
+            <div>
+              <input class="uk-input uk-form-large" type="text" name="name" placeholder="Your name">
+            </div>
+            <div>
+              <input class="uk-input uk-form-large" type="text" name="email" placeholder="Email">
+            </div>
+            <div>
+              <input class="uk-input uk-form-large" type="text" name="phone" placeholder="Phone #">
+            </div>
+            <div>
+              <input class="uk-input uk-form-large" type="text" name="subject" placeholder="Subject">
+            </div>
+            <div class="uk-width-1-1">
+              <textarea class="uk-textarea uk-form-large" name="message" placeholder="Message / Question">
+              </textarea>
+            </div>
+            <div class="uk-width-1-1">
+              <button class="uk-button uk-button-default uk-button-large" type="submit">
+                <span>Send now</span>
+                <span data-uk-icon="arrow-right">
+
+                </span>
+              </button>
+            </div>
           </div>
         </form>
       </div>

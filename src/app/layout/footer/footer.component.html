@@ -13,8 +13,7 @@
               </g>
             </svg>
           </a>
-          <p>Aiusmod tempor incididunt labore dnim ad minim veniam quis nostrsd
-            exercitation ullamco.</p>
+          <p>Paving Success, One Road at a Time.</p>
           <ul class="contacts-list">
             <li>
               <a href="https://goo.gl/maps/XdgZbYX9V62UpBwc7" target="_blank">
@@ -29,8 +28,7 @@
                 <span data-uk-icon="receiver">
 
                 </span>
-                <span>+1 (236) 799 5500 /
-                  6600</span>
+                <span>+(234) 0800 000 5500</span>
               </a>
             </li>
             <li>
@@ -80,25 +78,25 @@
           </ul>
         </div>
         <div class="page-footer__menu">
-          <h4>OuR Solutions</h4>
+          <h4>Our Services</h4>
           <ul class="uk-nav">
             <li>
-              <a href="page-typography.html">Safe Walls System</a>
+              <a routerLink="/services">Project Management</a>
             </li>
             <li>
-              <a href="page-typography.html">Climate Control</a>
+              <a routerLink="/services">Design</a>
             </li>
             <li>
-              <a href="page-typography.html">Health Care</a>
+              <a routerLink="/services">Road Rehabilitaion</a>
             </li>
             <li>
-              <a href="page-typography.html">Entertainment</a>
+              <a routerLink="/services">Full Construction</a>
             </li>
             <li>
-              <a href="page-typography.html">Power Generation</a>
+              <a routerLink="/services">Street Light Installation</a>
             </li>
             <li>
-              <a href="page-typography.html">Industrial Lighting</a>
+              <a routerLink="/services">Others</a>
             </li>
           </ul>
         </div>
@@ -106,22 +104,13 @@
           <h4>COMPANY INFO</h4>
           <ul class="uk-nav">
             <li>
-              <a href="page-typography.html">About Suprek Rental</a>
+              <a routerLink="/about">About Heavy Duty Pub</a>
             </li>
             <li>
-              <a href="page-typography.html">Latest News</a>
+              <a routerLink="/news">Latest News</a>
             </li>
             <li>
-              <a href="page-typography.html">Our Process</a>
-            </li>
-            <li>
-              <a href="page-typography.html">Terms & Conditions</a>
-            </li>
-            <li>
-              <a href="page-typography.html">Protections & Coverages</a>
-            </li>
-            <li>
-              <a href="page-typography.html">Used Equipment Sale</a>
+              <a routerLink="#">Terms & Conditions</a>
             </li>
           </ul>
         </div>
@@ -133,7 +122,7 @@
                 <img class="news-list-item__img" src="assets/img/news-item-1.jpg" alt="news">
                 <div class="news-list-item__info">
                   <span class="news-list-item__date">March 12, 2021</span>
-                  <a class="news-list-item__title" href="blog-post.html">Safe
+                  <a class="news-list-item__title" routerLink="/news">Safe
                     Driving Tips from Our Drivers ...</a>
                 </div>
               </div>
@@ -143,7 +132,7 @@
                 <img class="news-list-item__img" src="assets/img/news-item-2.jpg" alt="news">
                 <div class="news-list-item__info">
                   <span class="news-list-item__date">March 12, 2021</span>
-                  <a class="news-list-item__title" href="blog-post.html">Basic
+                  <a class="news-list-item__title" routerLink="/news">Basic
                     Tips to Motivate Your Team ...</a>
                 </div>
               </div>
@@ -156,13 +145,9 @@
   <div class="page-footer__bottom">
     <div class="uk-container uk-container-large">
       <div class="page-footer__copy">
-        <span>(c) 2022 <b>Suprek</b> - Heavy
-          Equipment Rental Service</span>
-        <a href="page-typography.html">Terms &
+        <span>(c) 2024 <b>Heavy Duty Pub</b></span>
+        <a routerLink="#">Terms &
           Conditions</a>
-        <a href="page-typography.html">Sitemap</a>
-        <a href="page-typography.html">Career
-          Opportunities</a>
       </div>
     </div>
   </div>
@@ -173,8 +158,12 @@
     </button>
     <div class="uk-margin-bottom">
       <ul class="uk-nav uk-nav-default uk-nav-parent-icon" data-uk-nav>
-        <li *ngFor="let page of pages" class="uk-offcanvas-close" data-uk-close [class.uk-active]="currentPage === page">
-          <a [routerLink]="['/' + page]" class="text-capitalize"><span>{{ page.replace('-', ' ') }}</span></a>
+        <li *ngFor="let page of pages" class="uk-offcanvas-close" data-uk-close
+          [class.uk-active]="currentPage === page.label">
+          <a [routerLink]="['/' + page.route]" class="text-capitalize"><span>{{ page.label }}</span></a>
+          <ul *ngIf="page.children" class="uk-nav-sub d-flex flex-column gap-4 mt-3">
+            <li *ngFor="let child of page.children"><a [routerLink]="child.route">{{ child.label }}</a></li>
+          </ul>
         </li>
       </ul>
     </div>

@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter, map } from 'rxjs/operators';
+import { NavList } from 'src/app/core/interfaces/nav.interface';
 
 @Component({
   selector: 'app-header',
@@ -9,5 +10,5 @@ import { filter, map } from 'rxjs/operators';
 })
 export class HeaderComponent {
   @Input() currentPage: string = '';
-  @Input() pages: Array<string> = [];
+  @Input() pages: Array<NavList> = [];
 }
