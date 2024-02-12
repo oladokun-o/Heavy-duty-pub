@@ -5,12 +5,14 @@ import { SwiperModule } from 'swiper/angular';
 import { AsphaltsComponent } from './asphalts/asphalts.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { RouterModule } from '@angular/router';
+import { PageHeadComponent } from './page-head/page-head.component';
 
 @NgModule({
   declarations: [
     SwiperComponent,
     AsphaltsComponent,
-    AboutUsComponent
+    AboutUsComponent,
+    PageHeadComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +22,8 @@ import { RouterModule } from '@angular/router';
   exports: [
     SwiperComponent,
     AsphaltsComponent,
-    AboutUsComponent
+    AboutUsComponent,
+    PageHeadComponent
   ]
 })
 export class SharedComponentsModule { }
