@@ -5252,7 +5252,7 @@ ul.time-work {
 
 .widjet__title::before {
   display: inline-block;
-  width: 22px;
+  width: 30px;
   height: 30px;
   margin-right: 10px;
   background-image: url(/assets/img/svgico/logo-icon.svg);

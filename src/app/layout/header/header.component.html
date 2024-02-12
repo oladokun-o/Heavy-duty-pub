@@ -24,7 +24,7 @@
       <div class="page-header__mainmenu">
         <ul class="uk-navbar-nav" data-uk-navbar>
           <li *ngFor="let page of pages" [class.uk-active]="currentPage === page.label" class="uk-nav-sub">
-            <a [routerLink]="['/' + page.route]" class="text-capitalize"><span>{{ page.label }}</span></a>
+            <a [routerLink]="['/' + page.route]" class="text-capitalize"><span>{{ page.label.replace('-', ' ') }}</span></a>
             <div *ngIf="page.children" class="uk-navbar-dropdown">
               <ul class="uk-nav uk-navbar-dropdown-nav">
                 <li *ngFor="let child of page.children">

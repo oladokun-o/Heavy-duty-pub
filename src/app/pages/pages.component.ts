@@ -21,7 +21,7 @@ export class PagesComponent {
       {label: 'Street Light Installation', route: 'services'},
       {label: 'More', route: 'services'}
     ] },
-    { label: 'about-us', route: 'us' },
+    { label: 'about-us', route: 'about-us' },
     { label: 'news', route: 'news' },
     { label: 'contact', route: 'contact' },
   ];

@@ -30,12 +30,17 @@ const routes: Routes = [
         component: AboutUsComponent
       },
       {
+        path: 'about',
+        redirectTo: 'about-us'
+      },
+      {
         path: 'services',
         component: ServicesComponent
       },
       {
         path: 'news',
-        component: NewsComponent
+        component: NewsComponent,
+        loadChildren: () => import('./news/news.module').then(m => m.NewsModule)
       },
       {
         path: 'contact',

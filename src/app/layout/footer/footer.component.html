@@ -122,7 +122,7 @@
                 <img class="news-list-item__img" src="assets/img/news-item-1.jpg" alt="news">
                 <div class="news-list-item__info">
                   <span class="news-list-item__date">March 12, 2021</span>
-                  <a class="news-list-item__title" routerLink="/news">Safe
+                  <a class="news-list-item__title" [routerLink]="['/news', 1]">Safe
                     Driving Tips from Our Drivers ...</a>
                 </div>
               </div>
@@ -132,7 +132,7 @@
                 <img class="news-list-item__img" src="assets/img/news-item-2.jpg" alt="news">
                 <div class="news-list-item__info">
                   <span class="news-list-item__date">March 12, 2021</span>
-                  <a class="news-list-item__title" routerLink="/news">Basic
+                  <a class="news-list-item__title" [routerLink]="['/news', 1]">Basic
                     Tips to Motivate Your Team ...</a>
                 </div>
               </div>
@@ -162,7 +162,7 @@
           [class.uk-active]="currentPage === page.label">
           <a [routerLink]="['/' + page.route]" class="text-capitalize"><span>{{ page.label }}</span></a>
           <ul *ngIf="page.children" class="uk-nav-sub d-flex flex-column gap-4 mt-3">
-            <li *ngFor="let child of page.children"><a [routerLink]="child.route">{{ child.label }}</a></li>
+            <li *ngFor="let child of page.children"><a [routerLink]="child.route">{{ child.label.replace('-',' ') }}</a></li>
           </ul>
         </li>
       </ul>
