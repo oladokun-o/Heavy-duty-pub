@@ -6,9 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent {
-  view: 'grid' | 'list' = 'grid';
+  view: 'grid' | 'list' = sessionStorage.getItem('productsView') as 'grid' | 'list' || 'grid';
 
   changeView(view: 'grid' | 'list'): void {
     this.view = view;
+    sessionStorage.setItem('productsView', this.view);
   }
 }
