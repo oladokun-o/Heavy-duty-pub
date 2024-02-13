@@ -1,5 +1,6 @@
 <div class="page-head">
-  <div class="page-head__bg" style="background-image: url(assets/img/bg_page-ren.jpg)">
+  <div class="page-head__bg"
+    style="background-image: url(assets/img/bg_page-ren.jpg)">
     <div class="page-head__title">Explore Our Range of Products</div>
     <div class="page-head__breadcrumb">
       <ul class="uk-breadcrumb">
@@ -9,9 +10,12 @@
     </div>
   </div>
 </div>
+
 <div class="page-content">
   <div class="uk-section uk-container uk-container-large">
-    <div class="col-12">
+    <div class="col-12"><div class="col-12 py-3">
+        <h1>Equipments</h1>
+      </div>
       <div class="equipment-head">
         <div><span>Showing results <b>1 - 5</b> of total <b>5</b></span></div>
         <div>
@@ -21,28 +25,32 @@
                   <option value="Price: Low to High">Price: Low to High</option>
                 </select></div> -->
           <div class="view-box">
-            <a class="view-item" [class.active]="view === 'list'" (click)="changeView('list')">
+            <a class="view-item" [class.active]="view === 'list'"
+              (click)="changeView('list')">
               <img src="assets/img/view-list.svg" alt="icon" data-uk-svg>
             </a>
-            <a class="view-item" [class.active]="view === 'grid'" (click)="changeView('grid')">
+            <a class="view-item" [class.active]="view === 'grid'"
+              (click)="changeView('grid')">
               <img src="assets/img/view-grid.svg" alt="icon" data-uk-svg>
             </a>
           </div>
         </div>
       </div>
       <div class="uk-grid" data-uk-grid>
-        <div *ngIf="view === 'grid'" class="uk-grid uk-child-width-1-2@s" data-uk-grid>
+        <div *ngIf="view === 'grid'" class="uk-grid uk-child-width-1-2@s"
+          data-uk-grid>
           <div>
             <div class="equipment-item">
               <div class="equipment-item__box">
                 <div class="equipment-item__media">
-                  <a href="07_equipment-detail.html">
-                    <img src="assets/img/equipment-1.jpg" alt="Standard Excavator 8T" />
+                  <a [routerLink]="['/products',1]">
+                    <img src="assets/img/equipment-1.jpg"
+                      alt="Standard Excavator 8T" />
                   </a>
                 </div>
                 <div class="equipment-item__info">
                   <div class="equipment-item__title">
-                    <a href="07_equipment-detail.html">Standard Excavator 8T</a>
+                    <a [routerLink]="['/products',1]">Standard Excavator 8T</a>
                   </div>
                   <div class="equipment-item__list">
                     <ul>
@@ -53,10 +61,12 @@
                     </ul>
                   </div>
                   <div class="equipment-item__price-box">
-                    <div class="equipment-item__price-title">Total Rental Price<small>(Incl. Taxes)</small>
+                    <div class="equipment-item__price-title">Total Rental
+                      Price<small>(Incl. Taxes)</small>
                     </div>
                     <div class="equipment-item__price">
-                      <div class="equipment-item__price-current">₦425,000.00</div>
+                      <div
+                        class="equipment-item__price-current">₦425,000.00</div>
                     </div>
                   </div>
                   <div class="equipment-item__prices">
@@ -68,7 +78,8 @@
                   </div>
                 </div>
                 <div class="equipment-item__btn">
-                  <button routerLink="/products/1" class="uk-button uk-button-default uk-button-large uk-width-1-1"
+                  <button routerLink="/products/1"
+                    class="uk-button uk-button-default uk-button-large uk-width-1-1"
                     type="button">
                     <span>Order Now</span>
                     <span data-uk-icon="arrow-right">
@@ -82,13 +93,14 @@
             <div class="equipment-item">
               <div class="equipment-item__box">
                 <div class="equipment-item__media">
-                  <a href="07_equipment-detail.html">
-                    <img src="assets/img/equipment-2.jpg" alt="Standard Excavator 8T" />
+                  <a [routerLink]="['/products',1]">
+                    <img src="assets/img/equipment-2.jpg"
+                      alt="Standard Excavator 8T" />
                   </a>
                 </div>
                 <div class="equipment-item__info">
                   <div class="equipment-item__title">
-                    <a href="07_equipment-detail.html">Standard Excavator 8T</a>
+                    <a [routerLink]="['/products',1]">Standard Excavator 8T</a>
                   </div>
 
                   <div class="equipment-item__list">
@@ -100,10 +112,12 @@
                     </ul>
                   </div>
                   <div class="equipment-item__price-box">
-                    <div class="equipment-item__price-title">Total Rental Price<small>(Incl. Taxes)</small>
+                    <div class="equipment-item__price-title">Total Rental
+                      Price<small>(Incl. Taxes)</small>
                     </div>
                     <div class="equipment-item__price">
-                      <div class="equipment-item__price-current">₦425,000.00</div>
+                      <div
+                        class="equipment-item__price-current">₦425,000.00</div>
                     </div>
                   </div>
                   <div class="equipment-item__prices">
@@ -115,55 +129,8 @@
                   </div>
                 </div>
                 <div class="equipment-item__btn">
-                  <button routerLink="/products/1" class="uk-button uk-button-default uk-button-large uk-width-1-1"
-                    type="button">
-                    <span>Order Now</span>
-                    <span data-uk-icon="arrow-right">
-
-                    </span>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div>
-            <div class="equipment-item">
-              <div class="equipment-item__box">
-                <div class="equipment-item__media">
-                  <a href="07_equipment-detail.html">
-                    <img src="assets/img/equipment-3.jpg" alt="Standard Excavator 8T" />
-                  </a>
-                </div>
-                <div class="equipment-item__info">
-                  <div class="equipment-item__title">
-                    <a href="07_equipment-detail.html">Standard Excavator 8T</a>
-                  </div>
-
-                  <div class="equipment-item__list">
-                    <ul>
-                      <li>Brand: Wacker Neuson</li>
-                      <li>MFG Year: 2019</li>
-                      <li>Model: EZ17</li>
-                      <li>Operating Weight: 1.7 Ton</li>
-                    </ul>
-                  </div>
-                  <div class="equipment-item__price-box">
-                    <div class="equipment-item__price-title">Total Rental Price<small>(Incl. Taxes)</small>
-                    </div>
-                    <div class="equipment-item__price">
-                      <div class="equipment-item__price-current">₦425,000.00</div>
-                    </div>
-                  </div>
-                  <div class="equipment-item__prices">
-                    <ul>
-                      <li>₦50,000 / Day</li>
-                      <li>₦100,000 / Week</li>
-                      <li>₦425,000 / Month</li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="equipment-item__btn">
-                  <button routerLink="/products/1" class="uk-button uk-button-default uk-button-large uk-width-1-1"
+                  <button routerLink="/products/1"
+                    class="uk-button uk-button-default uk-button-large uk-width-1-1"
                     type="button">
                     <span>Order Now</span>
                     <span data-uk-icon="arrow-right">
@@ -178,13 +145,14 @@
             <div class="equipment-item">
               <div class="equipment-item__box">
                 <div class="equipment-item__media">
-                  <a href="07_equipment-detail.html">
-                    <img src="assets/img/equipment-1.jpg" alt="Standard Excavator 8T" />
+                  <a [routerLink]="['/products',1]">
+                    <img src="assets/img/equipment-3.jpg"
+                      alt="Standard Excavator 8T" />
                   </a>
                 </div>
                 <div class="equipment-item__info">
                   <div class="equipment-item__title">
-                    <a href="07_equipment-detail.html">Standard Excavator 8T</a>
+                    <a [routerLink]="['/products',1]">Standard Excavator 8T</a>
                   </div>
 
                   <div class="equipment-item__list">
@@ -196,10 +164,12 @@
                     </ul>
                   </div>
                   <div class="equipment-item__price-box">
-                    <div class="equipment-item__price-title">Total Rental Price<small>(Incl. Taxes)</small>
+                    <div class="equipment-item__price-title">Total Rental
+                      Price<small>(Incl. Taxes)</small>
                     </div>
                     <div class="equipment-item__price">
-                      <div class="equipment-item__price-current">₦425,000.00</div>
+                      <div
+                        class="equipment-item__price-current">₦425,000.00</div>
                     </div>
                   </div>
                   <div class="equipment-item__prices">
@@ -211,7 +181,8 @@
                   </div>
                 </div>
                 <div class="equipment-item__btn">
-                  <button routerLink="/products/1" class="uk-button uk-button-default uk-button-large uk-width-1-1"
+                  <button routerLink="/products/1"
+                    class="uk-button uk-button-default uk-button-large uk-width-1-1"
                     type="button">
                     <span>Order Now</span>
                     <span data-uk-icon="arrow-right">
@@ -226,13 +197,14 @@
             <div class="equipment-item">
               <div class="equipment-item__box">
                 <div class="equipment-item__media">
-                  <a href="07_equipment-detail.html">
-                    <img src="assets/img/equipment-2.jpg" alt="Standard Excavator 8T" />
+                  <a [routerLink]="['/products',1]">
+                    <img src="assets/img/equipment-1.jpg"
+                      alt="Standard Excavator 8T" />
                   </a>
                 </div>
                 <div class="equipment-item__info">
                   <div class="equipment-item__title">
-                    <a href="07_equipment-detail.html">Standard Excavator 8T</a>
+                    <a [routerLink]="['/products',1]">Standard Excavator 8T</a>
                   </div>
 
                   <div class="equipment-item__list">
@@ -244,10 +216,12 @@
                     </ul>
                   </div>
                   <div class="equipment-item__price-box">
-                    <div class="equipment-item__price-title">Total Rental Price<small>(Incl. Taxes)</small>
+                    <div class="equipment-item__price-title">Total Rental
+                      Price<small>(Incl. Taxes)</small>
                     </div>
                     <div class="equipment-item__price">
-                      <div class="equipment-item__price-current">₦425,000.00</div>
+                      <div
+                        class="equipment-item__price-current">₦425,000.00</div>
                     </div>
                   </div>
                   <div class="equipment-item__prices">
@@ -259,7 +233,60 @@
                   </div>
                 </div>
                 <div class="equipment-item__btn">
-                  <button routerLink="/products/1" class="uk-button uk-button-default uk-button-large uk-width-1-1"
+                  <button routerLink="/products/1"
+                    class="uk-button uk-button-default uk-button-large uk-width-1-1"
+                    type="button">
+                    <span>Order Now</span>
+                    <span data-uk-icon="arrow-right">
+
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="equipment-item">
+              <div class="equipment-item__box">
+                <div class="equipment-item__media">
+                  <a [routerLink]="['/products',1]">
+                    <img src="assets/img/equipment-2.jpg"
+                      alt="Standard Excavator 8T" />
+                  </a>
+                </div>
+                <div class="equipment-item__info">
+                  <div class="equipment-item__title">
+                    <a [routerLink]="['/products',1]">Standard Excavator 8T</a>
+                  </div>
+
+                  <div class="equipment-item__list">
+                    <ul>
+                      <li>Brand: Wacker Neuson</li>
+                      <li>MFG Year: 2019</li>
+                      <li>Model: EZ17</li>
+                      <li>Operating Weight: 1.7 Ton</li>
+                    </ul>
+                  </div>
+                  <div class="equipment-item__price-box">
+                    <div class="equipment-item__price-title">Total Rental
+                      Price<small>(Incl. Taxes)</small>
+                    </div>
+                    <div class="equipment-item__price">
+                      <div
+                        class="equipment-item__price-current">₦425,000.00</div>
+                    </div>
+                  </div>
+                  <div class="equipment-item__prices">
+                    <ul>
+                      <li>₦50,000 / Day</li>
+                      <li>₦100,000 / Week</li>
+                      <li>₦425,000 / Month</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="equipment-item__btn">
+                  <button routerLink="/products/1"
+                    class="uk-button uk-button-default uk-button-large uk-width-1-1"
                     type="button">
                     <span>Order Now</span>
                     <span data-uk-icon="arrow-right">
@@ -273,11 +300,14 @@
         </div>
         <div *ngIf="view === 'list'" class="uk-list col-12">
           <div class="rental-item">
-            <div class="rental-item__media"><img src="./assets/img/rental-item-1.jpg" alt="Standard Excavator"></div>
+            <div class="rental-item__media"><img
+                src="./assets/img/rental-item-1.jpg"
+                alt="Standard Excavator"></div>
             <div class="rental-item__desc">
               <div class="rental-item__title">Standard Excavator 8T</div>
               <div class="rental-item__specifications">
-                <ul class="uk-list uk-list-disc uk-column-1-2@xl uk-column-1-2@s">
+                <ul
+                  class="uk-list uk-list-disc uk-column-1-2@xl uk-column-1-2@s">
                   <li>Brand: Wacker Neuson</li>
                   <li>Manufacture Year: 2019</li>
                   <li>Digging Depth: 4.3 Meter</li>
@@ -291,17 +321,21 @@
               <div class="rental-item__price-box">
                 <div class="rental-item__price-current">₦425,000.00</div>
               </div>
-              <div class="rental-item__price-btn"><a class="uk-button col-12 uk-button-danger uk-button-large"
+              <div class="rental-item__price-btn"><a
+                  class="uk-button col-12 uk-button-danger uk-button-large"
                   [routerLink]="['/products', 1]">Book now</a>
               </div>
             </div>
           </div>
           <div class="rental-item">
-            <div class="rental-item__media"><img src="./assets/img/rental-item-2.jpg" alt="Standard Excavator"></div>
+            <div class="rental-item__media"><img
+                src="./assets/img/rental-item-2.jpg"
+                alt="Standard Excavator"></div>
             <div class="rental-item__desc">
               <div class="rental-item__title">Mini Excavator upto 5T</div>
               <div class="rental-item__specifications">
-                <ul class="uk-list uk-list-disc uk-column-1-2@xl uk-column-1-2@s">
+                <ul
+                  class="uk-list uk-list-disc uk-column-1-2@xl uk-column-1-2@s">
                   <li>Brand: Wacker Neuson</li>
                   <li>Manufacture Year: 2019</li>
                   <li>Digging Depth: 4.3 Meter</li>
@@ -315,17 +349,21 @@
               <div class="rental-item__price-box">
                 <div class="rental-item__price-current">₦425,000.00</div>
               </div>
-              <div class="rental-item__price-btn"><a class="uk-button col-12 uk-button-danger uk-button-large"
+              <div class="rental-item__price-btn"><a
+                  class="uk-button col-12 uk-button-danger uk-button-large"
                   [routerLink]="['/products', 1]">Book now</a>
               </div>
             </div>
           </div>
           <div class="rental-item">
-            <div class="rental-item__media"><img src="./assets/img/rental-item-3.jpg" alt="Standard Excavator"></div>
+            <div class="rental-item__media"><img
+                src="./assets/img/rental-item-3.jpg"
+                alt="Standard Excavator"></div>
             <div class="rental-item__desc">
               <div class="rental-item__title">Dim Breaker Excavator</div>
               <div class="rental-item__specifications">
-                <ul class="uk-list uk-list-disc uk-column-1-2@xl uk-column-1-2@s">
+                <ul
+                  class="uk-list uk-list-disc uk-column-1-2@xl uk-column-1-2@s">
                   <li>Brand: Wacker Neuson</li>
                   <li>Manufacture Year: 2019</li>
                   <li>Digging Depth: 4.3 Meter</li>
@@ -339,17 +377,21 @@
               <div class="rental-item__price-box">
                 <div class="rental-item__price-current">₦425,000.00</div>
               </div>
-              <div class="rental-item__price-btn"><a class="uk-button col-12 uk-button-danger uk-button-large"
+              <div class="rental-item__price-btn"><a
+                  class="uk-button col-12 uk-button-danger uk-button-large"
                   [routerLink]="['/products', 1]">Book now</a>
               </div>
             </div>
           </div>
           <div class="rental-item">
-            <div class="rental-item__media"><img src="./assets/img/rental-item-4.jpg" alt="Standard Excavator"></div>
+            <div class="rental-item__media"><img
+                src="./assets/img/rental-item-4.jpg"
+                alt="Standard Excavator"></div>
             <div class="rental-item__desc">
               <div class="rental-item__title">Long Range Excavator 20T</div>
               <div class="rental-item__specifications">
-                <ul class="uk-list uk-list-disc uk-column-1-2@xl uk-column-1-2@s">
+                <ul
+                  class="uk-list uk-list-disc uk-column-1-2@xl uk-column-1-2@s">
                   <li>Brand: Wacker Neuson</li>
                   <li>Manufacture Year: 2019</li>
                   <li>Digging Depth: 4.3 Meter</li>
@@ -363,17 +405,21 @@
               <div class="rental-item__price-box">
                 <div class="rental-item__price-current">₦425,000.00</div>
               </div>
-              <div class="rental-item__price-btn"><a class="uk-button col-12 uk-button-danger uk-button-large"
+              <div class="rental-item__price-btn"><a
+                  class="uk-button col-12 uk-button-danger uk-button-large"
                   [routerLink]="['/products', 1]">Book now</a>
               </div>
             </div>
           </div>
           <div class="rental-item">
-            <div class="rental-item__media"><img src="./assets/img/rental-item-5.jpg" alt="Standard Excavator"></div>
+            <div class="rental-item__media"><img
+                src="./assets/img/rental-item-5.jpg"
+                alt="Standard Excavator"></div>
             <div class="rental-item__desc">
               <div class="rental-item__title">Special Attachment Excavator</div>
               <div class="rental-item__specifications">
-                <ul class="uk-list uk-list-disc uk-column-1-2@xl uk-column-1-2@s">
+                <ul
+                  class="uk-list uk-list-disc uk-column-1-2@xl uk-column-1-2@s">
                   <li>Brand: Wacker Neuson</li>
                   <li>Manufacture Year: 2019</li>
                   <li>Digging Depth: 4.3 Meter</li>
@@ -387,17 +433,21 @@
               <div class="rental-item__price-box">
                 <div class="rental-item__price-current">₦425,000.00</div>
               </div>
-              <div class="rental-item__price-btn"><a class="uk-button col-12 uk-button-danger uk-button-large"
+              <div class="rental-item__price-btn"><a
+                  class="uk-button col-12 uk-button-danger uk-button-large"
                   [routerLink]="['/products', 1]">Book now</a>
               </div>
             </div>
           </div>
           <div class="rental-item">
-            <div class="rental-item__media"><img src="./assets/img/rental-item-6.jpg" alt="Standard Excavator"></div>
+            <div class="rental-item__media"><img
+                src="./assets/img/rental-item-6.jpg"
+                alt="Standard Excavator"></div>
             <div class="rental-item__desc">
               <div class="rental-item__title">Standard Excavator 10T</div>
               <div class="rental-item__specifications">
-                <ul class="uk-list uk-list-disc uk-column-1-2@xl uk-column-1-2@s">
+                <ul
+                  class="uk-list uk-list-disc uk-column-1-2@xl uk-column-1-2@s">
                   <li>Brand: Wacker Neuson</li>
                   <li>Manufacture Year: 2019</li>
                   <li>Digging Depth: 4.3 Meter</li>
@@ -411,7 +461,8 @@
               <div class="rental-item__price-box">
                 <div class="rental-item__price-current">₦425,000.00</div>
               </div>
-              <div class="rental-item__price-btn"><a class="uk-button col-12 uk-button-danger uk-button-large"
+              <div class="rental-item__price-btn"><a
+                  class="uk-button col-12 uk-button-danger uk-button-large"
                   [routerLink]="['/products', 1]">Book now</a>
               </div>
             </div>
@@ -425,6 +476,7 @@
       </ul>
     </div>
 
-
   </div>
 </div>
+
+<app-asphalt-list [anInput]="true"></app-asphalt-list>

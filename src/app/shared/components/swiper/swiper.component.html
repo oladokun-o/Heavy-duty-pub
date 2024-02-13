@@ -1,7 +1,5 @@
-<swiper [config]="config">
+<swiper [config]="config" class="default">
   <ng-template *ngFor="let slide of slides" swiperSlide class="swiper-slide">
     <img [src]="slide.imageUrl" [alt]="slide?.alt">
   </ng-template>
-  <div class="swiper-pagination swiper-pagination-fraction swiper-pagination-horizontal"><span
-      class="swiper-pagination-current">3</span> / <span class="swiper-pagination-total">3</span></div>
 </swiper>

@@ -6,24 +6,32 @@ import { AsphaltsComponent } from './asphalts/asphalts.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { RouterModule } from '@angular/router';
 import { PageHeadComponent } from './page-head/page-head.component';
+import { ReviewsComponent } from './reviews/reviews.component';
+import { LatestNewsComponent } from './latest-news/latest-news.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
   declarations: [
     SwiperComponent,
     AsphaltsComponent,
     AboutUsComponent,
-    PageHeadComponent
+    PageHeadComponent,
+    ReviewsComponent,
+    LatestNewsComponent
   ],
   imports: [
     CommonModule,
     SwiperModule,
-    RouterModule
+    RouterModule,
+    NgSelectModule
   ],
   exports: [
     SwiperComponent,
     AsphaltsComponent,
     AboutUsComponent,
-    PageHeadComponent
+    PageHeadComponent,
+    ReviewsComponent,
+    LatestNewsComponent
   ]
 })
 export class SharedComponentsModule { }

@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { ProductsComponent } from './products.component';
 import { ProductComponent } from './product/product.component';
 import { ProductsListComponent } from './products-list/products-list.component';
+import { AsphaltListComponent } from './asphalt-list/asphalt-list.component';
+import { AsphaltComponent } from './asphalt/asphalt.component';
 
 const routes: Routes = [
   {
@@ -18,8 +20,16 @@ const routes: Routes = [
         redirectTo: ''
       },
       {
+        path: 'asphalts',
+        component: AsphaltListComponent
+      },
+      {
         path: ':id',
         component: ProductComponent
+      },
+      {
+        path: 'asphalts/:id',
+        component: AsphaltComponent
       },
     ]
   }

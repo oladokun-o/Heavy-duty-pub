@@ -12,7 +12,18 @@ export class PagesComponent {
   currentPage: string = 'home';
   pages: Array<NavList> = [
     { label: 'home', route: 'home' },
-    { label: 'products', route: 'products' },
+    { label: 'products', route: 'products',
+    children: [
+      {
+        label: 'Equipments',
+        route: 'products'
+      },
+      {
+        label: 'Asphalt',
+        route: 'products/asphalts'
+      }
+    ]
+  },
     { label: 'services', route: 'services', children: [
       {label: 'Project Management', route: 'services'},
       {label: 'Design', route: 'services'},

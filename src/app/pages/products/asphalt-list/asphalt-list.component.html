@@ -1,0 +1,150 @@
+<div *ngIf="!anInput" class="page-head">
+  <div class="page-head__bg"
+    style="background-image: url(assets/img/bg_page-ren.jpg)">
+    <div class="page-head__title">Explore Our Range of Products</div>
+    <div class="page-head__breadcrumb">
+      <ul class="uk-breadcrumb">
+        <li><a href="/">Home</a></li>
+        <li><span>Products</span></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="page-content">
+  <div class="uk-section uk-container uk-container-large">
+    <div class="col-12">
+      <div *ngIf="anInput" class="col-12 py-3">
+        <h1>Asphalt</h1>
+      </div>
+      <div class="equipment-head">
+        <div><span>Showing results <b>1 - 20</b> of total <b>30</b></span></div>
+        <div>
+          <!-- <div class="sort-box"><span>Sort By:</span><select class="js-select">
+                  <option value="Price: Low to High">Price: Low to High</option>
+                  <option value="Price: Low to High">Price: Low to High</option>
+                  <option value="Price: Low to High">Price: Low to High</option>
+                </select></div> -->
+          <div class="view-box">
+            <!-- <a class="view-item" [class.active]="view === 'list'"
+              (click)="changeView('list')">
+              <img src="assets/img/view-list.svg" alt="icon" data-uk-svg>
+            </a> -->
+            <a class="view-item" [class.active]="view === 'grid'"
+              (click)="changeView('grid')">
+              <img src="assets/img/view-grid.svg" alt="icon" data-uk-svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="uk-grid">
+        <div *ngIf="view === 'grid'" class="container-fluid">
+          <div class="row">
+            <div *ngFor="let product of asphaltProducts"
+              class="col-12 col-md-6 col-lg-4 p-3 d-flex flex-column">
+              <div class="equipment-item flex-grow-1">
+                <div
+                  class="equipment-item__box d-flex flex-column justify-content-between h-100">
+                  <div class="equipment-item__media">
+                    <a [routerLink]="['/products/asphalts', 2]">
+                      <img [src]="product.imageUrl" />
+                    </a>
+                  </div>
+                  <div class="equipment-item__info">
+                    <div class="equipment-item__title">
+                      <a [routerLink]="['/products/asphalts', 2]">{{
+                        product.name }}</a>
+                      <article #desc [innerHTML]="product.description"
+                        class="text-truncate"></article>
+                      <a class="btn- fw-normal fs-6"
+                        style="text-decoration: underline;"
+                        (click)="toggleDescription(desc)">Read {{
+                        desc.classList.contains('text-truncate') ? 'more' :
+                        'less' }}</a>
+                    </div>
+
+                    <div
+                      class="d-flex flex-row flex-wrap align-items-center">
+                      <div class="col-12 col-md-8 col-lg-10">
+                        <ng-select *ngIf="product.brand" [items]="product.brand"
+                          placeholder="Select brand to see price"
+                          [clearable]="false"
+                          class="pb-2"
+                          bindLabel="name" bindValue="price"
+                          (change)="handleBrandChange($event, product)"></ng-select>
+
+                        <div *ngIf="!product.brand && product.meta"
+                          class="equipment-item__list">
+                          <ul class="flex-column d-flex">
+                            <li *ngFor="let item of product.meta | keyvalue"
+                              class="col-12">
+                              <span class="text-capitalize">{{ item.key
+                                }}</span>: {{ item.value }}
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                      <div class="equipment-item__price py-2">
+                        <div class="equipment-item__price-current fs-6"
+                          *ngIf="product.price !== undefined">
+                          Price: <span class="fw-normal">₦{{ product.price |
+                            number }}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="equipment-item__btn">
+                    <button [routerLink]="['/products/asphalts', 2]"
+                      class="uk-button uk-button-default uk-button-large uk-width-1-1"
+                      type="button">
+                      <span>Order Now</span>
+                      <span data-uk-icon="arrow-right">
+                      </span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- <div *ngIf="view === 'list'" class="container-fluid">
+          <div class="row">
+            <div class="rental-item col-12" *ngFor="let product of asphaltProducts">
+              <div class="rental-item__media">
+                <img
+                  [src]="product.imageUrl">
+              </div>
+              <div class="rental-item__desc">
+                <div class="rental-item__title">{{ product.name }}</div>
+                <div class="rental-item__specifications">
+                  <ul
+                    class="uk-list uk-list-disc uk-column-1-2@xl uk-column-1-2@s">
+                    <li *ngFor="let item of product.meta | keyvalue"
+                      class="col-12">
+                      <span class="text-capitalize">{{ item.key
+                        }}</span>: {{ item.value }}
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="rental-item__price">
+                <div class="rental-item__price-box">
+                  <div class="rental-item__price-current">₦425,000.00</div>
+                </div>
+                <div class="rental-item__price-btn"><a
+                    class="uk-button col-12 uk-button-danger uk-button-large"
+                    [routerLink]="['/products', 1]">Book now</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> -->
+      </div>
+      <ul class="uk-pagination uk-flex-center uk-margin-large-top">
+        <li class="uk-active"><span>1</span></li>
+        <!-- <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li> -->
+      </ul>
+    </div>
+
+  </div>
+</div>
