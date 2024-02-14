@@ -24,7 +24,7 @@ const routes: Routes = [
         component: AsphaltListComponent
       },
       {
-        path: ':id',
+        path: 'equipments/:id',
         component: ProductComponent
       },
       {

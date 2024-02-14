@@ -39,25 +39,21 @@
       <div class="uk-grid" data-uk-grid>
         <div *ngIf="view === 'grid'" class="uk-grid uk-child-width-1-2@s"
           data-uk-grid>
-          <div>
+          <div *ngFor="let equipment of Equipments">
             <div class="equipment-item">
               <div class="equipment-item__box">
                 <div class="equipment-item__media">
-                  <a [routerLink]="['/products',1]">
-                    <img src="assets/img/equipment-1.jpg"
-                      alt="Standard Excavator 8T" />
+                  <a [routerLink]="['/products/equipments', equipment.id]">
+                    <img [src]="equipment.imageUrl" [alt]="equipment.name" />
                   </a>
                 </div>
                 <div class="equipment-item__info">
                   <div class="equipment-item__title">
-                    <a [routerLink]="['/products',1]">Standard Excavator 8T</a>
+                    <a [routerLink]="['/products/equipments',equipment.id]">{{ equipment.name }}</a>
                   </div>
                   <div class="equipment-item__list">
                     <ul>
-                      <li>Brand: Wacker Neuson</li>
-                      <li>MFG Year: 2019</li>
-                      <li>Model: EZ17</li>
-                      <li>Operating Weight: 1.7 Ton</li>
+                      <li *ngFor="let meta of equipment.meta | keyvalue">{{ meta.value }}</li>
                     </ul>
                   </div>
                   <div class="equipment-item__price-box">
@@ -65,232 +61,23 @@
                       Price<small>(Incl. Taxes)</small>
                     </div>
                     <div class="equipment-item__price">
-                      <div
-                        class="equipment-item__price-current">₦425,000.00</div>
+                      <div class="equipment-item__price-current">₦{{ equipment.prices.default | number }}</div>
                     </div>
                   </div>
                   <div class="equipment-item__prices">
                     <ul>
-                      <li>₦50,000 / Day</li>
-                      <li>₦100,000 / Week</li>
-                      <li>₦425,000 / Month</li>
+                      <li>₦{{ equipment.prices.day | number }} / Day</li>
+                      <li>₦{{ equipment.prices.weekly | number }} / Week</li>
+                      <li>₦{{ equipment.prices.monthly | number }} / Month</li>
                     </ul>
                   </div>
                 </div>
                 <div class="equipment-item__btn">
-                  <button routerLink="/products/1"
+                  <button [routerLink]="['products/equipments', equipment.id]"
                     class="uk-button uk-button-default uk-button-large uk-width-1-1"
                     type="button">
                     <span>Order Now</span>
                     <span data-uk-icon="arrow-right">
-                    </span>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div>
-            <div class="equipment-item">
-              <div class="equipment-item__box">
-                <div class="equipment-item__media">
-                  <a [routerLink]="['/products',1]">
-                    <img src="assets/img/equipment-2.jpg"
-                      alt="Standard Excavator 8T" />
-                  </a>
-                </div>
-                <div class="equipment-item__info">
-                  <div class="equipment-item__title">
-                    <a [routerLink]="['/products',1]">Standard Excavator 8T</a>
-                  </div>
-
-                  <div class="equipment-item__list">
-                    <ul>
-                      <li>Brand: Wacker Neuson</li>
-                      <li>MFG Year: 2019</li>
-                      <li>Model: EZ17</li>
-                      <li>Operating Weight: 1.7 Ton</li>
-                    </ul>
-                  </div>
-                  <div class="equipment-item__price-box">
-                    <div class="equipment-item__price-title">Total Rental
-                      Price<small>(Incl. Taxes)</small>
-                    </div>
-                    <div class="equipment-item__price">
-                      <div
-                        class="equipment-item__price-current">₦425,000.00</div>
-                    </div>
-                  </div>
-                  <div class="equipment-item__prices">
-                    <ul>
-                      <li>₦50,000 / Day</li>
-                      <li>₦100,000 / Week</li>
-                      <li>₦425,000 / Month</li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="equipment-item__btn">
-                  <button routerLink="/products/1"
-                    class="uk-button uk-button-default uk-button-large uk-width-1-1"
-                    type="button">
-                    <span>Order Now</span>
-                    <span data-uk-icon="arrow-right">
-
-                    </span>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div>
-            <div class="equipment-item">
-              <div class="equipment-item__box">
-                <div class="equipment-item__media">
-                  <a [routerLink]="['/products',1]">
-                    <img src="assets/img/equipment-3.jpg"
-                      alt="Standard Excavator 8T" />
-                  </a>
-                </div>
-                <div class="equipment-item__info">
-                  <div class="equipment-item__title">
-                    <a [routerLink]="['/products',1]">Standard Excavator 8T</a>
-                  </div>
-
-                  <div class="equipment-item__list">
-                    <ul>
-                      <li>Brand: Wacker Neuson</li>
-                      <li>MFG Year: 2019</li>
-                      <li>Model: EZ17</li>
-                      <li>Operating Weight: 1.7 Ton</li>
-                    </ul>
-                  </div>
-                  <div class="equipment-item__price-box">
-                    <div class="equipment-item__price-title">Total Rental
-                      Price<small>(Incl. Taxes)</small>
-                    </div>
-                    <div class="equipment-item__price">
-                      <div
-                        class="equipment-item__price-current">₦425,000.00</div>
-                    </div>
-                  </div>
-                  <div class="equipment-item__prices">
-                    <ul>
-                      <li>₦50,000 / Day</li>
-                      <li>₦100,000 / Week</li>
-                      <li>₦425,000 / Month</li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="equipment-item__btn">
-                  <button routerLink="/products/1"
-                    class="uk-button uk-button-default uk-button-large uk-width-1-1"
-                    type="button">
-                    <span>Order Now</span>
-                    <span data-uk-icon="arrow-right">
-
-                    </span>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div>
-            <div class="equipment-item">
-              <div class="equipment-item__box">
-                <div class="equipment-item__media">
-                  <a [routerLink]="['/products',1]">
-                    <img src="assets/img/equipment-1.jpg"
-                      alt="Standard Excavator 8T" />
-                  </a>
-                </div>
-                <div class="equipment-item__info">
-                  <div class="equipment-item__title">
-                    <a [routerLink]="['/products',1]">Standard Excavator 8T</a>
-                  </div>
-
-                  <div class="equipment-item__list">
-                    <ul>
-                      <li>Brand: Wacker Neuson</li>
-                      <li>MFG Year: 2019</li>
-                      <li>Model: EZ17</li>
-                      <li>Operating Weight: 1.7 Ton</li>
-                    </ul>
-                  </div>
-                  <div class="equipment-item__price-box">
-                    <div class="equipment-item__price-title">Total Rental
-                      Price<small>(Incl. Taxes)</small>
-                    </div>
-                    <div class="equipment-item__price">
-                      <div
-                        class="equipment-item__price-current">₦425,000.00</div>
-                    </div>
-                  </div>
-                  <div class="equipment-item__prices">
-                    <ul>
-                      <li>₦50,000 / Day</li>
-                      <li>₦100,000 / Week</li>
-                      <li>₦425,000 / Month</li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="equipment-item__btn">
-                  <button routerLink="/products/1"
-                    class="uk-button uk-button-default uk-button-large uk-width-1-1"
-                    type="button">
-                    <span>Order Now</span>
-                    <span data-uk-icon="arrow-right">
-
-                    </span>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div>
-            <div class="equipment-item">
-              <div class="equipment-item__box">
-                <div class="equipment-item__media">
-                  <a [routerLink]="['/products',1]">
-                    <img src="assets/img/equipment-2.jpg"
-                      alt="Standard Excavator 8T" />
-                  </a>
-                </div>
-                <div class="equipment-item__info">
-                  <div class="equipment-item__title">
-                    <a [routerLink]="['/products',1]">Standard Excavator 8T</a>
-                  </div>
-
-                  <div class="equipment-item__list">
-                    <ul>
-                      <li>Brand: Wacker Neuson</li>
-                      <li>MFG Year: 2019</li>
-                      <li>Model: EZ17</li>
-                      <li>Operating Weight: 1.7 Ton</li>
-                    </ul>
-                  </div>
-                  <div class="equipment-item__price-box">
-                    <div class="equipment-item__price-title">Total Rental
-                      Price<small>(Incl. Taxes)</small>
-                    </div>
-                    <div class="equipment-item__price">
-                      <div
-                        class="equipment-item__price-current">₦425,000.00</div>
-                    </div>
-                  </div>
-                  <div class="equipment-item__prices">
-                    <ul>
-                      <li>₦50,000 / Day</li>
-                      <li>₦100,000 / Week</li>
-                      <li>₦425,000 / Month</li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="equipment-item__btn">
-                  <button routerLink="/products/1"
-                    class="uk-button uk-button-default uk-button-large uk-width-1-1"
-                    type="button">
-                    <span>Order Now</span>
-                    <span data-uk-icon="arrow-right">
-
                     </span>
                   </button>
                 </div>
@@ -299,171 +86,26 @@
           </div>
         </div>
         <div *ngIf="view === 'list'" class="uk-list col-12">
-          <div class="rental-item">
-            <div class="rental-item__media"><img
-                src="./assets/img/rental-item-1.jpg"
-                alt="Standard Excavator"></div>
+          <div *ngFor="let equipment of Equipments" class="rental-item">
+            <div class="rental-item__media">
+              <img [src]="equipment.imageUrl" [alt]="equipment.name">
+            </div>
             <div class="rental-item__desc">
-              <div class="rental-item__title">Standard Excavator 8T</div>
+              <div class="rental-item__title">{{ equipment.name }}</div>
               <div class="rental-item__specifications">
                 <ul
                   class="uk-list uk-list-disc uk-column-1-2@xl uk-column-1-2@s">
-                  <li>Brand: Wacker Neuson</li>
-                  <li>Manufacture Year: 2019</li>
-                  <li>Digging Depth: 4.3 Meter</li>
-                  <li>Model: EZ17</li>
-                  <li>Operating Weight: 1.7 Ton</li>
-                  <li>Maximum Reach: 4 Meter</li>
+                  <li *ngFor="let meta of equipment.meta | keyvalue">{{ meta.value }}</li>
                 </ul>
               </div>
             </div>
             <div class="rental-item__price">
               <div class="rental-item__price-box">
-                <div class="rental-item__price-current">₦425,000.00</div>
+                <div class="rental-item__price-current">₦{{ equipment.prices.default | number }}</div>
               </div>
               <div class="rental-item__price-btn"><a
                   class="uk-button col-12 uk-button-danger uk-button-large"
-                  [routerLink]="['/products', 1]">Book now</a>
-              </div>
-            </div>
-          </div>
-          <div class="rental-item">
-            <div class="rental-item__media"><img
-                src="./assets/img/rental-item-2.jpg"
-                alt="Standard Excavator"></div>
-            <div class="rental-item__desc">
-              <div class="rental-item__title">Mini Excavator upto 5T</div>
-              <div class="rental-item__specifications">
-                <ul
-                  class="uk-list uk-list-disc uk-column-1-2@xl uk-column-1-2@s">
-                  <li>Brand: Wacker Neuson</li>
-                  <li>Manufacture Year: 2019</li>
-                  <li>Digging Depth: 4.3 Meter</li>
-                  <li>Model: EZ17</li>
-                  <li>Operating Weight: 1.7 Ton</li>
-                  <li>Maximum Reach: 4 Meter</li>
-                </ul>
-              </div>
-            </div>
-            <div class="rental-item__price">
-              <div class="rental-item__price-box">
-                <div class="rental-item__price-current">₦425,000.00</div>
-              </div>
-              <div class="rental-item__price-btn"><a
-                  class="uk-button col-12 uk-button-danger uk-button-large"
-                  [routerLink]="['/products', 1]">Book now</a>
-              </div>
-            </div>
-          </div>
-          <div class="rental-item">
-            <div class="rental-item__media"><img
-                src="./assets/img/rental-item-3.jpg"
-                alt="Standard Excavator"></div>
-            <div class="rental-item__desc">
-              <div class="rental-item__title">Dim Breaker Excavator</div>
-              <div class="rental-item__specifications">
-                <ul
-                  class="uk-list uk-list-disc uk-column-1-2@xl uk-column-1-2@s">
-                  <li>Brand: Wacker Neuson</li>
-                  <li>Manufacture Year: 2019</li>
-                  <li>Digging Depth: 4.3 Meter</li>
-                  <li>Model: EZ17</li>
-                  <li>Operating Weight: 1.7 Ton</li>
-                  <li>Maximum Reach: 4 Meter</li>
-                </ul>
-              </div>
-            </div>
-            <div class="rental-item__price">
-              <div class="rental-item__price-box">
-                <div class="rental-item__price-current">₦425,000.00</div>
-              </div>
-              <div class="rental-item__price-btn"><a
-                  class="uk-button col-12 uk-button-danger uk-button-large"
-                  [routerLink]="['/products', 1]">Book now</a>
-              </div>
-            </div>
-          </div>
-          <div class="rental-item">
-            <div class="rental-item__media"><img
-                src="./assets/img/rental-item-4.jpg"
-                alt="Standard Excavator"></div>
-            <div class="rental-item__desc">
-              <div class="rental-item__title">Long Range Excavator 20T</div>
-              <div class="rental-item__specifications">
-                <ul
-                  class="uk-list uk-list-disc uk-column-1-2@xl uk-column-1-2@s">
-                  <li>Brand: Wacker Neuson</li>
-                  <li>Manufacture Year: 2019</li>
-                  <li>Digging Depth: 4.3 Meter</li>
-                  <li>Model: EZ17</li>
-                  <li>Operating Weight: 1.7 Ton</li>
-                  <li>Maximum Reach: 4 Meter</li>
-                </ul>
-              </div>
-            </div>
-            <div class="rental-item__price">
-              <div class="rental-item__price-box">
-                <div class="rental-item__price-current">₦425,000.00</div>
-              </div>
-              <div class="rental-item__price-btn"><a
-                  class="uk-button col-12 uk-button-danger uk-button-large"
-                  [routerLink]="['/products', 1]">Book now</a>
-              </div>
-            </div>
-          </div>
-          <div class="rental-item">
-            <div class="rental-item__media"><img
-                src="./assets/img/rental-item-5.jpg"
-                alt="Standard Excavator"></div>
-            <div class="rental-item__desc">
-              <div class="rental-item__title">Special Attachment Excavator</div>
-              <div class="rental-item__specifications">
-                <ul
-                  class="uk-list uk-list-disc uk-column-1-2@xl uk-column-1-2@s">
-                  <li>Brand: Wacker Neuson</li>
-                  <li>Manufacture Year: 2019</li>
-                  <li>Digging Depth: 4.3 Meter</li>
-                  <li>Model: EZ17</li>
-                  <li>Operating Weight: 1.7 Ton</li>
-                  <li>Maximum Reach: 4 Meter</li>
-                </ul>
-              </div>
-            </div>
-            <div class="rental-item__price">
-              <div class="rental-item__price-box">
-                <div class="rental-item__price-current">₦425,000.00</div>
-              </div>
-              <div class="rental-item__price-btn"><a
-                  class="uk-button col-12 uk-button-danger uk-button-large"
-                  [routerLink]="['/products', 1]">Book now</a>
-              </div>
-            </div>
-          </div>
-          <div class="rental-item">
-            <div class="rental-item__media"><img
-                src="./assets/img/rental-item-6.jpg"
-                alt="Standard Excavator"></div>
-            <div class="rental-item__desc">
-              <div class="rental-item__title">Standard Excavator 10T</div>
-              <div class="rental-item__specifications">
-                <ul
-                  class="uk-list uk-list-disc uk-column-1-2@xl uk-column-1-2@s">
-                  <li>Brand: Wacker Neuson</li>
-                  <li>Manufacture Year: 2019</li>
-                  <li>Digging Depth: 4.3 Meter</li>
-                  <li>Model: EZ17</li>
-                  <li>Operating Weight: 1.7 Ton</li>
-                  <li>Maximum Reach: 4 Meter</li>
-                </ul>
-              </div>
-            </div>
-            <div class="rental-item__price">
-              <div class="rental-item__price-box">
-                <div class="rental-item__price-current">₦425,000.00</div>
-              </div>
-              <div class="rental-item__price-btn"><a
-                  class="uk-button col-12 uk-button-danger uk-button-large"
-                  [routerLink]="['/products', 1]">Book now</a>
+                  [routerLink]="['/products/equipments', equipment.id]">Book now</a>
               </div>
             </div>
           </div>

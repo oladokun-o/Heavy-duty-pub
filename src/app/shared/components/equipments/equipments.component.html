@@ -1,0 +1,63 @@
+<section class="s-equipments">
+  <div class="uk-section uk-container uk-container-large">
+    <div class="section-title --center">
+      <span>
+
+      </span>
+      <h3>Popular Equipments On Rent</h3>
+    </div>
+    <div class="section-content">
+      <div data-uk-slider>
+        <div class="uk-position-relative" tabindex="-1">
+          <ul class="uk-slider-items uk-grid uk-child-width-1-1 uk-child-width-1-2@s uk-child-width-1-3@l">
+            <li *ngFor="let equipment of Equipments">
+              <div class="equipment-item">
+                <div class="equipment-item__box">
+                  <div class="equipment-item__media">
+                    <a [routerLink]="['products/equipments', equipment.id]">
+                      <img [src]="equipment.imageUrl" [alt]="equipment.name" />
+                    </a>
+                  </div>
+                  <div class="equipment-item__info">
+                    <div class="equipment-item__title">
+                      <a [routerLink]="['products', equipment.id]">{{ equipment.name }}</a>
+                    </div>
+
+                    <div class="equipment-item__list">
+                      <ul>
+                        <li *ngFor="let meta of equipment.meta | keyvalue">{{ meta.value }}</li>
+                      </ul>
+                    </div>
+                    <div class="equipment-item__price-box">
+                      <div class="equipment-item__price-title">Total Rental Price<small>(Incl. Taxes)</small>
+                      </div>
+                      <div class="equipment-item__price">
+                        <div class="equipment-item__price-current">₦{{ equipment.prices.default | number }}</div>
+                      </div>
+                    </div>
+                    <div class="equipment-item__prices">
+                      <ul>
+                        <li>₦{{ equipment.prices.day | number }} / Day</li>
+                        <li>₦{{ equipment.prices.weekly | number }} / Week</li>
+                        <li>₦{{ equipment.prices.monthly | number }} / Month</li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="equipment-item__btn">
+                    <button routerLink="/products/equipments/{{ equipment.id }}" class="uk-button uk-button-default uk-button-large uk-width-1-1" type="button">
+                      <span>Order Now</span>
+                      <span data-uk-icon="arrow-right"></span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <ul class="uk-slider-nav uk-dotnav uk-flex-center uk-margin-medium-top">
+
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
