@@ -9,6 +9,7 @@ import { PageHeadComponent } from './page-head/page-head.component';
 import { ReviewsComponent } from './reviews/reviews.component';
 import { LatestNewsComponent } from './latest-news/latest-news.component';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { EquipmentsComponent } from './equipments/equipments.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
     AboutUsComponent,
     PageHeadComponent,
     ReviewsComponent,
-    LatestNewsComponent
+    LatestNewsComponent,
+    EquipmentsComponent
   ],
   imports: [
     CommonModule,
@@ -31,7 +33,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
     AboutUsComponent,
     PageHeadComponent,
     ReviewsComponent,
-    LatestNewsComponent
+    LatestNewsComponent,
+    EquipmentsComponent
   ]
 })
 export class SharedComponentsModule { }

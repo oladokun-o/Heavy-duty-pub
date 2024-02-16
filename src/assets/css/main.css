@@ -5971,7 +5971,7 @@ ul.time-work {
 .rental-item__media img {
   -o-object-fit: cover;
   -o-object-position: center;
-  width: 100%;
+  width: 300px;
   height: 100%;
   object-fit: cover;
   object-position: center;

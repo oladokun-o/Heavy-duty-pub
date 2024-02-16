@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Equipment } from 'src/app/core/interfaces/products.interface';
+import { EquipmentsList } from 'src/app/core/mocks/equipments.mock';
 
 @Component({
   selector: 'app-products-list',
@@ -9,8 +11,9 @@ export class ProductsListComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
+
+  Equipments: Equipment[] = EquipmentsList;
 
   view: 'grid' | 'list' = sessionStorage.getItem('productsView') as 'grid' | 'list' || 'grid';
 
