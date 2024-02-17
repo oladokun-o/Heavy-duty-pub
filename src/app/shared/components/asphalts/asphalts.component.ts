@@ -87,7 +87,7 @@ export class AsphaltsComponent implements OnInit {
       id: 4
     },
     {
-      name: 'Aggregate - SURFACE DRESSING',
+      name: 'SURFACE DRESSING',
       imageUrl: 'assets/img/aggregate-1.webp',
       price: 40400,
       description: 'Aggregate suitable for surface applications.',

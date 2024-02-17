@@ -1,20 +1,7 @@
-<div class="page-head">
-  <div class="page-head__bg"
-    style="background-image: url(assets/img/bg_page-ren.jpg)">
-    <div class="page-head__title">Explore Our Range of Products</div>
-    <div class="page-head__breadcrumb">
-      <ul class="uk-breadcrumb">
-        <li><a href="/">Home</a></li>
-        <li><span>Products</span></li>
-      </ul>
-    </div>
-  </div>
-</div>
-
 <div class="page-content">
   <div class="uk-section uk-container uk-container-large">
     <div class="col-12"><div class="col-12 py-3">
-        <h1>Equipments</h1>
+        <h1>Porta Cabins</h1>
       </div>
       <div class="equipment-head">
         <div><span>Showing results <b>1 - 5</b> of total <b>5</b></span></div>
@@ -50,6 +37,10 @@
                 <div class="equipment-item__info">
                   <div class="equipment-item__title">
                     <a [routerLink]="['products', equipment.id]">{{ equipment.name }}</a>
+                    <article #desc [innerHTML]="equipment.description" class="text-truncate"></article>
+                      <!-- <a class="btn- fw-normal fs-6" style="text-decoration: underline;" (click)="toggleDescription(desc)">Read {{
+                        desc.classList.contains('text-truncate') ? 'more' :
+                        'less' }}</a> -->
                   </div>
 
                   <div class="equipment-item__list">
@@ -144,7 +135,3 @@
 
   </div>
 </div>
-
-<app-asphalt-list [anInput]="true"></app-asphalt-list>
-
-<app-cabin></app-cabin>

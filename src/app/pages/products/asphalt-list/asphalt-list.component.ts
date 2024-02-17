@@ -182,7 +182,7 @@ export class AsphaltListComponent implements OnInit {
       id: 10,
     },
     {
-      name: 'Aggregate - DUST',
+      name: 'DUST',
       imageUrl: 'assets/img/aggregate-1.webp',
       price: 40400,
       description: 'Aggregate dust, also known as stone dust or crusher fines, is a byproduct of crushing stone, gravel, or rock. It is commonly used as a base material for paving, landscaping, and construction projects.',
@@ -195,7 +195,7 @@ export class AsphaltListComponent implements OnInit {
       id: 11,
     },
     {
-      name: 'Aggregate - SAND',
+      name: 'SAND',
       imageUrl: 'assets/img/aggregate-1.webp',
       price: 40400,
       description: 'Sand is a granular material composed of finely divided rock and mineral particles. It is commonly used in construction projects for concrete mixing, masonry work, and landscaping.',
@@ -208,7 +208,7 @@ export class AsphaltListComponent implements OnInit {
       id: 12,
     },
     {
-      name: 'Aggregate - LATERITE',
+      name: 'LATERITE',
       imageUrl: 'assets/img/aggregate-1.webp',
       price: 40400,
       description: 'Laterite is a soil and rock type rich in iron and aluminum oxides. It is commonly used in construction projects for building foundations, road construction, and landscaping.',
@@ -221,7 +221,7 @@ export class AsphaltListComponent implements OnInit {
       id: 13,
     },
     {
-      name: 'Aggregate - STONE BASE',
+      name: 'STONE BASE',
       imageUrl: 'assets/img/aggregate-1.webp',
       price: 40400,
       description: 'Stone base is a dense, compacted material used as a foundation for roads, driveways, and building structures. It provides stability, support, and drainage for the overlying structure.',
@@ -234,7 +234,7 @@ export class AsphaltListComponent implements OnInit {
       id: 14,
     },
     {
-      name: 'Aggregate - INTERLOCKING STONES',
+      name: 'INTERLOCKING STONES',
       imageUrl: 'assets/img/aggregate-1.webp',
       price: 40400,
       description: 'Interlocking stones, also known as pavers or paving stones, are durable, versatile materials used for landscaping, hardscaping, and outdoor paving projects. They create attractive and functional surfaces for patios, walkways, driveways, and more.',
@@ -247,7 +247,7 @@ export class AsphaltListComponent implements OnInit {
       id: 15,
     },
     {
-      name: 'Aggregate - STAMP CONCRETE',
+      name: 'STAMP CONCRETE',
       imageUrl: 'assets/img/aggregate-1.webp',
       price: 40400,
       description: 'Stamped concrete, also known as patterned or imprinted concrete, is a decorative concrete surface designed to resemble brick, stone, tile, wood, and other materials. It is commonly used for driveways, patios, pool decks, and walkways.',
@@ -259,7 +259,7 @@ export class AsphaltListComponent implements OnInit {
       id: 16,
     },
     {
-      name: 'Aggregate - CEMENT',
+      name: 'CEMENT',
       imageUrl: 'assets/img/aggregate-1.webp',
       price: 40400,
       description: 'Cement is a binder material used in construction projects to bind together other materials, such as sand, gravel, and water, to form concrete and mortar. It is essential for building foundations, walls, floors, and structures.',
@@ -272,7 +272,7 @@ export class AsphaltListComponent implements OnInit {
       id: 17,
     },
     {
-      name: 'Aggregate - SURFACE DRESSING',
+      name: 'SURFACE DRESSING',
       imageUrl: 'assets/img/aggregate-2.jpg',
       price: 40400,
       description: 'Aggregate suitable for surface applications.',

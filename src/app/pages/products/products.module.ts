@@ -8,6 +8,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { AsphaltListComponent } from './asphalt-list/asphalt-list.component';
 import { AsphaltComponent } from './asphalt/asphalt.component';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { CabinComponent } from './cabin/cabin.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
     ProductsListComponent,
     ProductComponent,
     AsphaltListComponent,
-    AsphaltComponent
+    AsphaltComponent,
+    CabinComponent
   ],
   imports: [
     CommonModule,
