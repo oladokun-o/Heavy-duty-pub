@@ -26,7 +26,8 @@ export class AsphaltsComponent implements OnInit {
       description: `The binder course is an essential layer in asphalt pavement construction,
       providing stability and durability to the road surface. It acts as a binder between the surface course and the base layer, distributing traffic loads
       and preventing water penetration.`,
-      price: undefined
+      price: undefined,
+      qty: 1
     },
     {
       brand: [
@@ -43,7 +44,8 @@ export class AsphaltsComponent implements OnInit {
       description: `The wearing course, also known as the surface course, is the top layer of asphalt pavement that directly interacts with
       traffic. It provides skid resistance, smoothness, and durability to the road surface, protecting the underlying layers
       from wear and tear.`,
-      price: undefined
+      price: undefined,
+      qty: 1
     },
     {
       name: 'Bitumen - C.B.E + TERRASIL',
@@ -53,7 +55,8 @@ export class AsphaltsComponent implements OnInit {
       meta: {
         weight: '28 kg',
         usage: 'Enhanced bitumen blend for improved performance'
-      }
+      },
+      qty: 1
     },
     {
       name: 'Bitumen - 60/70',
@@ -63,7 +66,8 @@ export class AsphaltsComponent implements OnInit {
       meta: {
         weight: '28 kg',
         usage: 'Versatile bitumen grade for various applications'
-      }
+      },
+      qty: 1
     },
     {
       name: 'Aggregate - SURFACE',
@@ -73,7 +77,8 @@ export class AsphaltsComponent implements OnInit {
       meta: {
         weight: '50 kg',
         usage: 'Surface applications'
-      }
+      },
+      qty: 1
     },
     {
       name: 'Aggregate - DRESSING',
@@ -83,7 +88,8 @@ export class AsphaltsComponent implements OnInit {
       meta: {
         weight: '50 kg',
         usage: 'Dressing applications'
-      }
+      },
+      qty: 1
     },
   ];
 
@@ -95,6 +101,7 @@ export class AsphaltsComponent implements OnInit {
 
   handleBrandChange(brand: Brand, product: AsphaltProduct): void {
     product.price = brand.price;
+    brand.selected = true;
   }
 
   toggleDescription(el: HTMLElement) {
@@ -103,6 +110,27 @@ export class AsphaltsComponent implements OnInit {
     } else {
       el.classList.add('text-truncate');
     }
+  }
+
+  inc(product: AsphaltProduct) {
+    if (product.qty !== undefined) {
+      // Find the selected brand of the product
+      const foundBrand = this.asphaltProducts.find(p => p === product)?.brand?.find(p => p.selected);
+
+      // Increment the quantity
+      product.qty++;
+
+      // Update the price if a brand is found and it has a price property
+      if (foundBrand && foundBrand.price !== undefined) {
+          foundBrand.price = product.qty;
+      }
+  } else {
+      console.error('Invalid product or quantity property missing.');
+  }
+  }
+
+  dec(product: AsphaltProduct) {
+    if (product.qty) product.qty--;
   }
 
 }

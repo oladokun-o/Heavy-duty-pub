@@ -4,6 +4,7 @@ export interface AsphaltProduct {
   brand?: Brand[];
   imageUrl: string;
   price?: number;
+  qty?: number;
   meta?: {
     weight?: string;
     usage?: string;
@@ -13,6 +14,7 @@ export interface AsphaltProduct {
 export interface Brand {
   name: string;
   price: number;
+  selected?: boolean;
 };
 
 export interface EquipmentManufacturer {
@@ -24,7 +26,8 @@ export interface Equipment {
   name: string;
   description?: string;
   imageUrl: string;
-  gallery?: string[]
+  gallery?: string[];
+  qty?: number;
   prices: {
     default: number;
     day: number;
