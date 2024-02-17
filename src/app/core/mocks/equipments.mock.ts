@@ -12,8 +12,8 @@ export const EquipmentsList: Equipment[] = [
     prices: {
       default: 500000,
       day: 50000,
-      weekly: 250000,
-      monthly: 550000
+      week: 250000,
+      month: 550000
     },
     meta: {
       brand: 'Brand: Wacker Neuson',
@@ -30,8 +30,8 @@ export const EquipmentsList: Equipment[] = [
     prices: {
       default: 500000,
       day: 50000,
-      weekly: 250000,
-      monthly: 550000
+      week: 250000,
+      month: 550000
     },
     meta: {
       brand: 'Brand: Wacker Neuson',
@@ -48,8 +48,8 @@ export const EquipmentsList: Equipment[] = [
     prices: {
       default: 500000,
       day: 50000,
-      weekly: 250000,
-      monthly: 550000
+      week: 250000,
+      month: 550000
     },
     meta: {
       brand: 'Brand: Wacker Neuson',
@@ -66,8 +66,8 @@ export const EquipmentsList: Equipment[] = [
     prices: {
       default: 500000,
       day: 50000,
-      weekly: 250000,
-      monthly: 550000
+      week: 250000,
+      month: 550000
     },
     meta: {
       brand: 'Brand: Wacker Neuson',
@@ -84,8 +84,8 @@ export const EquipmentsList: Equipment[] = [
     prices: {
       default: 500000,
       day: 50000,
-      weekly: 250000,
-      monthly: 550000
+      week: 250000,
+      month: 550000
     },
     meta: {
       brand: 'Brand: Wacker Neuson',
@@ -102,8 +102,8 @@ export const EquipmentsList: Equipment[] = [
     prices: {
       default: 500000,
       day: 50000,
-      weekly: 250000,
-      monthly: 550000
+      week: 250000,
+      month: 550000
     },
     meta: {
       brand: 'Brand: Wacker Neuson',

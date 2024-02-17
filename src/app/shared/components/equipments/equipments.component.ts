@@ -28,6 +28,7 @@ export class EquipmentsComponent implements OnInit {
 
   handlePriceChange(event: any, product: any): void {
     product.amount = event.value;
+    product.prices.forEach((p: any) => p.selected = false);
     let foundPrice = product.prices.find((pr: any) => pr.label === event.label);
     foundPrice.selected = true;
   }

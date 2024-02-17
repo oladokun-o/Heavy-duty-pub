@@ -35,7 +35,7 @@
                     </div>
                     <div
                       class="equipment-item__price pt-3 col-12 d-flex flex-row justify-content-between align-items-center flex-wrap gap-3">
-                      <div class="equipment-item__price-current col-6 fs-6"
+                      <div class="equipment-item__price-current text-nowrap col-6 fs-6"
                         *ngIf="equipment.amount !== undefined && equipment.meta && equipment.meta.type !== 'service'">
                         ₦{{ findSelectedPriceAmount(equipment.prices) | number }} <span class="fw-normal">Per {{ findSelectedPrice(equipment.prices) }}</span>
                       </div>

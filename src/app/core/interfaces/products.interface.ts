@@ -35,8 +35,8 @@ export interface Equipment {
   prices: {
     default: number;
     day: number;
-    weekly: number;
-    monthly: number;
+    week: number;
+    month: number;
   };
   meta: {
     brand?: string;
