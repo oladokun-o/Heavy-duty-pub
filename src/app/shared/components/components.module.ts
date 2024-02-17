@@ -8,8 +8,11 @@ import { RouterModule } from '@angular/router';
 import { PageHeadComponent } from './page-head/page-head.component';
 import { ReviewsComponent } from './reviews/reviews.component';
 import { LatestNewsComponent } from './latest-news/latest-news.component';
-import { NgSelectModule } from '@ng-select/ng-select';
 import { EquipmentsComponent } from './equipments/equipments.component';
+import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
+import { CartComponent } from './cart/cart.component';
+import { ToastrModule } from 'ngx-toastr';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
   declarations: [
@@ -19,13 +22,15 @@ import { EquipmentsComponent } from './equipments/equipments.component';
     PageHeadComponent,
     ReviewsComponent,
     LatestNewsComponent,
-    EquipmentsComponent
+    EquipmentsComponent,
+    CartComponent
   ],
   imports: [
     CommonModule,
     SwiperModule,
     RouterModule,
-    NgSelectModule
+    NgSelectModule,
+    NgbTooltipModule
   ],
   exports: [
     SwiperComponent,
@@ -34,7 +39,8 @@ import { EquipmentsComponent } from './equipments/equipments.component';
     PageHeadComponent,
     ReviewsComponent,
     LatestNewsComponent,
-    EquipmentsComponent
+    EquipmentsComponent,
+    CartComponent
   ]
 })
 export class SharedComponentsModule { }

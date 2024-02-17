@@ -1,5 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
+import { CartItem } from 'src/app/core/interfaces/cart.interface';
 import { AsphaltProduct, Brand } from 'src/app/core/interfaces/products.interface';
+import { ShoppingCartComponent } from '../cart/modals/shopping-cart/shopping-cart.component';
 
 @Component({
   selector: 'app-asphalts',
@@ -8,7 +12,8 @@ import { AsphaltProduct, Brand } from 'src/app/core/interfaces/products.interfac
 })
 export class AsphaltsComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private toastr: ToastrService, private modalService: NgbModal) { }
 
   asphaltProducts: AsphaltProduct[] = [
     {
@@ -27,7 +32,11 @@ export class AsphaltsComponent implements OnInit {
       providing stability and durability to the road surface. It acts as a binder between the surface course and the base layer, distributing traffic loads
       and preventing water penetration.`,
       price: undefined,
-      qty: 1
+      qty: 1,
+      id: 1,
+      meta: {
+        type: 'ton'
+      }
     },
     {
       brand: [
@@ -45,7 +54,11 @@ export class AsphaltsComponent implements OnInit {
       traffic. It provides skid resistance, smoothness, and durability to the road surface, protecting the underlying layers
       from wear and tear.`,
       price: undefined,
-      qty: 1
+      qty: 1,
+      id: 2,
+      meta: {
+        type: 'ton'
+      }
     },
     {
       name: 'Bitumen - C.B.E + TERRASIL',
@@ -53,10 +66,12 @@ export class AsphaltsComponent implements OnInit {
       imageUrl: 'assets/img/bitumen-1.jpeg',
       price: 10000,
       meta: {
-        weight: '28 kg',
-        usage: 'Enhanced bitumen blend for improved performance'
+        weight: '28 ltr',
+        usage: 'Enhanced bitumen blend for improved performance',
+        type: 'Litre'
       },
-      qty: 1
+      qty: 1,
+      id: 3
     },
     {
       name: 'Bitumen - 60/70',
@@ -64,33 +79,25 @@ export class AsphaltsComponent implements OnInit {
       imageUrl: 'assets/img/bitumen-1.jpeg',
       price: 10000,
       meta: {
-        weight: '28 kg',
-        usage: 'Versatile bitumen grade for various applications'
+        weight: '28 ltr',
+        usage: 'Versatile bitumen grade for various applications',
+        type: 'Litre'
       },
-      qty: 1
+      qty: 1,
+      id: 4
     },
     {
-      name: 'Aggregate - SURFACE',
+      name: 'Aggregate - SURFACE DRESSING',
       imageUrl: 'assets/img/aggregate-1.webp',
       price: 40400,
       description: 'Aggregate suitable for surface applications.',
       meta: {
-        weight: '50 kg',
-        usage: 'Surface applications'
+        usage: 'Surface applications',
+        type: 'service'
       },
-      qty: 1
-    },
-    {
-      name: 'Aggregate - DRESSING',
-      imageUrl: 'assets/img/aggregate-2.jpg',
-      price: 40400,
-      description: 'Aggregate suitable for surface applications.',
-      meta: {
-        weight: '50 kg',
-        usage: 'Dressing applications'
-      },
-      qty: 1
-    },
+      qty: 1,
+      id: 5
+    }
   ];
 
   @Input() hideHead: boolean = false;
@@ -114,23 +121,81 @@ export class AsphaltsComponent implements OnInit {
 
   inc(product: AsphaltProduct) {
     if (product.qty !== undefined) {
-      // Find the selected brand of the product
-      const foundBrand = this.asphaltProducts.find(p => p === product)?.brand?.find(p => p.selected);
-
-      // Increment the quantity
-      product.qty++;
-
-      // Update the price if a brand is found and it has a price property
-      if (foundBrand && foundBrand.price !== undefined) {
-          foundBrand.price = product.qty;
+      if (product.brand) {// Find the selected brand of the product
+        const foundBrand = this.asphaltProducts.find(p => p.id === product.id)?.brand?.find(p => p.selected);
+        product.qty++;
+        if (foundBrand && foundBrand.price !== undefined && product) {
+          product.amount = product.qty * foundBrand.price;
+        }
+      } else {
+        product.qty++;
+        let price = product.price as number;
+        let amount = price * product.qty;
+        product.amount = amount;
       }
-  } else {
+    } else {
       console.error('Invalid product or quantity property missing.');
-  }
+    }
   }
 
   dec(product: AsphaltProduct) {
-    if (product.qty) product.qty--;
+    if (product.qty !== undefined && product.qty > 1) {
+      if (product.brand) {// Find the selected brand of the product
+        const foundBrand = this.asphaltProducts.find(p => p.id === product.id)?.brand?.find(p => p.selected);
+        product.qty--;
+        if (foundBrand && foundBrand.price !== undefined && product) {
+          product.amount = product.qty * foundBrand.price;
+        }
+      } else {
+        product.qty--;
+        let price = product.price as number;
+        let amount = price * product.qty;
+        product.amount = amount;
+      }
+    } else {
+      console.error('Invalid product or quantity property missing.');
+    }
+  }
+
+  addToCart(product: any) {
+    let item: CartItem = {
+      id: new Date().toISOString(),
+      datetime: new Date(),
+      item: product
+    };
+
+    // Retrieve cart items from localStorage
+    let itemsString = localStorage.getItem('cartItems');
+    let items: Array<CartItem> = itemsString ? JSON.parse(itemsString) : [];
+
+    // Add the new item to the items array
+    items.push(item);
+
+    // Store the updated items array back to localStorage
+    localStorage.setItem('cartItems', JSON.stringify(items));
+
+    this.toastr.success('Item added to cart successfully');
+    this.returnToDefault(product);
+    this.openShoppingCart();
+  }
+
+  openShoppingCart(): void {
+    const ref = this.modalService.open(ShoppingCartComponent, {
+      centered: true,
+      size: "lg",
+      backdrop: 'static'
+    });
+  }
+
+  returnToDefault(product: AsphaltProduct) {
+    product.qty = 1;
+    product.amount = product.qty * (product?.price as number);
+
+    if (product.brand) {
+      product.brand.forEach(price => price.selected = false);
+      product.price = undefined;
+      product.amount = undefined;
+    }
   }
 
 }

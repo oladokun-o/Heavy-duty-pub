@@ -1,5 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
+import { CartItem } from 'src/app/core/interfaces/cart.interface';
 import { AsphaltProduct, Brand } from 'src/app/core/interfaces/products.interface';
+import { ShoppingCartComponent } from 'src/app/shared/components/cart/modals/shopping-cart/shopping-cart.component';
 
 @Component({
   selector: 'app-asphalt-list',
@@ -24,7 +28,9 @@ export class AsphaltListComponent implements OnInit {
       description: `The binder course is an essential layer in asphalt pavement construction,
       providing stability and durability to the road surface. It acts as a binder between the surface course and the base layer, distributing traffic loads
       and preventing water penetration.`,
-      price: undefined
+      price: undefined,
+      qty: 1,
+      id: 1,
     },
     {
       brand: [
@@ -41,7 +47,9 @@ export class AsphaltListComponent implements OnInit {
       description: `The wearing course, also known as the surface course, is the top layer of asphalt pavement that directly interacts with
       traffic. It provides skid resistance, smoothness, and durability to the road surface, protecting the underlying layers
       from wear and tear.`,
-      price: undefined
+      price: undefined,
+      qty: 1,
+      id: 2,
     },
     {
       name: 'Bitumen - MC 0',
@@ -49,9 +57,12 @@ export class AsphaltListComponent implements OnInit {
       price: 10000,
       description: 'This is a type of bitumen typically used for road construction and maintenance. MC 0 bitumen is known for its high quality and durability, making it suitable for various asphalt applications.',
       meta: {
-        weight: '25 kg',
-        usage: 'For road construction and maintenance projects'
-      }
+        weight: '25 ltr',
+        usage: 'For road construction and maintenance projects',
+        type: 'Litre'
+      },
+      qty: 1,
+      id: 3,
     },
     {
       name: 'Bitumen - MC 1',
@@ -59,9 +70,12 @@ export class AsphaltListComponent implements OnInit {
       price: 10000,
       description: 'Similar to MC 0, MC 1 bitumen is another grade of bitumen commonly used in road construction. It offers excellent binding properties and resistance to weathering, ensuring long-lasting road surfaces.',
       meta: {
-        weight: '25 kg',
-        usage: 'Suitable for various asphalt applications'
-      }
+        weight: '25 ltr',
+        usage: 'Suitable for various asphalt applications',
+        type: 'Litre'
+      },
+      qty: 1,
+      id: 4,
     },
     {
       name: 'Bitumen - S 125',
@@ -69,9 +83,12 @@ export class AsphaltListComponent implements OnInit {
       price: 10000,
       description: 'S 125 bitumen is a specialized type of bitumen designed for specific applications, such as asphalt paving in areas with high traffic volume or heavy loads. It provides superior strength and stability to road surfaces.',
       meta: {
-        weight: '30 kg',
-        usage: 'High-quality bitumen for road surfaces'
-      }
+        weight: '30 ltr',
+        usage: 'High-quality bitumen for road surfaces',
+        type: 'Litre'
+      },
+      qty: 1,
+      id: 5,
     },
     {
       name: 'Bitumen - C.B.E',
@@ -79,9 +96,12 @@ export class AsphaltListComponent implements OnInit {
       price: 10000,
       description: 'C.B.E bitumen refers to a modified bitumen product that incorporates additives to enhance its performance characteristics. This type of bitumen offers improved elasticity, adhesion, and resistance to cracking, making it ideal for demanding asphalt applications.',
       meta: {
-        weight: '28 kg',
-        usage: 'Commonly used in asphalt mixes'
-      }
+        weight: '28 ltr',
+        usage: 'Commonly used in asphalt mixes',
+        type: 'Litre'
+      },
+      qty: 1,
+      id: 6,
     },
     {
       name: 'Bitumen - C.B.E + TERRASIL',
@@ -89,9 +109,12 @@ export class AsphaltListComponent implements OnInit {
       imageUrl: 'assets/img/bitumen-1.jpeg',
       price: 10000,
       meta: {
-        weight: '28 kg',
-        usage: 'Enhanced bitumen blend for improved performance'
-      }
+        weight: '28 ltr',
+        usage: 'Enhanced bitumen blend for improved performance',
+        type: 'Litre'
+      },
+      qty: 1,
+      id: 7,
     },
     {
       name: 'Bitumen - 60/70',
@@ -99,9 +122,12 @@ export class AsphaltListComponent implements OnInit {
       imageUrl: 'assets/img/bitumen-1.jpeg',
       price: 10000,
       meta: {
-        weight: '28 kg',
-        usage: 'Versatile bitumen grade for various applications'
-      }
+        weight: '28 ltr',
+        usage: 'Versatile bitumen grade for various applications',
+        type: 'Litre'
+      },
+      qty: 1,
+      id: 8,
     },
     {
       name: 'Aggregate - 1”',
@@ -110,8 +136,11 @@ export class AsphaltListComponent implements OnInit {
       description: '1” aggregate is a coarse material commonly used in construction projects for concrete production, drainage systems, and road base layers.',
       meta: {
         weight: '50 kg',
-        usage: 'Construction'
-      }
+        usage: 'Construction',
+        type: 'Ton'
+      },
+      qty: 1,
+      id: 8,
     },
     {
       name: 'Aggregate - 1⁄2”',
@@ -120,8 +149,11 @@ export class AsphaltListComponent implements OnInit {
       description: '1⁄2” aggregate is a medium-sized material used in various construction applications, including concrete mixing, landscaping, and road construction.',
       meta: {
         weight: '50 kg',
-        usage: 'Construction'
-      }
+        usage: 'Construction',
+        type: 'Ton'
+      },
+      qty: 1,
+      id: 9,
     },
     {
       name: 'Aggregate - 1⁄4”',
@@ -130,8 +162,11 @@ export class AsphaltListComponent implements OnInit {
       description: '1⁄4” aggregate, also known as fine aggregate, is commonly used in concrete mixes to improve workability and finish. It is also used in landscaping and surface dressing applications.',
       meta: {
         weight: '50 kg',
-        usage: 'Construction'
-      }
+        usage: 'Construction',
+        type: 'Ton'
+      },
+      qty: 1,
+      id: 9,
     },
     {
       name: 'Aggregate - 3/8”',
@@ -140,8 +175,11 @@ export class AsphaltListComponent implements OnInit {
       description: '3/8” aggregate, also known as pea gravel, is a versatile material used in construction projects, landscaping, and decorative applications. It is commonly used for drainage, walkways, and exposed aggregate concrete.',
       meta: {
         weight: '50 kg',
-        usage: 'Construction'
-      }
+        usage: 'Construction',
+        type: 'Ton'
+      },
+      qty: 1,
+      id: 10,
     },
     {
       name: 'Aggregate - DUST',
@@ -150,8 +188,11 @@ export class AsphaltListComponent implements OnInit {
       description: 'Aggregate dust, also known as stone dust or crusher fines, is a byproduct of crushing stone, gravel, or rock. It is commonly used as a base material for paving, landscaping, and construction projects.',
       meta: {
         weight: '50 kg',
-        usage: 'Construction'
-      }
+        usage: 'Construction',
+        type: 'Ton'
+      },
+      qty: 1,
+      id: 11,
     },
     {
       name: 'Aggregate - SAND',
@@ -160,8 +201,11 @@ export class AsphaltListComponent implements OnInit {
       description: 'Sand is a granular material composed of finely divided rock and mineral particles. It is commonly used in construction projects for concrete mixing, masonry work, and landscaping.',
       meta: {
         weight: '50 kg',
-        usage: 'Construction'
-      }
+        usage: 'Construction',
+        type: 'Ton'
+      },
+      qty: 1,
+      id: 12,
     },
     {
       name: 'Aggregate - LATERITE',
@@ -170,8 +214,11 @@ export class AsphaltListComponent implements OnInit {
       description: 'Laterite is a soil and rock type rich in iron and aluminum oxides. It is commonly used in construction projects for building foundations, road construction, and landscaping.',
       meta: {
         weight: '50 kg',
-        usage: 'Construction'
-      }
+        usage: 'Construction',
+        type: 'Stone'
+      },
+      qty: 1,
+      id: 13,
     },
     {
       name: 'Aggregate - STONE BASE',
@@ -180,8 +227,11 @@ export class AsphaltListComponent implements OnInit {
       description: 'Stone base is a dense, compacted material used as a foundation for roads, driveways, and building structures. It provides stability, support, and drainage for the overlying structure.',
       meta: {
         weight: '50 kg',
-        usage: 'Construction'
-      }
+        usage: 'Construction',
+        type: 'Stone Base'
+      },
+      qty: 1,
+      id: 14,
     },
     {
       name: 'Aggregate - INTERLOCKING STONES',
@@ -190,8 +240,11 @@ export class AsphaltListComponent implements OnInit {
       description: 'Interlocking stones, also known as pavers or paving stones, are durable, versatile materials used for landscaping, hardscaping, and outdoor paving projects. They create attractive and functional surfaces for patios, walkways, driveways, and more.',
       meta: {
         weight: '50 kg',
-        usage: 'Landscaping'
-      }
+        usage: 'Landscaping',
+        type: 'Interlock Stone'
+      },
+      qty: 1,
+      id: 15,
     },
     {
       name: 'Aggregate - STAMP CONCRETE',
@@ -199,9 +252,11 @@ export class AsphaltListComponent implements OnInit {
       price: 40400,
       description: 'Stamped concrete, also known as patterned or imprinted concrete, is a decorative concrete surface designed to resemble brick, stone, tile, wood, and other materials. It is commonly used for driveways, patios, pool decks, and walkways.',
       meta: {
-        weight: '50 kg',
-        usage: 'Construction'
-      }
+        usage: 'Construction',
+        type: 'Service'
+      },
+      qty: 1,
+      id: 16,
     },
     {
       name: 'Aggregate - CEMENT',
@@ -210,34 +265,29 @@ export class AsphaltListComponent implements OnInit {
       description: 'Cement is a binder material used in construction projects to bind together other materials, such as sand, gravel, and water, to form concrete and mortar. It is essential for building foundations, walls, floors, and structures.',
       meta: {
         weight: '50 kg',
-        usage: 'Construction'
-      }
+        usage: 'Construction',
+        type: 'Bag'
+      },
+      qty: 1,
+      id: 17,
     },
     {
-      name: 'Aggregate - SURFACE',
-      imageUrl: 'assets/img/aggregate-1.webp',
-      price: 40400,
-      description: 'Aggregate suitable for surface applications.',
-      meta: {
-        weight: '50 kg',
-        usage: 'Surface applications'
-      }
-    },
-    {
-      name: 'Aggregate - DRESSING',
+      name: 'Aggregate - SURFACE DRESSING',
       imageUrl: 'assets/img/aggregate-2.jpg',
       price: 40400,
       description: 'Aggregate suitable for surface applications.',
       meta: {
-        weight: '50 kg',
-        usage: 'Dressing applications'
-      }
+        usage: 'Dressing applications',
+        type: 'Service'
+      },
+      qty: 1,
+      id: 18,
     },
   ];
 
   @Input() anInput: boolean = false;
 
-  constructor() { }
+  constructor(private toastr: ToastrService, private modalService: NgbModal) { }
 
   ngOnInit(): void {
   }
@@ -251,6 +301,7 @@ export class AsphaltListComponent implements OnInit {
 
   handleBrandChange(brand: Brand, product: AsphaltProduct): void {
     product.price = brand.price;
+    brand.selected = true;
   }
 
   toggleDescription(el: HTMLElement) {
@@ -258,6 +309,85 @@ export class AsphaltListComponent implements OnInit {
       el.classList.remove('text-truncate');
     } else {
       el.classList.add('text-truncate');
+    }
+  }
+
+  inc(product: AsphaltProduct) {
+    if (product.qty !== undefined) {
+      if (product.brand) {// Find the selected brand of the product
+        const foundBrand = this.asphaltProducts.find(p => p.id === product.id)?.brand?.find(p => p.selected);
+        product.qty++;
+        if (foundBrand && foundBrand.price !== undefined && product) {
+          product.amount = product.qty * foundBrand.price;
+        }
+      } else {
+        product.qty++;
+        let price = product.price as number;
+        let amount = price * product.qty;
+        product.amount = amount;
+      }
+    } else {
+      console.error('Invalid product or quantity property missing.');
+    }
+  }
+
+  dec(product: AsphaltProduct) {
+    if (product.qty !== undefined && product.qty > 1) {
+      if (product.brand) {// Find the selected brand of the product
+        const foundBrand = this.asphaltProducts.find(p => p.id === product.id)?.brand?.find(p => p.selected);
+        product.qty--;
+        if (foundBrand && foundBrand.price !== undefined && product) {
+          product.amount = product.qty * foundBrand.price;
+        }
+      } else {
+        product.qty--;
+        let price = product.price as number;
+        let amount = price * product.qty;
+        product.amount = amount;
+      }
+    } else {
+      console.error('Invalid product or quantity property missing.');
+    }
+  }
+
+  addToCart(product: any) {
+    let item: CartItem = {
+      id: new Date().toISOString(),
+      datetime: new Date(),
+      item: product
+    };
+
+    // Retrieve cart items from localStorage
+    let itemsString = localStorage.getItem('cartItems');
+    let items: Array<CartItem> = itemsString ? JSON.parse(itemsString) : [];
+
+    // Add the new item to the items array
+    items.push(item);
+
+    // Store the updated items array back to localStorage
+    localStorage.setItem('cartItems', JSON.stringify(items));
+
+    this.toastr.success('Item added to cart successfully');
+    this.returnToDefault(product);
+    this.openShoppingCart();
+  }
+
+  openShoppingCart(): void {
+    const ref = this.modalService.open(ShoppingCartComponent, {
+      centered: true,
+      size: "lg",
+      backdrop: 'static'
+    });
+  }
+
+  returnToDefault(product: AsphaltProduct) {
+    product.qty = 1;
+    product.amount = product.qty * (product?.price as number);
+
+    if (product.brand) {
+      product.brand.forEach(price => price.selected = false);
+      product.price = undefined;
+      product.amount = undefined;
     }
   }
 

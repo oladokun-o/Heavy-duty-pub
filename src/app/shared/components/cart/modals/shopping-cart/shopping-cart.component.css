@@ -1,0 +1,16 @@
+li {
+  list-style: none;
+}
+
+ul {
+  padding: 0;
+}
+
+
+.btn-remove {
+  border: 0;
+}
+
+.btn-remove svg {
+  width: 30px;
+}

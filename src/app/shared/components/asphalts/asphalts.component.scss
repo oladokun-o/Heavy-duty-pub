@@ -1,9 +1,11 @@
 .qty-btn {
-  width: 25px;
-  height: 25px;
+  width: 30px;
+  height: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 28px;
   padding-bottom: 3px;
+  border: 1px solid black;
+  border-radius: 1px;
 }

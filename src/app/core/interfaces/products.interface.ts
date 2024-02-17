@@ -4,11 +4,14 @@ export interface AsphaltProduct {
   brand?: Brand[];
   imageUrl: string;
   price?: number;
+  amount?: number;
   qty?: number;
   meta?: {
     weight?: string;
     usage?: string;
-  }
+    type?: string;
+  },
+  id?: number | string;
 };
 
 export interface Brand {
@@ -28,6 +31,7 @@ export interface Equipment {
   imageUrl: string;
   gallery?: string[];
   qty?: number;
+  amount?: number;
   prices: {
     default: number;
     day: number;
@@ -40,5 +44,6 @@ export interface Equipment {
     usage?: string;
     model?: string;
     year?: number | string;
+    type?: string;
   }
 }

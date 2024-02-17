@@ -1,0 +1,61 @@
+<div class="modal-body">
+  <div class="col-12 pb-3 d-flex justify-content-between align-items-center">
+    <h3 class="modal-title">Your Shopping Cart</h3>
+    <button type="button" class="close border-0 fs-2" [disabled]="checkingout" data-dismiss="modal" aria-label="Close"
+      (click)="activeModal.dismiss()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <table *ngIf="cartItems.length > 0" class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Qty</th>
+        <th scope="col">Description</th>
+        <th scope="col">Price</th>
+        <th scope="col">Amount</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of cartItems;let i = index">
+        <td>
+          {{ item.item.qty }}
+        </td>
+        <td>
+          <span>{{ item.item.name }}</span>
+        </td>
+        <td>
+          <span>₦{{ (item.item.prices ? findSelectedPriceAmount(item.item.prices) : item.item.price) | number }}</span>
+        </td>
+        <td>
+          <span>
+            ₦{{
+            (item.item.amount ? item.item.amount : ((item.item?.qty ?? 0) * (item.item?.price ?? 0)))
+            | number
+            }}
+          </span>
+        </td>
+        <td>
+          <button type="button" ngbTooltip="Remove item" (click)="removeItem(item)" class="btn-remove bg-transparent">
+            <span uk-icon="ban"></span>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="cartItems.length === 0" class="col-12 p-5 text-center">
+    <h3 class="fw-normal">No items in your cart</h3>
+  </div>
+
+  <div class="col-12 pt-3 d-flex justify-content-end align-items-center">
+    <button *ngIf="cartItems.length > 0" type="button" [disabled]="checkingout" (click)="checkout()" class="uk-button uk-button-default">
+      {{ checkingout ? 'Checking out' : 'Checkout' }}
+      <div *ngIf="checkingout" class="spinner-border spinner-border-sm ms-2" role="status">
+        <!-- <span class="visually-hidden">Loading...</span> -->
+      </div>
+    </button>
+    <button type="button" [disabled]="checkingout" (click)="activeModal.dismiss()" class="uk-button uk-button-secondary"
+      data-dismiss="modal">Close</button>
+  </div>
+</div>
