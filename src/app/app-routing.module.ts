@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { ExtraOptions, RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 
@@ -15,8 +15,15 @@ const routes: Routes = [
   }
 ];
 
+const routerOptions: ExtraOptions = {
+  initialNavigation: 'enabled',
+  useHash: false,
+  anchorScrolling: 'enabled',
+  // ...any other options you'd like to use
+};
+
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, routerOptions)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

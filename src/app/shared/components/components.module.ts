@@ -13,6 +13,7 @@ import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 import { CartComponent } from './cart/cart.component';
 import { ToastrModule } from 'ngx-toastr';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { PortaCabinComponent } from './porta-cabin/porta-cabin.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
     ReviewsComponent,
     LatestNewsComponent,
     EquipmentsComponent,
-    CartComponent
+    CartComponent,
+    PortaCabinComponent
   ],
   imports: [
     CommonModule,
@@ -40,7 +42,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
     ReviewsComponent,
     LatestNewsComponent,
     EquipmentsComponent,
-    CartComponent
+    CartComponent,
+    PortaCabinComponent
   ]
 })
 export class SharedComponentsModule { }
