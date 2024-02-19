@@ -1,0 +1,127 @@
+.color-accent {
+  color: $accent; }
+
+.s-features {
+  display: block;
+  position: relative;
+  overflow: hidden; }
+
+.feature-items {
+  margin-top: 70px;
+  display: block;
+  position: relative;
+
+  &::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 90px;
+    left: -50vw;
+    width: 150vw;
+    height: calc(100% - 45px);
+    background-color: #f9f9f9; }
+
+  .uk-slider-container {
+    padding: 30px;
+    margin: -30px; } }
+
+.feature-item {
+  display: block;
+  position: relative;
+  &__box {
+    display: block;
+    position: relative;
+    background-color: white;
+    box-shadow: 0 0 36px 9px rgba(0, 0, 0, 0.05);
+    border-left: 2px solid #222;
+    @include tr(0.3s); }
+  &__icon {
+    padding: 50px 40px 10px 40px; }
+  &__title {
+    display: block;
+    position: relative;
+    color: #222;
+    font-size: 24px;
+    font-weight: 700;
+    padding: 0 40px 30px 40px;
+    border-bottom: 1px solid #eee;
+    @include fz(24, 18);
+    border: none;
+    background: none; }
+  &__text {
+    padding: 30px 40px;
+    color: #555;
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 30px;
+    @include fz(18, 14); }
+  &__more {
+    padding: 0 40px 50px 40px;
+    a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 45px;
+      height: 45px;
+      background-color: white;
+      border: 1px solid #eee;
+      border-radius: 50%;
+      color: #222;
+      @include tr(0.3s); } }
+  @include h {
+    .feature-item__box {
+      border-color: $accent; }
+    .feature-item__more a {
+      background-color: #222;
+      border: 1px solid #222;
+      color: #fff; } }
+
+  .uk-drop {
+    margin-top: -50px;
+    width: 100%; }
+
+  .uk-card-body {
+    padding: 30px;
+    @include r(767) {
+      padding: 15px; } }
+
+  .uk-card {
+    background: #222;
+    &::before {
+      content: '';
+      display: block;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 0 20px 15px 20px;
+      border-color: transparent transparent #222 transparent;
+      position: absolute;
+      top: -15px;
+      left: 40px; }
+    .uk-nav {
+      li {
+        & + li {
+          margin-top: 1px; }
+        a {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 0 30px;
+          height: 50px;
+          background-color: #fff;
+          border-radius: 2px;
+
+          color: #222;
+          font-size: 16px;
+          font-weight: 500;
+          @include fz(16, 14);
+          @include tr(0.3s);
+          @include h {
+            background: $accent;
+            color: #fff; }
+          @include r(767) {
+            padding: 0 15px;
+            height: 40px; }
+          &.uk-active {
+            background: $accent;
+            color: #fff; } } } } } }

@@ -1,0 +1,57 @@
+.s-slider {
+  display: block;
+  position: relative;
+
+  .swiper-slide {
+    .uk-overlay {
+      @include r(767) {
+        padding: 5px;
+        text-align: center; } }
+    img {
+      width: 100%;
+      min-height: 450px;
+      object-fit: cover;
+      object-position: center; }
+    h1 {
+      color: white;
+      font-size: 60px;
+      font-weight: 700;
+      line-height: 66px;
+      @include fz(60, 24);
+      br {
+        @include r(959) {
+          display: none; } } }
+    .uk-text-lead {
+      color: white;
+      font-size: 30px;
+      font-weight: 400;
+      line-height: 40px;
+      @include fz(30, 18);
+      br {
+        @include r(959) {
+          display: none; } } }
+
+    .uk-button + .uk-button {
+      @include r(445) {
+        margin-left: 0;
+        margin-top: 10px; } } }
+
+  .swiper-pagination-fraction {
+    justify-content: flex-end;
+    text-align: right!important;
+    color: white;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 40px;
+    bottom: 60px;
+    bottom: vw(60px);
+    padding-right: 100px;
+    padding-right: vw(100px);
+    z-index: 2;
+    @include fz(24, 18); }
+  .swiper-pagination-current {
+    color: white;
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 40px;
+    @include fz(48, 36); } }

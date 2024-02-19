@@ -1,0 +1,62 @@
+.s-brands {
+  display: block;
+  position: relative;
+  background-color: #222;
+  background-image: url(../img/bg_brands.jpg);
+  background-size: cover;
+  background-position: center;
+  padding-top: 100px;
+  margin-bottom: 50px;
+  @include r(767) {
+    padding-top: 40px; }
+
+  .section-title {
+    color: #fff;
+    span {
+      color: #fff; }
+    h3 {
+      color: #fff; } }
+
+  .section-content {
+    background-color: $accent;
+    padding: 50px 100px;
+    margin-bottom: -50px;
+    @include r(959) {
+      padding: 50px; }
+    @include r(767) {
+      padding: 20px; }
+
+    .uk-slider {
+      @include r(959) {
+        margin-left: -15px; }
+      @include r(767) {
+        margin-left: -15px; } } }
+
+
+  .uk-slidenav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+    background-color: white;
+    box-shadow: 0 0 36px 9px rgba(0, 0, 0, 0.05);
+    border-radius: 50%;
+    @include r(767) {
+      width: 40px;
+      height: 40px; }
+    svg {
+      width: 30px;
+      height: 30px;
+      @include r(767) {
+        width: 20px;
+        height: 20px; } } }
+
+  .uk-position-center-left-out {
+    right: calc(100% + 70px);
+    @include r(959) {
+      right: 100%; } }
+  .uk-position-center-right-out {
+    left: calc(100% + 70px);
+    @include r(959) {
+      left: calc(100% + 15px); } } }
