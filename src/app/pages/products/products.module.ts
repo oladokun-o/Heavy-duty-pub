@@ -9,6 +9,7 @@ import { AsphaltListComponent } from './asphalt-list/asphalt-list.component';
 import { AsphaltComponent } from './asphalt/asphalt.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { CabinComponent } from './cabin/cabin.component';
+import { HaulagesComponent } from './haulages/haulages.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { CabinComponent } from './cabin/cabin.component';
     ProductComponent,
     AsphaltListComponent,
     AsphaltComponent,
-    CabinComponent
+    CabinComponent,
+    HaulagesComponent
   ],
   imports: [
     CommonModule,

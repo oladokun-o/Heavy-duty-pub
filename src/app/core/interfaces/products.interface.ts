@@ -47,3 +47,18 @@ export interface Equipment {
     type?: string;
   }
 }
+
+export interface Haulage {
+  id: number | string;
+  name: string;
+  description?: string;
+  imageUrl: string;
+  gallery?: string[];
+  qty?: number;
+  amount?: number;
+  price: number;
+  meta: {
+    weight?: string;
+    type?: string;
+  }
+}

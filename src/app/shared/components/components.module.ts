@@ -14,6 +14,7 @@ import { CartComponent } from './cart/cart.component';
 import { ToastrModule } from 'ngx-toastr';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { PortaCabinComponent } from './porta-cabin/porta-cabin.component';
+import { HaulagesComponent } from './haulages/haulages.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { PortaCabinComponent } from './porta-cabin/porta-cabin.component';
     LatestNewsComponent,
     EquipmentsComponent,
     CartComponent,
-    PortaCabinComponent
+    PortaCabinComponent,
+    HaulagesComponent
   ],
   imports: [
     CommonModule,
@@ -43,7 +45,8 @@ import { PortaCabinComponent } from './porta-cabin/porta-cabin.component';
     LatestNewsComponent,
     EquipmentsComponent,
     CartComponent,
-    PortaCabinComponent
+    PortaCabinComponent,
+    HaulagesComponent
   ]
 })
 export class SharedComponentsModule { }

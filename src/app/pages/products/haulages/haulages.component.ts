@@ -1,37 +1,32 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { CartItem } from 'src/app/core/interfaces/cart.interface';
-import { AsphaltProduct, Brand } from 'src/app/core/interfaces/products.interface';
-import { MockAsphalts } from 'src/app/core/mocks/asphalts.mock';
+import { Haulage } from 'src/app/core/interfaces/products.interface';
+import { MockHaulages } from 'src/app/core/mocks/haulages.mock';
 import { ShoppingCartComponent } from 'src/app/shared/components/cart/modals/shopping-cart/shopping-cart.component';
 
 @Component({
-  selector: 'app-asphalt-list',
-  templateUrl: './asphalt-list.component.html',
-  styleUrls: ['./asphalt-list.component.css']
+  selector: 'app-haulage',
+  templateUrl: './haulages.component.html',
+  styleUrls: ['./haulages.component.css']
 })
-export class AsphaltListComponent implements OnInit {
+export class HaulagesComponent implements OnInit {
 
-  asphaltProducts: AsphaltProduct[] = MockAsphalts;
+  Haulages: Haulage[] = MockHaulages;
 
-  @Input() anInput: boolean = false;
+  constructor(
+    public toastr: ToastrService,
+    public modalService: NgbModal
+    ) { }
 
-  constructor(private toastr: ToastrService, private modalService: NgbModal) { }
-
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
   view: 'grid' | 'list' = sessionStorage.getItem('productsView') as 'grid' | 'list' || 'grid';
 
   changeView(view: 'grid' | 'list'): void {
     this.view = view;
     sessionStorage.setItem('productsView', this.view);
-  }
-
-  handleBrandChange(brand: Brand, product: AsphaltProduct): void {
-    product.price = brand.price;
-    brand.selected = true;
   }
 
   toggleDescription(el: HTMLElement) {
@@ -42,39 +37,23 @@ export class AsphaltListComponent implements OnInit {
     }
   }
 
-  inc(product: AsphaltProduct) {
+  inc(product: Haulage) {
     if (product.qty !== undefined) {
-      if (product.brand) {// Find the selected brand of the product
-        const foundBrand = this.asphaltProducts.find(p => p.id === product.id)?.brand?.find(p => p.selected);
-        product.qty++;
-        if (foundBrand && foundBrand.price !== undefined && product) {
-          product.amount = product.qty * foundBrand.price;
-        }
-      } else {
         product.qty++;
         let price = product.price as number;
         let amount = price * product.qty;
         product.amount = amount;
-      }
     } else {
       console.error('Invalid product or quantity property missing.');
     }
   }
 
-  dec(product: AsphaltProduct) {
+  dec(product: Haulage) {
     if (product.qty !== undefined && product.qty > 1) {
-      if (product.brand) {// Find the selected brand of the product
-        const foundBrand = this.asphaltProducts.find(p => p.id === product.id)?.brand?.find(p => p.selected);
-        product.qty--;
-        if (foundBrand && foundBrand.price !== undefined && product) {
-          product.amount = product.qty * foundBrand.price;
-        }
-      } else {
         product.qty--;
         let price = product.price as number;
         let amount = price * product.qty;
         product.amount = amount;
-      }
     } else {
       console.error('Invalid product or quantity property missing.');
     }
@@ -110,15 +89,9 @@ export class AsphaltListComponent implements OnInit {
     });
   }
 
-  returnToDefault(product: AsphaltProduct) {
+  returnToDefault(product: Haulage) {
     product.qty = 1;
     product.amount = product.qty * (product?.price as number);
-
-    if (product.brand) {
-      product.brand.forEach(price => price.selected = false);
-      product.price = undefined;
-      product.amount = undefined;
-    }
   }
 
 }
