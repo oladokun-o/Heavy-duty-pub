@@ -12,26 +12,30 @@ export class PagesComponent {
   currentPage: string = 'home';
   pages: Array<NavList> = [
     { label: 'home', route: 'home' },
-    { label: 'products', route: 'products',
-    children: [
-      {
-        label: 'Equipments',
-        route: 'products'
-      },
-      {
-        label: 'Asphalt',
-        route: 'products/asphalts'
-      }
-    ]
-  },
-    { label: 'services', route: 'services', children: [
-      {label: 'Project Management', route: 'services'},
-      {label: 'Design', route: 'services'},
-      {label: 'Road Rehabilitaion', route: 'services'},
-      {label: 'Full Construction', route: 'services'},
-      {label: 'Street Light Installation', route: 'services'},
-      {label: 'More', route: 'services'}
-    ] },
+    {
+      label: 'products', route: 'products',
+      // children: [
+      //   {
+      //     label: 'Equipments',
+      //     route: 'products'
+      //   },
+      //   {
+      //     label: 'Asphalt',
+      //     route: 'products/asphalts'
+      //   }
+      // ]
+    },
+    {
+      label: 'services', route: 'services',
+      // children: [
+      // {label: 'Project Management', route: 'services'},
+      // {label: 'Design', route: 'services'},
+      // {label: 'Road Rehabilitaion', route: 'services'},
+      // {label: 'Full Construction', route: 'services'},
+      // {label: 'Street Light Installation', route: 'services'},
+      // {label: 'More', route: 'services'}
+      // ]
+    },
     { label: 'about-us', route: 'about-us' },
     { label: 'news', route: 'news' },
     { label: 'contact', route: 'contact' },
