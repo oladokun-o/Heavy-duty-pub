@@ -1,0 +1,85 @@
+.dropdown-sort {
+  display: block;
+  position: relative;
+  margin-right: 5px;
+  @include r(767) {
+    margin-right: 0; }
+  &.show {
+    .dropdown-toggle {
+      border-bottom: 0;
+      border-radius: 5px 5px 0 0; } }
+
+  .dropdown-toggle {
+    width: auto;
+    min-width: 220px;
+    height: 30px;
+    background: #FFFFFF;
+    border: 1px solid #EFEFEF;
+    box-sizing: border-box;
+    border-radius: 2px;
+    padding-left: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='12' fill='none'%3E%3Cpath d='M0 7h12V5H0v2zm0-7v2h18V0H0zm0 12h6v-2H0v2z' fill='%2357CA70'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: left 15px center;
+
+    padding-right: 25px;
+    &:before {
+      content: '';
+      font-size: 8px;
+      color: #57CA70;
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      transform-origin: center;
+      width: 10px;
+      height: 6px;
+      background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4.99999 4.31654L1.67513 0.991678C1.48622 0.802774 1.18058 0.802774 0.991678 0.991678C0.802774 1.18058 0.802774 1.48622 0.991678 1.67513L4.65827 5.34172C4.75246 5.43591 4.87641 5.48332 5 5.48332C5.1236 5.48332 5.24755 5.43591 5.34174 5.34172L9.00833 1.67513L9.00834 1.67512C9.19722 1.48622 9.19722 1.18058 9.00831 0.991677C8.81941 0.802773 8.51377 0.802773 8.32486 0.991677L4.99999 4.31654Z' fill='%2357CA70' stroke='%2357CA70' stroke-width='0.3'/%3E%3C/svg%3E%0A");
+      @include tr(0.3s); }
+    &:after {
+      display: none; }
+    &[aria-expanded="true"] {
+      &:before {
+        transform: translateY(-50%) rotate(-180deg); } }
+
+    @include r(1199) {
+      height: 50px;
+      border-radius: 5px; }
+    span {
+      display: inline-block;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 130%;
+      color: #30393E; } }
+
+  .dropdown-menu {
+    width: 100%;
+    border-top: 0;
+    margin-top: 0;
+    border-radius: 0 0 5px 5px;
+    border: 1px solid #EFEFEF; }
+
+  .dropdown-item {
+    padding: 6px 15px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 130%;
+    color: #30393E;
+    cursor: pointer;
+    @include tr(0.3s);
+    &._active {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' fill='none'%3E%3Cpath d='M14 7A7 7 0 110 7a7 7 0 0114 0z' fill='%2357CA70'/%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M7 13A6 6 0 107 1a6 6 0 000 12zm0 1A7 7 0 107 0a7 7 0 000 14z' fill='%23fff'/%3E%3Cpath d='M6.68 10.115a.356.356 0 01-.505 0L4.157 8.097a.536.536 0 010-.758l.253-.253c.21-.21.548-.21.758 0l1.26 1.26L9.832 4.94a.537.537 0 01.758 0l.253.253c.21.21.21.55 0 .758L6.68 10.115z' fill='%23fff'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 15px center;
+      background-color: transparent;
+      color: $accent; }
+    &:active {
+      background-color: transparent; }
+    @include h {
+      background-color: transparent;
+      color: $accent; } } }
