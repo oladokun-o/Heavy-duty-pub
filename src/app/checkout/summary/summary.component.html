@@ -1,0 +1,65 @@
+<section class="container-fluid">
+  <div class="row">
+    <div class="col-12 col-lg-8">
+      <div class="col-12 border-bottom d-flex justify-content-start align-items-center py-3">
+        <h2 class="m-0">My Cart</h2>
+      </div>
+
+      <div *ngFor="let item of cartItems" class="col-12 cart-item border-bottom py-3">
+        <div class="row row-gap-3 pt-3">
+          <div class="col-12 col-md-6 d-flex gap-2">
+            <a [routerLink]="['/products', item.item.category, item.item.id]">
+              <img [src]="item.item.imageUrl" [alt]="item.item.name" class="border">
+            </a>
+            <div>
+              <p [innerHTML]="item.item.name" class="mb-2 fs-6 fw-bold"></p>
+              <p class="fs-6 mb-2">₦{{
+                (item.item.amount ? item.item.amount : ((item.item?.qty ?? 0) * (item.item?.price ?? 0)))
+                | number
+                }}</p>
+              <p>Quantity: {{ item.item.qty | number }}</p>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 d-flex gap-3 align-items-center justify-content-between">
+            <div class="col-4 d-flex flex-row justify-content-end buttons">
+              <button type="button" class="qty-btn" [disabled]="item.item.qty === 1" (click)="dec(item.item)">-</button>
+              <input type="text" NumbersOnly class="col-3 text-center border-0" [value]="item.item.qty" #input
+                (change)="updateQuantity(item.item, Number(input.value))">
+              <button type="button" class="qty-btn" (click)="inc(item.item)">+</button>
+            </div>
+
+            <p class="fs-6 mb-2">₦{{
+              (item.item.amount ? item.item.amount : ((item.item?.qty ?? 0) * (item.item?.price ?? 0)))
+              | number
+              }}</p>
+
+            <button type="button" ngbTooltip="Remove item" class="btn-remove bg-transparent pe-3">
+              <span uk-icon="ban"></span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-lg-4">
+      <div class="col-12 border-bottom d-flex justify-content-start align-items-center py-3">
+        <h2 class="m-0">Order Summary</h2>
+      </div>
+
+      <div class="col-12">
+        <div class="col-12 d-flex justify-content-between align-items-center pt-4 pb-3">
+          <p class="fs-6">Subtotal</p>
+          <p class="fs-6">₦{{ getSubTotal() | number }}</p>
+        </div>
+        <div class="col-12 d-flex justify-content-between align-items-center pt-3 pb-3 border-bottom">
+          <p class="fs-6">Location <span *ngIf="cartDetails && cartDetails.deliveryLocation">(<a
+                style="text-decoration: underline;" (click)="openDeliveryLocationModal">change</a>)</span></p>
+          <p class="fs-6" *ngIf="cartDetails && cartDetails.deliveryLocation">{{ cartDetails.deliveryLocation }}</p>
+        </div>
+        <div class="col-12 d-flex justify-content-between align-items-center pt-4 pb-3 border-bottom">
+          <h2>Total</h2>
+          <h2>₦{{ getSubTotal() | number }}</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -7,6 +7,7 @@ import { AboutUsComponent } from './about-us/about-us.component';
 import { ServicesComponent } from './services/services.component';
 import { NewsComponent } from './news/news.component';
 import { ContactComponent } from './contact/contact.component';
+import { CheckoutComponent } from '../checkout/checkout.component';
 
 const routes: Routes = [
   {

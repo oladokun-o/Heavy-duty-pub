@@ -1,0 +1,7 @@
+<div class="page-wrapper">
+  <app-header [pages]="pages"></app-header>
+  <main class="page-main d-flex justify-content-center align-items-start px-md-5 py-5">
+   <router-outlet></router-outlet>
+  </main>
+  <app-footer [pages]="pages" [isCartPage]="true" class="pt-5"></app-footer>
+</div>

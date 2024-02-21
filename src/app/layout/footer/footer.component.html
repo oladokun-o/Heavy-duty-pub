@@ -77,68 +77,70 @@
             </li>
           </ul>
         </div>
-        <div class="page-footer__menu">
-          <h4>Our Services</h4>
-          <ul class="uk-nav">
-            <li>
-              <a routerLink="/services">Project Management</a>
-            </li>
-            <li>
-              <a routerLink="/services">Design</a>
-            </li>
-            <li>
-              <a routerLink="/services">Road Rehabilitaion</a>
-            </li>
-            <li>
-              <a routerLink="/services">Full Construction</a>
-            </li>
-            <li>
-              <a routerLink="/services">Street Light Installation</a>
-            </li>
-            <li>
-              <a routerLink="/services">Others</a>
-            </li>
-          </ul>
-        </div>
-        <div class="page-footer__menu">
-          <h4>COMPANY INFO</h4>
-          <ul class="uk-nav">
-            <li>
-              <a routerLink="/about">About Heavy Duty Pub</a>
-            </li>
-            <li>
-              <a routerLink="/news">Latest News</a>
-            </li>
-            <li>
-              <a routerLink="#">Terms & Conditions</a>
-            </li>
-          </ul>
-        </div>
-        <div class="page-footer__news">
-          <h4>Latest News</h4>
-          <ul class="news-list">
-            <li>
-              <div class="news-list-item">
-                <img class="news-list-item__img" src="assets/img/news-item-1.jpg" alt="news">
-                <div class="news-list-item__info">
-                  <span class="news-list-item__date">March 12, 2021</span>
-                  <a class="news-list-item__title" [routerLink]="['/news', 1]">Safe
-                    Driving Tips from Our Drivers ...</a>
+        <ng-container>
+          <div class="page-footer__menu">
+            <h4>Our Services</h4>
+            <ul class="uk-nav">
+              <li>
+                <a routerLink="/services">Project Management</a>
+              </li>
+              <li>
+                <a routerLink="/services">Design</a>
+              </li>
+              <li>
+                <a routerLink="/services">Road Rehabilitaion</a>
+              </li>
+              <li>
+                <a routerLink="/services">Full Construction</a>
+              </li>
+              <li>
+                <a routerLink="/services">Street Light Installation</a>
+              </li>
+              <li>
+                <a routerLink="/services">Others</a>
+              </li>
+            </ul>
+          </div>
+          <div class="page-footer__menu">
+            <h4>COMPANY INFO</h4>
+            <ul class="uk-nav">
+              <li>
+                <a routerLink="/about">About Heavy Duty Pub</a>
+              </li>
+              <li>
+                <a routerLink="/news">Latest News</a>
+              </li>
+              <li>
+                <a routerLink="#">Terms & Conditions</a>
+              </li>
+            </ul>
+          </div>
+          <div class="page-footer__news">
+            <h4>Latest News</h4>
+            <ul class="news-list">
+              <li>
+                <div class="news-list-item">
+                  <img class="news-list-item__img" src="assets/img/news-item-1.jpg" alt="news">
+                  <div class="news-list-item__info">
+                    <span class="news-list-item__date">March 12, 2021</span>
+                    <a class="news-list-item__title" [routerLink]="['/news', 1]">Safe
+                      Driving Tips from Our Drivers ...</a>
+                  </div>
                 </div>
-              </div>
-            </li>
-            <li>
-              <div class="news-list-item">
-                <img class="news-list-item__img" src="assets/img/news-item-2.jpg" alt="news">
-                <div class="news-list-item__info">
-                  <span class="news-list-item__date">March 12, 2021</span>
-                  <a class="news-list-item__title" [routerLink]="['/news', 1]">Basic
-                    Tips to Motivate Your Team ...</a>
+              </li>
+              <li>
+                <div class="news-list-item">
+                  <img class="news-list-item__img" src="assets/img/news-item-2.jpg" alt="news">
+                  <div class="news-list-item__info">
+                    <span class="news-list-item__date">March 12, 2021</span>
+                    <a class="news-list-item__title" [routerLink]="['/news', 1]">Basic
+                      Tips to Motivate Your Team ...</a>
+                  </div>
                 </div>
-              </div>
-            </li>
-          </ul>
-        </div>
+              </li>
+            </ul>
+          </div>
+        </ng-container>
       </div>
     </div>
   </div>
@@ -161,7 +163,10 @@
       <ul class="uk-nav uk-nav-default uk-nav-parent-icon" data-uk-nav>
         <li *ngFor="let page of pages" class="uk-offcanvas-close" data-uk-close
           [class.uk-active]="currentPage === page.label">
-          <a [routerLink]="['/' + page.route]" class="text-capitalize"><span>{{ page.label }}</span></a>
+          <a [routerLink]="['/' + page.route]" class="text-capitalize">
+            <img #icon [src]="page.icon" (error)="icon.remove()">
+            <span>{{ page.label.replace('-',' ') }}</span>
+          </a>
           <ul *ngIf="page.children" class="uk-nav-sub d-flex flex-column gap-4 mt-3">
             <li *ngFor="let child of page.children"><a [routerLink]="child.route">{{ child.label.replace('-',' ') }}</a></li>
           </ul>

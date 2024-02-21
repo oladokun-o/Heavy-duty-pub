@@ -15,8 +15,6 @@ import { LayoutModule } from '../layout/layout.module';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { SharedModule } from '../shared/shared.module';
 import { NewsPostComponent } from './news/news-post/news-post.component';
-import { ProductsModule } from './products/products.module';
-import { CheckoutComponent } from './checkout/checkout.component';
 
 const components = [
   HomeComponent,
@@ -31,8 +29,7 @@ const components = [
     PagesComponent,
     ...components,
     PageNotFoundComponent,
-    NewsPostComponent,
-    CheckoutComponent
+    NewsPostComponent
   ],
   imports: [
     CommonModule,

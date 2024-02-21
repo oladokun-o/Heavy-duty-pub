@@ -42,7 +42,7 @@ export class ShoppingCartComponent implements OnInit {
         this.activeModal.close();
         this.toastr.success("Your order has been checked out successfully!");
         this.emptyCart();
-      }, 5000);
+      }, 3000);
     }
   }
 

@@ -15,6 +15,7 @@ interface Item {
   amount?: number
   gallery?: string[]
   price?: number
+  category?: string;
 }
 
 interface Price {
@@ -30,4 +31,9 @@ interface Meta {
   weight: string
   usage?: string
   type?: string
+}
+
+
+export interface CartDetails {
+  deliveryLocation: string;
 }

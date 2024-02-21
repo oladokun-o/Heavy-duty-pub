@@ -49,8 +49,8 @@
   </div>
 
   <div class="col-12 pt-3 d-flex justify-content-end align-items-center">
-    <button *ngIf="cartItems.length > 0" type="button" [disabled]="checkingout" (click)="checkout()" class="uk-button uk-button-default">
-      {{ checkingout ? 'Checking out' : 'Checkout' }}
+    <button *ngIf="cartItems.length > 0" type="button" [disabled]="checkingout" (click)="activeModal.close()" routerLink="/checkout" class="uk-button uk-button-default">
+      {{ checkingout ? 'Checking out' : 'View Cart' }}
       <div *ngIf="checkingout" class="spinner-border spinner-border-sm ms-2" role="status">
         <!-- <span class="visually-hidden">Loading...</span> -->
       </div>

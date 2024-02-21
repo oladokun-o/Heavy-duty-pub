@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -14,7 +15,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     NgbTooltipModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule
   ]
 })
 export class CartModalsModule { }

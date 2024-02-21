@@ -1,0 +1,15 @@
+.cart-item {
+  img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+  }
+}
+
+.btn-remove {
+  border: 0;
+}
+
+.btn-remove svg {
+  width: 30px;
+}

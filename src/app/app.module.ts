@@ -8,10 +8,21 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { ToastrModule } from 'ngx-toastr';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { CheckoutComponent } from './checkout/checkout.component';
+import { RouterModule } from '@angular/router';
+import { LayoutModule } from './layout/layout.module';
+import { SharedModule } from './shared/shared.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CheckoutComponent
   ],
   imports: [
     BrowserModule,
@@ -20,6 +31,9 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
     NgbModule,
 		NgSelectModule,
     ToastrModule.forRoot(),
+    LayoutModule,
+    SharedModule,
+    RouterModule,
   ],
   providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
