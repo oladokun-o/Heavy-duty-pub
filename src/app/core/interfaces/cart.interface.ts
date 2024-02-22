@@ -32,8 +32,11 @@ interface Meta {
   usage?: string
   type?: string
 }
-
-
 export interface CartDetails {
   deliveryLocation: string;
+}
+
+export interface Location {
+  name: string;
+  code?: string;
 }

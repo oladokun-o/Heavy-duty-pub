@@ -33,10 +33,15 @@ export class SummaryComponent implements OnInit {
   }
 
   openDeliveryLocationModal() {
-    this.modalService.open(DeliveryComponent, {
+    const ref = this.modalService.open(DeliveryComponent, {
       centered: true,
       backdrop: "static"
     });
+    ref.closed.subscribe(() => this.getCartDetails());
+  }
+
+  getCartDetails() {
+    this.cartDetails = JSON.parse(localStorage.getItem('cartDetails') as string);
   }
 
   inc(product: Equipment | AsphaltProduct | Haulage) {

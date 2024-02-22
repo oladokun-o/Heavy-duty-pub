@@ -11,6 +11,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { CheckoutPagesRoutingModule } from './checkout-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
+import { CheckoutModalsModule } from './modals/modals.module';
 
 
 
@@ -30,7 +31,8 @@ import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
     MatIconModule,
     CheckoutPagesRoutingModule,
     SharedModule,
-    NgbTooltipModule
+    NgbTooltipModule,
+    CheckoutModalsModule
   ]
 })
 export class CheckoutModule { }

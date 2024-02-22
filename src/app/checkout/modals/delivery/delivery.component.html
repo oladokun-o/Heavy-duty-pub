@@ -6,4 +6,15 @@
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
+
+  <div class="col-12">
+    <div class="row">
+      <div class="col-12">
+        <div class="form-group">
+          <label for="country">Country</label>
+          <ng-select [items]="countries" bindLabel="name" bindValue="name"></ng-select>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
