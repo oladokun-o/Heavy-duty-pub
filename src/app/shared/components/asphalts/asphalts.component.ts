@@ -64,27 +64,35 @@ export class AsphaltsComponent implements OnInit {
       name: 'Bitumen - C.B.E + TERRASIL',
       description: 'Similar to C.B.E bitumen, C.B.E + TERRASIL bitumen is a modified bitumen product that includes additional additives, such as TERRASIL, to further enhance its properties. TERRASIL additives may provide benefits such as improved durability, flexibility, and resistance to rutting.',
       imageUrl: 'assets/img/bitumen-1.jpeg',
-      price: 10000,
+      price: undefined,
       meta: {
         weight: '28 ltr',
         usage: 'Enhanced bitumen blend for improved performance',
-        type: 'Litre'
+        type: 'Tons/Litre'
       },
       qty: 1,
-      id: 3
+      id: 3,
+      brand: [
+        { name: 'Tons', price: 500000 },
+        { name: 'Litre', price: 250000 },
+      ],
     },
     {
       name: 'Bitumen - 60/70',
       description: '60/70 bitumen refers to a specific grade of bitumen categorized by its penetration value and softening point. This grade of bitumen is commonly used in road construction for its medium viscosity and suitable temperature range, making it versatile for various asphalt applications.',
       imageUrl: 'assets/img/bitumen-1.jpeg',
-      price: 10000,
+      price: undefined,
       meta: {
         weight: '28 ltr',
         usage: 'Versatile bitumen grade for various applications',
-        type: 'Litre'
+        type: 'Tons/Litre'
       },
       qty: 1,
-      id: 4
+      id: 4,
+      brand: [
+        { name: 'Tons', price: 500000 },
+        { name: 'Litre', price: 250000 },
+      ],
     },
     {
       name: 'SURFACE DRESSING',
@@ -107,8 +115,16 @@ export class AsphaltsComponent implements OnInit {
   }
 
   handleBrandChange(brand: Brand, product: AsphaltProduct): void {
-    product.price = brand.price;
+    product.brand?.forEach(b => b.selected = false);
     brand.selected = true;
+
+    if (product.qty !== undefined && product.qty > 0) {
+      product.amount = brand.price * product.qty;
+      product.price = brand.price;
+    } else {
+      product.amount = brand.price;
+      product.price = brand.price;
+    }
   }
 
   toggleDescription(el: HTMLElement) {
@@ -117,6 +133,10 @@ export class AsphaltsComponent implements OnInit {
     } else {
       el.classList.add('text-truncate');
     }
+  }
+
+  getSelectedBrand(product: AsphaltProduct): Brand | undefined {
+    return product.brand?.find(b => b.selected);
   }
 
   inc(product: AsphaltProduct) {

@@ -60,7 +60,7 @@
                     <div class="d-flex flex-row flex-wrap justify-content-between align-items-center">
                       <div class="col-12">
                         <ng-select *ngIf="product.brand" [items]="product.brand"
-                          placeholder="Select manufaturer to see price" [clearable]="false" class="pb-2" bindLabel="name"
+                          placeholder="Select {{product.meta?.type?.toLowerCase() === 'tons/litre' ? 'type' : 'manufaturer' }} to see price" [clearable]="false" class="pb-2" bindLabel="name"
                           bindValue="price" (change)="handleBrandChange($event, product)"></ng-select>
 
                         <div *ngIf="!product.brand && product.meta" class="equipment-item__list">
@@ -77,7 +77,8 @@
 
                         <div class="equipment-item__price-current col-6 fs-6"
                           *ngIf="product.price !== undefined && product.meta && product.meta.type !== 'service'">
-                          ₦{{ product.price | number }} <span class="fw-normal">Per {{ product.meta.type }}</span>
+                          ₦{{ product.price | number }} <span class="fw-normal">Per {{ product.meta?.type?.toLowerCase() === 'tons/litre' ?
+                            getSelectedBrand(product)?.name : product.meta.type }}</span>
                         </div>
 
                         <div class="col-4 d-flex flex-row justify-content-end"

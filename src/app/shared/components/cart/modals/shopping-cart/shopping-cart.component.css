@@ -14,3 +14,12 @@ ul {
 .btn-remove svg {
   width: 30px;
 }
+
+td h2 {
+  margin: 0 !important;
+}
+
+td:last-child {
+  text-align: center;
+  vertical-align: middle;
+}

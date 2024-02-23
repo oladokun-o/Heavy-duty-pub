@@ -1,6 +1,6 @@
 <div class="modal-body">
   <div class="col-12 pb-3 d-flex justify-content-between align-items-center">
-    <h3 class="modal-title">Your Shopping Cart</h3>
+    <h2>Your Shopping Cart</h2>
     <button type="button" class="close border-0 fs-2" [disabled]="checkingout" data-dismiss="modal" aria-label="Close"
       (click)="activeModal.dismiss()">
       <span aria-hidden="true">&times;</span>
@@ -41,6 +41,21 @@
           </button>
         </td>
       </tr>
+      <tr>
+        <td class="border-bottom-0 py-4"></td>
+        <td class="border-bottom-0 py-4"></td>
+        <td class="border-bottom-0 py-4">
+          <h2>Subtotal</h2>
+        </td>
+        <td class="border-bottom-0 py-4">
+          <h2>₦{{ getSubTotal() | number }}</h2>
+        </td>
+        <td class="border-bottom-0 py-4">
+          <button (click)="clearCart()" class="uk-button uk-button-default">
+            Clear cart
+          </button>
+        </td>
+      </tr>
     </tbody>
   </table>
 
@@ -48,7 +63,7 @@
     <h3 class="fw-normal">No items in your cart</h3>
   </div>
 
-  <div class="col-12 pt-3 d-flex justify-content-end align-items-center">
+  <div class="col-12 pt-3 d-flex justify-content-{{ cartItems.length > 0 ? 'start' : 'center' }} align-items-center">
     <button *ngIf="cartItems.length > 0" type="button" [disabled]="checkingout" (click)="activeModal.close()" routerLink="/checkout" class="uk-button uk-button-default">
       {{ checkingout ? 'Checking out' : 'View Cart' }}
       <div *ngIf="checkingout" class="spinner-border spinner-border-sm ms-2" role="status">

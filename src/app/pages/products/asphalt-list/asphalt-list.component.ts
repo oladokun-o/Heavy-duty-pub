@@ -30,8 +30,16 @@ export class AsphaltListComponent implements OnInit {
   }
 
   handleBrandChange(brand: Brand, product: AsphaltProduct): void {
-    product.price = brand.price;
+    product.brand?.forEach(b => b.selected = false);
     brand.selected = true;
+
+    if (product.qty !== undefined && product.qty > 0) {
+      product.amount = brand.price * product.qty;
+      product.price = brand.price;
+    } else {
+      product.amount = brand.price;
+      product.price = brand.price;
+    }
   }
 
   toggleDescription(el: HTMLElement) {
@@ -40,6 +48,10 @@ export class AsphaltListComponent implements OnInit {
     } else {
       el.classList.add('text-truncate');
     }
+  }
+
+  getSelectedBrand(product: AsphaltProduct): Brand | undefined {
+    return product.brand?.find(b => b.selected);
   }
 
   inc(product: AsphaltProduct) {

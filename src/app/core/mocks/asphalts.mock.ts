@@ -42,12 +42,16 @@ export const MockAsphalts: AsphaltProduct[] = [
   {
     name: 'Bitumen - MC 0',
     imageUrl: 'assets/img/bitumen-1.jpeg',
-    price: 10000,
+    price: undefined,
+    brand: [
+      { name: 'Tons', price: 500000 },
+      { name: 'Litre', price: 250000 },
+    ],
     description: 'This is a type of bitumen typically used for road construction and maintenance. MC 0 bitumen is known for its high quality and durability, making it suitable for various asphalt applications.',
     meta: {
       weight: '25 ltr',
       usage: 'For road construction and maintenance projects',
-      type: 'Litre'
+      type: 'Tons/Litre'
     },
     qty: 1,
     id: 3,
@@ -55,12 +59,16 @@ export const MockAsphalts: AsphaltProduct[] = [
   {
     name: 'Bitumen - MC 1',
     imageUrl: 'assets/img/bitumen-1.jpeg',
-    price: 10000,
+    price: undefined,
+    brand: [
+      { name: 'Tons', price: 500000 },
+      { name: 'Litre', price: 250000 },
+    ],
     description: 'Similar to MC 0, MC 1 bitumen is another grade of bitumen commonly used in road construction. It offers excellent binding properties and resistance to weathering, ensuring long-lasting road surfaces.',
     meta: {
       weight: '25 ltr',
       usage: 'Suitable for various asphalt applications',
-      type: 'Litre'
+      type: 'Tons/Litre'
     },
     qty: 1,
     id: 4,
@@ -68,12 +76,16 @@ export const MockAsphalts: AsphaltProduct[] = [
   {
     name: 'Bitumen - S 125',
     imageUrl: 'assets/img/bitumen-1.jpeg',
-    price: 10000,
+    price: undefined,
+    brand: [
+      { name: 'Tons', price: 500000 },
+      { name: 'Litre', price: 250000 },
+    ],
     description: 'S 125 bitumen is a specialized type of bitumen designed for specific applications, such as asphalt paving in areas with high traffic volume or heavy loads. It provides superior strength and stability to road surfaces.',
     meta: {
       weight: '30 ltr',
       usage: 'High-quality bitumen for road surfaces',
-      type: 'Litre'
+      type: 'Tons/Litre'
     },
     qty: 1,
     id: 5,
@@ -81,12 +93,16 @@ export const MockAsphalts: AsphaltProduct[] = [
   {
     name: 'Bitumen - C.B.E',
     imageUrl: 'assets/img/bitumen-1.jpeg',
-    price: 10000,
+    price: undefined,
+    brand: [
+      { name: 'Tons', price: 500000 },
+      { name: 'Litre', price: 250000 },
+    ],
     description: 'C.B.E bitumen refers to a modified bitumen product that incorporates additives to enhance its performance characteristics. This type of bitumen offers improved elasticity, adhesion, and resistance to cracking, making it ideal for demanding asphalt applications.',
     meta: {
       weight: '28 ltr',
       usage: 'Commonly used in asphalt mixes',
-      type: 'Litre'
+      type: 'Tons/Litre'
     },
     qty: 1,
     id: 6,
@@ -95,11 +111,15 @@ export const MockAsphalts: AsphaltProduct[] = [
     name: 'Bitumen - C.B.E + TERRASIL',
     description: 'Similar to C.B.E bitumen, C.B.E + TERRASIL bitumen is a modified bitumen product that includes additional additives, such as TERRASIL, to further enhance its properties. TERRASIL additives may provide benefits such as improved durability, flexibility, and resistance to rutting.',
     imageUrl: 'assets/img/bitumen-1.jpeg',
-    price: 10000,
+    price: undefined,
+    brand: [
+      { name: 'Tons', price: 500000 },
+      { name: 'Litre', price: 250000 },
+    ],
     meta: {
       weight: '28 ltr',
       usage: 'Enhanced bitumen blend for improved performance',
-      type: 'Litre'
+      type: 'Tons/Litre'
     },
     qty: 1,
     id: 7,
@@ -108,11 +128,15 @@ export const MockAsphalts: AsphaltProduct[] = [
     name: 'Bitumen - 60/70',
     description: '60/70 bitumen refers to a specific grade of bitumen categorized by its penetration value and softening point. This grade of bitumen is commonly used in road construction for its medium viscosity and suitable temperature range, making it versatile for various asphalt applications.',
     imageUrl: 'assets/img/bitumen-1.jpeg',
-    price: 10000,
+    price: undefined,
+    brand: [
+      { name: 'Tons', price: 500000 },
+      { name: 'Litre', price: 250000 },
+    ],
     meta: {
       weight: '28 ltr',
       usage: 'Versatile bitumen grade for various applications',
-      type: 'Litre'
+      type: 'Tons/Litre'
     },
     qty: 1,
     id: 8,

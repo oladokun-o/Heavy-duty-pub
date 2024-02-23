@@ -1,18 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CartDetails, CartItem } from 'src/app/core/interfaces/cart.interface';
 import { AsphaltProduct, Equipment, Haulage } from 'src/app/core/interfaces/products.interface';
 import { DeliveryComponent } from '../modals/delivery/delivery.component';
+import { Subscription, interval } from 'rxjs';
 
 @Component({
   selector: 'app-summary',
   templateUrl: './summary.component.html',
   styleUrls: ['./summary.component.css']
 })
-export class SummaryComponent implements OnInit {
+export class SummaryComponent implements OnInit, OnDestroy {
 
   cartItems: CartItem[] = JSON.parse(localStorage.getItem('cartItems') as string) || [];
   cartDetails: CartDetails = JSON.parse(localStorage.getItem('cartDetails') as string) || null;
+  private timerSubscription!: Subscription;
 
   constructor(
     private modalService: NgbModal
@@ -24,12 +26,47 @@ export class SummaryComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    // Start the timer subscription on component initialization
+    this.startTimer();
+  }
+
+  ngOnDestroy(): void {
+    // Unsubscribe from the timer subscription to avoid memory leaks
+    this.stopTimer();
+  }
+
+  private stopTimer(): void {
+    // Unsubscribe from the timer subscription
+    if (this.timerSubscription) {
+      this.timerSubscription.unsubscribe();
+    }
+  }
+
+  private startTimer(): void {
+    // Check the length of cartItems every 5 seconds
+    this.timerSubscription = interval(5000).subscribe(() => {
+      this.getCart();
+    });
+  }
 
   getSubTotal(): number {
     return this.cartItems.reduce((total, item) => {
       return total + (item.item.amount ? item.item.amount : ((item.item.qty ?? 0) * (item.item.price ?? 0)));
     }, 0);
+  }
+
+  getCart(): void {
+    this.cartItems = JSON.parse(localStorage.getItem('cartItems') as string) || [];
+  }
+
+  updateCart() {
+    localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
+  }
+
+  removeItem(item: CartItem): void {
+    this.cartItems = this.cartItems.filter(c => c.id !== item.id);
+    this.updateCart();
   }
 
   openDeliveryLocationModal() {
@@ -69,6 +106,7 @@ export class SummaryComponent implements OnInit {
     } else {
       console.error('Invalid product or quantity property missing.');
     }
+    this.updateCart();
   }
 
   dec(product: Equipment | AsphaltProduct | Haulage) {
@@ -85,6 +123,7 @@ export class SummaryComponent implements OnInit {
     } else {
       console.error('Invalid product or quantity property missing or quantity is already at minimum.');
     }
+    this.updateCart();
   }
 
   Number = Number;
@@ -114,6 +153,7 @@ export class SummaryComponent implements OnInit {
     } else {
       console.error('Invalid product or quantity property missing or invalid quantity value.');
     }
+    this.updateCart();
   }
 
 

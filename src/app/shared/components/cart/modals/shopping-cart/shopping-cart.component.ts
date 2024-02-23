@@ -51,4 +51,14 @@ export class ShoppingCartComponent implements OnInit {
     this.updateCart();
   }
 
+  getSubTotal(): number {
+    return this.cartItems.reduce((total, item) => {
+      return total + (item.item.amount ? item.item.amount : ((item.item.qty ?? 0) * (item.item.price ?? 0)));
+    }, 0);
+  }
+
+  clearCart() {
+    this.emptyCart();
+  }
+
 }

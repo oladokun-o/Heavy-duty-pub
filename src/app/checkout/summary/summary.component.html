@@ -5,40 +5,48 @@
         <h2 class="m-0">My Cart</h2>
       </div>
 
-      <div *ngFor="let item of cartItems" class="col-12 cart-item border-bottom py-3">
-        <div class="row row-gap-3 pt-3">
-          <div class="col-12 col-md-6 d-flex gap-2">
-            <a [routerLink]="['/products', item.item.category, item.item.id]">
-              <img [src]="item.item.imageUrl" [alt]="item.item.name" class="border">
-            </a>
-            <div>
-              <p [innerHTML]="item.item.name" class="mb-2 fs-6 fw-bold"></p>
+      <ng-container *ngIf="cartItems.length > 0">
+        <div *ngFor="let item of cartItems" class="col-12 cart-item border-bottom py-3">
+          <div class="row row-gap-3 pt-3">
+            <div class="col-12 col-md-6 d-flex gap-2">
+              <a [routerLink]="['/products', item.item.category, item.item.id]">
+                <img [src]="item.item.imageUrl" [alt]="item.item.name" class="border">
+              </a>
+              <div>
+                <p [innerHTML]="item.item.name" class="mb-2 fs-6 fw-bold"></p>
+                <p class="fs-6 mb-2">₦{{
+                  (item.item.amount ? item.item.amount : ((item.item?.qty ?? 0) * (item.item?.price ?? 0)))
+                  | number
+                  }}</p>
+                <p>Quantity: {{ item.item.qty | number }}</p>
+              </div>
+            </div>
+            <div class="col-12 col-md-6 d-flex gap-3 align-items-center justify-content-between">
+              <div class="col-4 d-flex flex-row justify-content-end buttons">
+                <button type="button" class="qty-btn" [disabled]="item.item.qty === 1"
+                  (click)="dec(item.item)">-</button>
+                <input type="text" NumbersOnly class="col-3 text-center border-0" [value]="item.item.qty" #input
+                  (change)="updateQuantity(item.item, Number(input.value))">
+                <button type="button" class="qty-btn" (click)="inc(item.item)">+</button>
+              </div>
+
               <p class="fs-6 mb-2">₦{{
                 (item.item.amount ? item.item.amount : ((item.item?.qty ?? 0) * (item.item?.price ?? 0)))
                 | number
                 }}</p>
-              <p>Quantity: {{ item.item.qty | number }}</p>
-            </div>
-          </div>
-          <div class="col-12 col-md-6 d-flex gap-3 align-items-center justify-content-between">
-            <div class="col-4 d-flex flex-row justify-content-end buttons">
-              <button type="button" class="qty-btn" [disabled]="item.item.qty === 1" (click)="dec(item.item)">-</button>
-              <input type="text" NumbersOnly class="col-3 text-center border-0" [value]="item.item.qty" #input
-                (change)="updateQuantity(item.item, Number(input.value))">
-              <button type="button" class="qty-btn" (click)="inc(item.item)">+</button>
-            </div>
 
-            <p class="fs-6 mb-2">₦{{
-              (item.item.amount ? item.item.amount : ((item.item?.qty ?? 0) * (item.item?.price ?? 0)))
-              | number
-              }}</p>
-
-            <button type="button" ngbTooltip="Remove item" class="btn-remove bg-transparent pe-3">
-              <span uk-icon="ban"></span>
-            </button>
+              <button type="button" ngbTooltip="Remove item" (click)="removeItem(item)" class="btn-remove bg-transparent pe-3">
+                <span uk-icon="ban"></span>
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+      </ng-container>
+
+      <ng-container *ngIf="cartItems.length === 0">
+        <h1 class="fw-normal fs-2 pt-4">No items in your cart</h1>
+        <a routerLink="/products">Continue Shopping</a>
+      </ng-container>
     </div>
     <div class="col-12 col-lg-4">
       <div class="col-12 border-bottom d-flex justify-content-start align-items-center py-3">
@@ -60,7 +68,7 @@
           <h2>₦{{ getSubTotal() | number }}</h2>
         </div>
         <div class="col-12">
-          <button class="uk-button uk-button-secondary w-100 pt-4 pb-3 uk-button-small">
+          <button [disabled]="cartItems.length === 0" class="uk-button uk-button-secondary w-100 pt-4 pb-3 uk-button-small">
             continue
           </button>
         </div>
