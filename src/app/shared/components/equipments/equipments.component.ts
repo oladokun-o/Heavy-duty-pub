@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { CartItem } from 'src/app/core/interfaces/cart.interface';
-import { Equipment } from 'src/app/core/interfaces/products.interface';
+import { AsphaltProduct, Equipment, Haulage } from 'src/app/core/interfaces/products.interface';
 import { EquipmentsList } from 'src/app/core/mocks/equipments.mock';
 import { ShoppingCartComponent } from '../cart/modals/shopping-cart/shopping-cart.component';
 
@@ -78,6 +78,36 @@ export class EquipmentsComponent implements OnInit {
       console.error('Invalid product or quantity property missing.');
     }
   }
+
+  Number = Number;
+
+  updateQuantity(product: Equipment | AsphaltProduct | Haulage, newQuantity: number) {
+    if ('qty' in product && newQuantity >= 0) {
+      product.qty = newQuantity;
+      if ('prices' in product && product.prices) {
+        const foundPrice = (product.prices as unknown as any[]).find(pr => pr.selected);
+        if (foundPrice) {
+          product.amount = product.qty * foundPrice.value;
+        }
+      } else if ('brand' in product) {
+        if (product.brand) {
+          const foundBrand = product.brand.find(p => p.selected);
+          if (foundBrand && foundBrand.price !== undefined) {
+            product.amount = product.qty * foundBrand.price;
+          }
+        } else {
+          let price = product.price as number;
+          product.amount = price * product.qty;
+        }
+      } else if ('price' in product) {
+        let price = product.price as number;
+        product.amount = price * product.qty;
+      }
+    } else {
+      console.error('Invalid product or quantity property missing or invalid quantity value.');
+    }
+  }
+
 
   addToCart(product: any) {
     let item: CartItem = {

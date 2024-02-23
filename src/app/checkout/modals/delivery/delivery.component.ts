@@ -18,6 +18,12 @@ export class DeliveryComponent implements OnInit {
     }
   ];
 
+  states: Location[] = [
+    {
+      name: 'Lagos'
+    }
+  ];
+
   country: string = 'Nigeria';
   state: string = 'Lagos';
 
@@ -27,18 +33,19 @@ export class DeliveryComponent implements OnInit {
 
   ngOnInit(): void { }
 
-  changeCountry(country: string): void {
-    this.country = country;
+  changeCountry(country: Location): void {
+    this.country = country.name;
+    this.updateCartDetails();
   }
 
-  changeState(state: string): void {
-    this.state = state;
+  changeState(state: Location): void {
+    this.state = state.name;
+    this.updateCartDetails();
   }
 
   updateCartDetails() {
-    this.cartDetails.deliveryLocation = this.state + ', ' + this.country;
+    this.cartDetails = { deliveryLocation: this.state + ', ' + this.country };
     localStorage.setItem('cartDetails', JSON.stringify(this.cartDetails));
-    this.activeModal.close();
   }
 
 }

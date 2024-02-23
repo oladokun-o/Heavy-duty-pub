@@ -15,6 +15,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { PortaCabinComponent } from './porta-cabin/porta-cabin.component';
 import { HaulagesComponent } from './haulages/haulages.component';
+import { NumbersOnlyDirective } from '../directives/NumbersOnly.directive';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { HaulagesComponent } from './haulages/haulages.component';
     EquipmentsComponent,
     CartComponent,
     PortaCabinComponent,
-    HaulagesComponent
+    HaulagesComponent,
+    NumbersOnlyDirective
   ],
   imports: [
     CommonModule,
@@ -46,7 +48,8 @@ import { HaulagesComponent } from './haulages/haulages.component';
     EquipmentsComponent,
     CartComponent,
     PortaCabinComponent,
-    HaulagesComponent
+    HaulagesComponent,
+    NumbersOnlyDirective
   ]
 })
 export class SharedComponentsModule { }

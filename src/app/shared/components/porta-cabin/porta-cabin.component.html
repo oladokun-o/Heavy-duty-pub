@@ -44,7 +44,8 @@
                         *ngIf="equipment.amount !== undefined && equipment.meta && equipment.meta.type !== 'service'">
                         <button type="button" class="qty-btn" ngbTooltip="Increase quantity" [disabled]="equipment.qty === 1"
                           (click)="dec(equipment)">-</button>
-                        <input type="text" class="col-3 text-center border-0" readonly [value]="equipment.qty">
+                          <input type="text" NumbersOnly class="col-4 text-center border-0" [value]="equipment.qty" #input
+                          (change)="updateQuantity(equipment, Number(input.value))">
                         <button type="button" class="qty-btn" ngbTooltip="Decrease quantity" (click)="inc(equipment)">+</button>
                       </div>
 

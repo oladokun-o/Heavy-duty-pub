@@ -52,12 +52,17 @@
         </div>
         <div class="col-12 d-flex justify-content-between align-items-center pt-3 pb-3 border-bottom">
           <p class="fs-6">Location <span *ngIf="cartDetails && cartDetails.deliveryLocation">(<a
-                style="text-decoration: underline;" (click)="openDeliveryLocationModal">change</a>)</span></p>
+                style="text-decoration: underline;" (click)="openDeliveryLocationModal()">change</a>)</span></p>
           <p class="fs-6" *ngIf="cartDetails && cartDetails.deliveryLocation">{{ cartDetails.deliveryLocation }}</p>
         </div>
         <div class="col-12 d-flex justify-content-between align-items-center pt-4 pb-3 border-bottom">
           <h2>Total</h2>
           <h2>₦{{ getSubTotal() | number }}</h2>
+        </div>
+        <div class="col-12">
+          <button class="uk-button uk-button-secondary w-100 pt-4 pb-3 uk-button-small">
+            continue
+          </button>
         </div>
       </div>
     </div>

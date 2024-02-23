@@ -4,11 +4,8 @@ import { SharedComponentsModule } from './components/components.module';
 import { CartModalsModule } from './components/cart/modals/modals.module';
 import { NumbersOnlyDirective } from './directives/NumbersOnly.directive';
 
-
-
 @NgModule({
   declarations: [
-    NumbersOnlyDirective
   ],
   imports: [
     CommonModule,
@@ -17,8 +14,7 @@ import { NumbersOnlyDirective } from './directives/NumbersOnly.directive';
   ],
   exports: [
     CommonModule,
-    SharedComponentsModule,
-    NumbersOnlyDirective
+    SharedComponentsModule
   ]
 })
 export class SharedModule { }
