@@ -121,18 +121,29 @@ export class SummaryComponent implements OnInit, OnDestroy {
   }
 
   dec(product: Equipment | AsphaltProduct | Haulage) {
-    if ('qty' in product && product.qty !== undefined && product.qty > 0) {
+    if ('qty' in product && product.qty) {
       product.qty--;
       if ('prices' in product && product.prices) {
         const foundPrice = (product.prices as unknown as any[]).find(pr => pr.selected);
         if (foundPrice) {
           product.amount = product.qty * foundPrice.value;
         }
-      } else {
-        console.error('Invalid product or quantity property missing.');
+      } else if ('brand' in product) {
+        if (product.brand) {
+          const foundBrand = product.brand.find(p => p.selected);
+          if (foundBrand && foundBrand.price !== undefined) {
+            product.amount = product.qty * foundBrand.price;
+          }
+        } else {
+          let price = product.price as number;
+          product.amount = price * product.qty;
+        }
+      } else if ('price' in product) {
+        let price = product.price as number;
+        product.amount = price * product.qty;
       }
     } else {
-      console.error('Invalid product or quantity property missing or quantity is already at minimum.');
+      console.error('Invalid product or quantity property missing.');
     }
     this.updateCart();
   }

@@ -201,12 +201,15 @@
           </ng-container>
     
           <ng-container *ngIf="cartItems.length === 0">
-            <h1 class="fw-normal fs-2 pt-4">No items in your cart</h1>
+            <h1 class="fw-normal fs-2 pt-4">No items in your cart</h1>            
+          </ng-container>
+
+          <div class="col-12 pt-4">
             <a routerLink="/products">
               <span uk-icon="chevron-left"></span>
               Continue Shopping
             </a>
-          </ng-container>
+          </div>
         </div>
       </div>
     </div>

@@ -41,7 +41,7 @@ span.error {
   font-weight: bold;
 }
 
-input,
+form input,
 textarea {
   border-radius: 2px;
   padding: 15px;
