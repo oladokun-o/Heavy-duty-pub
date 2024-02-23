@@ -1,9 +1,7 @@
-.cart-item {
-  img {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-  }
+.cart-item img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
 }
 
 .btn-remove {
