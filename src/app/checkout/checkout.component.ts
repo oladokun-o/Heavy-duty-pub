@@ -9,11 +9,11 @@ import { NavList } from '../core/interfaces/nav.interface';
 export class CheckoutComponent implements OnInit {
 
   pages: NavList[] = [
-    {
-      label: 'Login',
-      route: 'login',
+    // {
+      // label: 'Login',
+      // route: 'login',
       // icon: 'assets/img/user.svg'
-    }
+    // }
   ];
 
   constructor() { }

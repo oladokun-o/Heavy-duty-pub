@@ -1,9 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { CartDetails, CartItem } from 'src/app/core/interfaces/cart.interface';
+import { CartDetails, CartItem, Location } from 'src/app/core/interfaces/cart.interface';
 import { AsphaltProduct, Equipment, Haulage } from 'src/app/core/interfaces/products.interface';
 import { DeliveryComponent } from '../modals/delivery/delivery.component';
 import { Subscription, interval } from 'rxjs';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UserDetails } from 'src/app/core/interfaces/user.interface';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-summary',
@@ -16,9 +19,14 @@ export class SummaryComponent implements OnInit, OnDestroy {
   cartDetails: CartDetails = JSON.parse(localStorage.getItem('cartDetails') as string) || null;
   private timerSubscription!: Subscription;
 
+  disclaimer: string = 'The final delivery fee will be calculated and confirmed once your order has been received and checked by our team. We strive to provide accurate and competitive delivery fees, and any adjustments will be communicated to you promptly.';
+
   constructor(
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private toastr: ToastrService
   ) {
+    toastr.toastrConfig.preventDuplicates = true;
+
     if (!this.cartDetails) {
       setTimeout(() => {
         this.openDeliveryLocationModal();
@@ -57,7 +65,10 @@ export class SummaryComponent implements OnInit, OnDestroy {
   }
 
   getCart(): void {
-    this.cartItems = JSON.parse(localStorage.getItem('cartItems') as string) || [];
+    let newcartItems = JSON.parse(localStorage.getItem('cartItems') as string) || [];
+    if (JSON.stringify(newcartItems) !== JSON.stringify(this.cartItems)) {
+      this.cartItems = newcartItems;
+    }
   }
 
   updateCart() {
@@ -70,11 +81,11 @@ export class SummaryComponent implements OnInit, OnDestroy {
   }
 
   openDeliveryLocationModal() {
-    const ref = this.modalService.open(DeliveryComponent, {
-      centered: true,
-      backdrop: "static"
-    });
-    ref.closed.subscribe(() => this.getCartDetails());
+    // const ref = this.modalService.open(DeliveryComponent, {
+    //   centered: true,
+    //   backdrop: "static"
+    // });
+    // ref.closed.subscribe(() => this.getCartDetails());
   }
 
   getCartDetails() {
@@ -156,5 +167,88 @@ export class SummaryComponent implements OnInit, OnDestroy {
     this.updateCart();
   }
 
+  countries: Location[] = [
+    {
+      name: 'Nigeria',
+      code: 'NIG'
+    }
+  ];
+
+  states: Location[] = [
+    {
+      name: 'Lagos'
+    }
+  ];
+
+  userDetails: UserDetails | null = JSON.parse(localStorage.getItem('userDetails') as string) || null;
+  editable: boolean = !this.userDetails ? true : false;
+  userForm: FormGroup = this.userDetails ?
+    new FormGroup({
+      firstname: new FormControl(this.userDetails.firstname, Validators.required),
+      lastname: new FormControl(this.userDetails.lastname, Validators.required),
+      email: new FormControl(this.userDetails.email, [Validators.required, Validators.email]),
+      phone: new FormControl(this.userDetails.phone, [Validators.required, Validators.minLength(11), Validators.maxLength(13)]),
+      address: new FormControl(this.userDetails.address, [Validators.required]),
+      state: new FormControl(this.userDetails.state, [Validators.required]),
+      country: new FormControl(this.userDetails.country, [Validators.required]),
+    })
+    : new FormGroup({
+      firstname: new FormControl(null, Validators.required),
+      lastname: new FormControl(null, Validators.required),
+      email: new FormControl(null, [Validators.required, Validators.email]),
+      phone: new FormControl(null, [Validators.required, Validators.minLength(11), Validators.maxLength(13)]),
+      address: new FormControl(null, [Validators.required]),
+      state: new FormControl(null, [Validators.required]),
+      country: new FormControl(null, [Validators.required]),
+    });
+
+  toggleEdit() {
+    this.editable = !this.editable;
+    this.saved = false;
+    this.submitted = false;
+  }
+
+  saved: boolean = false;
+  submitted: boolean = false;
+  saveDetails() {
+    this.submitted = true;
+
+    console.log(this.userForm.value);
+
+    if (this.userForm?.valid) {
+      localStorage.setItem('userDetails', JSON.stringify(this.userForm?.value));
+      this.saved = true;
+      this.editable = false;
+    }
+  }
+
+  confirming: boolean = false;
+
+  confirmOrder() {
+    if (this.userForm.invalid) {
+      this.toastr.info('Please fill in all required fields.');
+      this.editable = true;
+      const firstInvalidInput = document.querySelector("form")?.querySelector("input.ng-invalid, ng-select.ng-invalid > input");
+      if (firstInvalidInput instanceof HTMLInputElement) {
+        firstInvalidInput.scrollIntoView({ behavior: "smooth", block: "center" });
+        firstInvalidInput.focus();
+      }
+    } else if (this.cartItems.length === 0) {
+      this.toastr.info('Your cart is empty. Please add items before confirming your order.');
+    } else {
+      // Proceed to confirm the order
+      this.confirming = true;
+      setTimeout(() => {
+        this.confirming = false;
+        this.emptyCart();
+        this.toastr.success('Your order has been confirmed!');
+      }, 5000);
+    }
+  }  
+
+  emptyCart() {
+    this.cartItems = [];
+    this.updateCart();
+  }
 
 }

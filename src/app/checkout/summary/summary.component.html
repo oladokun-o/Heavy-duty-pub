@@ -1,77 +1,251 @@
-<section class="container-fluid">
-  <div class="row">
+<section class="container-fluid px-3 px-md">
+  <div class="row row-gap-3">
     <div class="col-12 col-lg-8">
-      <div class="col-12 border-bottom d-flex justify-content-start align-items-center py-3">
-        <h2 class="m-0">My Cart</h2>
-      </div>
-
-      <ng-container *ngIf="cartItems.length > 0">
-        <div *ngFor="let item of cartItems" class="col-12 cart-item border-bottom py-3">
-          <div class="row row-gap-3 pt-3">
-            <div class="col-12 col-md-6 d-flex gap-2">
-              <a [routerLink]="['/products', item.item.category, item.item.id]">
-                <img [src]="item.item.imageUrl" [alt]="item.item.name" class="border">
-              </a>
-              <div>
-                <p [innerHTML]="item.item.name" class="mb-2 fs-6 fw-bold"></p>
-                <p class="fs-6 mb-2">₦{{
-                  (item.item.amount ? item.item.amount : ((item.item?.qty ?? 0) * (item.item?.price ?? 0)))
-                  | number
-                  }}</p>
-                <p>Quantity: {{ item.item.qty | number }}</p>
-              </div>
+      <div class="row">
+        <div class="col-12">
+          <div
+            class="col-12 border-bottom border-top d-flex justify-content-between align-items-center py-3">
+            <div class="d-flex justify-content-start align-items-center">
+              <span *ngIf="userForm && userForm?.valid"
+                uk-icon="check"
+                class="success"></span>
+              <span *ngIf="!userForm || userForm?.invalid"
+                uk-icon="close"
+                class="error"></span>
+              <h2 class="mb-0 ms-2">1. Your Details</h2>
             </div>
-            <div class="col-12 col-md-6 d-flex gap-3 align-items-center justify-content-between">
-              <div class="col-4 d-flex flex-row justify-content-end buttons">
-                <button type="button" class="qty-btn" [disabled]="item.item.qty === 1"
-                  (click)="dec(item.item)">-</button>
-                <input type="text" NumbersOnly class="col-3 text-center border-0" [value]="item.item.qty" #input
-                  (change)="updateQuantity(item.item, Number(input.value))">
-                <button type="button" class="qty-btn" (click)="inc(item.item)">+</button>
-              </div>
-
-              <p class="fs-6 mb-2">₦{{
-                (item.item.amount ? item.item.amount : ((item.item?.qty ?? 0) * (item.item?.price ?? 0)))
-                | number
-                }}</p>
-
-              <button type="button" ngbTooltip="Remove item" (click)="removeItem(item)" class="btn-remove bg-transparent pe-3">
-                <span uk-icon="ban"></span>
-              </button>
+    
+            <div class="d-flex justify-content-start align-items-center gap-3">
+              <a class="uk-button uk-button-default uk-button-small"
+                (click)="toggleEdit()">{{ editable ? 'Cancel' : 'Change' }}</a>
+              <a class="uk-button uk-button-secondary uk-button-small"
+                *ngIf="editable && !saved" (click)="saveDetails()">Save</a>
             </div>
           </div>
+    
+          <ng-container *ngIf="userForm">
+            <form [formGroup]="userForm" [class.editable]="editable"
+              class="px-0 py-4 container-fluid">
+              <div class="row row-gap-3">
+                <div class="col-12 col-md-6">
+                  <div class="form-group">
+                    <label for="firstname" class="form-label">First name</label>
+                    <input [autofocus]="!editable" id="firstname" class="form-control" type="text"
+                      formControlName="firstname"
+                      placeholder="Enter your first name" [readOnly]="!editable"
+                      [disabled]="!editable">
+                    <small
+                      *ngIf="editable && (submitted || userForm?.get('firstname')?.touched) &&
+                      userForm?.get('firstname')?.errors &&
+                      userForm?.get('firstname')?.errors?.required"
+                      class="text-danger">
+                      Your first name is required
+                    </small>
+                  </div>
+                </div>
+    
+                <div class="col-12 col-md-6">
+                  <div class="form-group">
+                    <label for="lastname" class="form-label">Last name</label>
+                    <input id="lastname" class="form-control" type="text"
+                      formControlName="lastname"
+                      placeholder="Enter your first name" [readOnly]="!editable"
+                      [disabled]="!editable">
+                    <small
+                      *ngIf="editable && (submitted || userForm?.get('lastname')?.touched) &&
+                      userForm?.get('lastname')?.errors &&
+                      userForm?.get('lastname')?.errors?.required"
+                      class="text-danger">
+                      Your last name is required
+                    </small>
+                  </div>
+                </div>
+    
+                <div class="col-12 col-md-6">
+                  <div class="form-group">
+                    <label for="email" class="form-label">Email Address</label>
+                    <input id="email" class="form-control" type="email"
+                      formControlName="email"
+                      placeholder="Enter your email address" [readOnly]="!editable"
+                      [disabled]="!editable">
+                    <small
+                      *ngIf="editable && (submitted || userForm?.get('email')?.touched) &&
+                      userForm?.get('email')?.errors &&
+                      userForm?.get('email')?.errors?.required"
+                      class="text-danger">
+                      Your email is required
+                    </small>
+                    <small
+                      *ngIf="editable && userForm?.get('email')?.value && userForm?.get('email')?.value.length > 3 &&
+                      userForm?.get('email')?.errors &&
+                      userForm?.get('email')?.errors?.email"
+                      class="text-danger">
+                      Please enter a valid email address
+                    </small>
+                  </div>
+                </div>
+    
+                <div class="col-12 col-md-6">
+                  <div class="form-group">
+                    <label for="phone" class="form-label">Phone number</label>
+                    <input id="phone" class="form-control" type="tel"
+                      formControlName="phone" Phonenumber
+                      placeholder="Example: 08023423423" [readOnly]="!editable"
+                      [disabled]="!editable">
+                    <small
+                      *ngIf="editable && (submitted || userForm?.get('phone')?.touched) &&
+                      userForm?.get('phone')?.errors &&
+                      userForm?.get('phone')?.errors?.required"
+                      class="text-danger">
+                      Your phone is required
+                    </small>
+                    <small *ngIf="editable &&
+                      userForm?.get('phone')?.value &&
+                      userForm?.get('phone')?.errors &&
+                      (userForm?.get('phone')?.errors?.minlength ||
+                      userForm?.get('phone')?.errors?.maxlength)"
+                      class="text-danger">
+                      Please enter a valid phone number
+                    </small>
+                  </div>
+                </div>
+    
+                <div class="col-12">
+                  <div class="form-group">
+                    <label for="address" class="form-label">Delivery Address</label>
+                    <textarea id="address" class="form-control"
+                      formControlName="address"
+                      placeholder="Example: 10, B Street, Lagos" [readOnly]="!editable"
+                      [disabled]="!editable"></textarea>
+                    <small
+                      *ngIf="editable && (submitted || userForm?.get('address')?.touched) &&
+                      userForm?.get('address')?.errors &&
+                      userForm?.get('address')?.errors?.required"
+                      class="text-danger">
+                      The delivery address is required
+                    </small>
+                  </div>
+                </div>
+    
+                <div class="col-12 col-md-6">
+                  <div [class.disabled]="!editable" class="form-group">
+                    <ng-select [items]="countries" formControlName="country" bindLabel="name" bindValue="name" placeholder="Select region"></ng-select>
+                  </div>
+                </div>
+    
+                <div class="col-12 col-md-6">
+                  <div [class.disabled]="!editable" class="form-group">
+                    <ng-select [items]="states" bindLabel="name" formControlName="state" bindValue="name" placeholder="Select state"></ng-select>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </ng-container>
         </div>
-      </ng-container>
-
-      <ng-container *ngIf="cartItems.length === 0">
-        <h1 class="fw-normal fs-2 pt-4">No items in your cart</h1>
-        <a routerLink="/products">Continue Shopping</a>
-      </ng-container>
+        <div class="col-12">
+          <div class="d-flex justify-content-start align-items-center ">
+            <span *ngIf="cartItems.length > 0" uk-icon="check"
+              class="success"></span>
+            <span *ngIf="cartItems.length === 0" uk-icon="close"
+              class="error"></span>
+            <h2 class="mb-0 ms-2">2. Your Cart</h2>
+          </div>
+    
+          <ng-container *ngIf="cartItems.length > 0">
+            <div *ngFor="let item of cartItems"
+              class="col-12 cart-item border-bottom py-3">
+              <div class="row row-gap-3 pt-3">
+                <div class="col-12 col-md-6 d-flex gap-2">
+                  <a [routerLink]="['/products', item.item.category, item.item.id]">
+                    <img [src]="item.item.imageUrl" [alt]="item.item.name"
+                      class="border">
+                  </a>
+                  <div>
+                    <p [innerHTML]="item.item.name" class="mb-2 fs-6 fw-bold"></p>
+                    <p class="fs-6 mb-2">₦{{
+                      (item.item.amount ? item.item.amount : ((item.item?.qty ?? 0)
+                      * (item.item?.price ?? 0)))
+                      | number
+                      }}</p>
+                    <p>Quantity: {{ item.item.qty | number }}</p>
+                  </div>
+                </div>
+                <div
+                  class="col-12 col-md-6 d-flex gap-3 align-items-center justify-content-between">
+                  <div class="col-4 d-flex flex-row justify-content-end buttons">
+                    <button type="button" class="qty-btn"
+                      [disabled]="item.item.qty === 1"
+                      (click)="dec(item.item)">-</button>
+                    <input type="text" NumbersOnly
+                      class="col-3 text-center border-0" [value]="item.item.qty"
+                      #input
+                      (change)="updateQuantity(item.item, Number(input.value))">
+                    <button type="button" class="qty-btn"
+                      (click)="inc(item.item)">+</button>
+                  </div>
+    
+                  <p class="fs-6 mb-2">₦{{
+                    (item.item.amount ? item.item.amount : ((item.item?.qty ?? 0) *
+                    (item.item?.price ?? 0)))
+                    | number
+                    }}</p>
+    
+                  <button type="button" ngbTooltip="Remove item"
+                    (click)="removeItem(item)"
+                    class="btn-remove bg-transparent pe-3">
+                    <span uk-icon="ban"></span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+    
+          <ng-container *ngIf="cartItems.length === 0">
+            <h1 class="fw-normal fs-2 pt-4">No items in your cart</h1>
+            <a routerLink="/products">
+              <span uk-icon="chevron-left"></span>
+              Continue Shopping
+            </a>
+          </ng-container>
+        </div>
+      </div>
     </div>
     <div class="col-12 col-lg-4">
-      <div class="col-12 border-bottom d-flex justify-content-start align-items-center py-3">
+      <div
+        class="col-12 border-bottom border-top d-flex justify-content-start align-items-center py-3">
         <h2 class="m-0">Order Summary</h2>
       </div>
 
       <div class="col-12">
-        <div class="col-12 d-flex justify-content-between align-items-center pt-4 pb-3">
+        <div
+          class="col-12 d-flex justify-content-between align-items-center pt-4 pb-3">
           <p class="fs-6">Subtotal</p>
           <p class="fs-6">₦{{ getSubTotal() | number }}</p>
         </div>
-        <div class="col-12 d-flex justify-content-between align-items-center pt-3 pb-3 border-bottom">
-          <p class="fs-6">Location <span *ngIf="cartDetails && cartDetails.deliveryLocation">(<a
-                style="text-decoration: underline;" (click)="openDeliveryLocationModal()">change</a>)</span></p>
-          <p class="fs-6" *ngIf="cartDetails && cartDetails.deliveryLocation">{{ cartDetails.deliveryLocation }}</p>
+        <div
+          class="col-12 d-flex justify-content-between align-items-center pt-3 pb-3 border-bottom">
+          <p class="fs-6 d-flex gap-2">Delivery fees <a
+              [ngbTooltip]="disclaimer"
+              class="bg-dark text-white d-flex justify-content-center align-items-center"
+              style="border-radius: 50%;height: 20px;width: 20px;">?</a></p>
+          <p class="fs-6">₦{{ 000 | number }}</p>
         </div>
-        <div class="col-12 d-flex justify-content-between align-items-center pt-4 pb-3 border-bottom">
+        <div
+          class="col-12 d-flex justify-content-between align-items-center pt-4 pb-3 border-bottom">
           <h2>Total</h2>
           <h2>₦{{ getSubTotal() | number }}</h2>
         </div>
         <div class="col-12">
-          <button [disabled]="cartItems.length === 0" class="uk-button uk-button-secondary w-100 pt-4 pb-3 uk-button-small">
-            continue
+          <button (click)="confirmOrder()" [disabled]="confirming" class="uk-button uk-button-secondary w-100 pt-4 pb-3 uk-button-small">
+            <span *ngIf="!confirming">Confirm Order</span>
+            <span *ngIf="confirming">
+              <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+              <span class="ms-2">
+                Confirming...
+              </span>
+            </span>
           </button>
-        </div>
+        </div>        
       </div>
     </div>
   </div>

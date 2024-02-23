@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CheckoutComponent } from '../checkout/checkout.component';
 import { SummaryComponent } from './summary/summary.component';
-import { CompleteComponent } from './complete/complete.component';
 
 const routes: Routes = [
   {
@@ -16,10 +15,6 @@ const routes: Routes = [
       {
         path: 'summary',
         component: SummaryComponent,
-      },
-      {
-        path: 'complete',
-        component: CompleteComponent
       }
     ]
   }

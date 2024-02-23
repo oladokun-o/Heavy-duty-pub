@@ -11,3 +11,56 @@
 .btn-remove svg {
   width: 30px;
 }
+
+.disabled {
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+span.success {
+  border-radius: 50%;
+  height: 20px;
+  width: 20px;
+  background: greenyellow;
+  display: flex;
+  align-items: center;
+  padding: 3px;
+}
+
+span.error {
+  border-radius: 50%;
+  height: 20px;
+  width: 20px;
+  background: red;
+  display: flex;
+  align-items: center;
+  padding: 3px;
+}
+
+.form-label {
+  font-weight: bold;
+}
+
+input,
+textarea {
+  border-radius: 2px;
+  padding: 15px;
+}
+
+input::placeholder,textarea::placeholder {
+  font-size: small;
+}
+
+input:focus, textarea:focus {
+  box-shadow: none;
+  border-color: #000;
+}
+
+input:disabled, textarea:disabled {
+  pointer-events: none;
+}
+
+form.editable input.ng-invalid.ng-touched,
+form.editable textarea.ng-invalid.ng-touched {
+  border-color: red;
+}

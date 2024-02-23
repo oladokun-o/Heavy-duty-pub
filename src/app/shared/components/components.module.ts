@@ -16,6 +16,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { PortaCabinComponent } from './porta-cabin/porta-cabin.component';
 import { HaulagesComponent } from './haulages/haulages.component';
 import { NumbersOnlyDirective } from '../directives/NumbersOnly.directive';
+import { PhoneNumberDirective } from '../directives/InputNumbersOnly.directive';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { NumbersOnlyDirective } from '../directives/NumbersOnly.directive';
     CartComponent,
     PortaCabinComponent,
     HaulagesComponent,
-    NumbersOnlyDirective
+    NumbersOnlyDirective,
+    PhoneNumberDirective
   ],
   imports: [
     CommonModule,
@@ -49,7 +51,8 @@ import { NumbersOnlyDirective } from '../directives/NumbersOnly.directive';
     CartComponent,
     PortaCabinComponent,
     HaulagesComponent,
-    NumbersOnlyDirective
+    NumbersOnlyDirective,
+    PhoneNumberDirective
   ]
 })
 export class SharedComponentsModule { }

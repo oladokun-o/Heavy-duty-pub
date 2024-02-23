@@ -23,3 +23,7 @@ td:last-child {
   text-align: center;
   vertical-align: middle;
 }
+
+td {
+  vertical-align: middle;
+}
