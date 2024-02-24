@@ -7,6 +7,8 @@ import { Subscription, interval } from 'rxjs';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserDetails } from 'src/app/core/interfaces/user.interface';
 import { ToastrService } from 'ngx-toastr';
+import { OrdersService } from 'src/app/core/services/orders.service';
+import { NewOrder, OrderStatus } from 'src/app/core/interfaces/orders.interface';
 
 @Component({
   selector: 'app-summary',
@@ -23,7 +25,8 @@ export class SummaryComponent implements OnInit, OnDestroy {
 
   constructor(
     private modalService: NgbModal,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private ordersService: OrdersService
   ) {
     toastr.toastrConfig.preventDuplicates = true;
 
@@ -249,11 +252,53 @@ export class SummaryComponent implements OnInit, OnDestroy {
     } else {
       // Proceed to confirm the order
       this.confirming = true;
-      setTimeout(() => {
-        this.confirming = false;
-        this.emptyCart();
-        this.toastr.success('Your order has been confirmed!');
-      }, 5000);
+
+      let totalPrice = this.cartItems.reduce((acc, curr) => {
+        if (curr.item.amount !== undefined) {
+          return acc + curr.item.amount;
+        } else {
+          return acc;
+        }
+      }, 0);
+
+      let totalQuantity = this.cartItems.reduce((acc, curr) => {
+        if (curr.item.qty !== undefined) {
+          return acc + curr.item.qty;
+        } else {
+          return acc;
+        }
+      }, 0);
+
+      let order: NewOrder = {
+        customer_name: this.userForm.value.firstname + ' ' + this.userForm.value.lastname,
+        address: this.userForm.value.address,
+        email: this.userForm.value.email,
+        order_date: new Date().toISOString().slice(0, 19).replace('T', ' '),
+        phone: this.userForm.value.phone,
+        quantity: totalQuantity,
+        products: this.cartItems.map(c => {
+          let item = c.item;
+          return {
+            amount: item.amount,
+            name: item.name,
+            product_id: item.id,
+            qty: item.qty
+          } as any
+        }),
+        total_price: totalPrice,
+        status: OrderStatus.Pending
+      };
+      this.ordersService.createOrder(order).subscribe(
+        res => {
+          this.confirming = false;
+          this.emptyCart();
+          this.toastr.success('Your order has been confirmed!');
+        },
+        err => {
+          this.confirming = false;
+          this.toastr.error("An error has occurred, please try again");
+        }
+      );
     }
   }
 
@@ -271,7 +316,11 @@ export class SummaryComponent implements OnInit, OnDestroy {
       this.cartExpanded = false;
     }
     setTimeout(() => {
-      window.scrollTo(0,0);
+      const firstInvalidInput = document.querySelector("form")?.querySelector("input.ng-invalid, ng-select.ng-invalid > input");
+      if (firstInvalidInput instanceof HTMLInputElement) {
+        firstInvalidInput.scrollIntoView({ behavior: "smooth", block: "center" });
+        firstInvalidInput.focus();
+      } else window.scrollTo(0, 0);
     }, 500);
   }
 
@@ -281,7 +330,7 @@ export class SummaryComponent implements OnInit, OnDestroy {
       this.userDetailsExpanded = false;
     }
     setTimeout(() => {
-      window.scrollTo(0,0);
+      window.scrollTo(0, 0);
     }, 500);
   }
 

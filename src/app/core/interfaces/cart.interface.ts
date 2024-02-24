@@ -4,7 +4,7 @@ export interface CartItem {
   item: Item;
 }
 
-interface Item {
+export interface Item {
   id: number
   name: string
   description: string

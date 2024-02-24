@@ -3,9 +3,11 @@ import { CommonModule } from '@angular/common';
 import { SharedComponentsModule } from './components/components.module';
 import { CartModalsModule } from './components/cart/modals/modals.module';
 import { NumbersOnlyDirective } from './directives/NumbersOnly.directive';
+import { LoaderComponent } from './components/loader/loader.component';
 
 @NgModule({
   declarations: [
+    LoaderComponent
   ],
   imports: [
     CommonModule,
@@ -14,7 +16,8 @@ import { NumbersOnlyDirective } from './directives/NumbersOnly.directive';
   ],
   exports: [
     CommonModule,
-    SharedComponentsModule
+    SharedComponentsModule,
+    LoaderComponent
   ]
 })
 export class SharedModule { }
