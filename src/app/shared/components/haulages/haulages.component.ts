@@ -5,6 +5,7 @@ import { CartItem } from 'src/app/core/interfaces/cart.interface';
 import { AsphaltProduct, Equipment, Haulage } from 'src/app/core/interfaces/products.interface';
 import { MockHaulages } from 'src/app/core/mocks/haulages.mock';
 import { ShoppingCartComponent } from '../cart/modals/shopping-cart/shopping-cart.component';
+import { ProductsService } from 'src/app/core/services/products.service';
 
 @Component({
   selector: 'app-haulages',
@@ -13,14 +14,23 @@ import { ShoppingCartComponent } from '../cart/modals/shopping-cart/shopping-car
 })
 export class HaulagesComponent implements OnInit {
 
-  Haulages: Haulage[] = MockHaulages;
+  Haulages: Haulage[] = [];
 
   constructor(
     public toastr: ToastrService,
-    public modalService: NgbModal
-  ) { }
+    public modalService: NgbModal,
+    private productsService: ProductsService
+  ) { 
+    this.getProducts();
+  }
 
   ngOnInit(): void {
+  }
+
+  getProducts() {
+    this.productsService.getProductsFromJson("haulages").subscribe((products) => {
+      this.Haulages = products;
+    });
   }
 
   @Input() hideHead: boolean = false;
@@ -104,7 +114,7 @@ export class HaulagesComponent implements OnInit {
 
     this.toastr.success('Item added to cart successfully');
     this.returnToDefault(product);
-    this.openShoppingCart();
+    // this.openShoppingCart();
   }
 
   openShoppingCart(): void {

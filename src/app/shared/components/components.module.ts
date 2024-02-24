@@ -17,7 +17,6 @@ import { PortaCabinComponent } from './porta-cabin/porta-cabin.component';
 import { HaulagesComponent } from './haulages/haulages.component';
 import { NumbersOnlyDirective } from '../directives/NumbersOnly.directive';
 import { PhoneNumberDirective } from '../directives/InputNumbersOnly.directive';
-
 @NgModule({
   declarations: [
     SwiperComponent,

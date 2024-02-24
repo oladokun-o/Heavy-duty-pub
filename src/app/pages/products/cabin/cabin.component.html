@@ -1,137 +1,188 @@
+<app-page-head parent="Asphalt"
+  [title]="product && product.name ? product.name : ''"></app-page-head>
+
 <div class="page-content">
-  <div class="uk-section uk-container uk-container-large">
-    <div class="col-12"><div class="col-12 py-3">
-        <h1>Porta Cabins</h1>
-      </div>
-      <div class="equipment-head">
-        <div><span>Showing results <b>1 - 5</b> of total <b>5</b></span></div>
-        <div>
-          <!-- <div class="sort-box"><span>Sort By:</span><select class="js-select">
-                  <option value="Price: Low to High">Price: Low to High</option>
-                  <option value="Price: Low to High">Price: Low to High</option>
-                  <option value="Price: Low to High">Price: Low to High</option>
-                </select></div> -->
-          <div class="view-box">
-            <!-- <a class="view-item" [class.active]="view === 'list'"
-              (click)="changeView('list')">
-              <img src="assets/img/view-list.svg" alt="icon" data-uk-svg>
-            </a> -->
-            <a class="view-item" [class.active]="view === 'grid'"
-              (click)="changeView('grid')">
-              <img src="assets/img/view-grid.svg" alt="icon" data-uk-svg>
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="uk-grid" data-uk-grid>
-        <div *ngIf="view === 'grid'" class="uk-grid uk-child-width-1-2@s"
-          data-uk-grid>
-          <div *ngFor="let equipment of Equipments">
-            <div class="equipment-item">
-              <div class="equipment-item__box">
-                <div class="equipment-item__media">
-                  <a [routerLink]="['products/equipments', equipment.id]">
-                    <img [src]="equipment.imageUrl" [alt]="equipment.name" />
-                  </a>
-                </div>
-                <div class="equipment-item__info">
-                  <div class="equipment-item__title">
-                    <a [routerLink]="['products', equipment.id]">{{ equipment.name }}</a>
-                    <article #desc [innerHTML]="equipment.description" class="text-truncate"></article>
-                      <!-- <a class="btn- fw-normal fs-6" style="text-decoration: underline;" (click)="toggleDescription(desc)">Read {{
-                        desc.classList.contains('text-truncate') ? 'more' :
-                        'less' }}</a> -->
-                  </div>
+  <div class="uk-section uk-container">
+    <div class="uk-grid" data-uk-grid>
+      <div class="col-12">
+        <div *ngIf="product" class="equipment-detail">
+          <div class="equipment-detail__gallery">
+            <div data-uk-slideshow="min-height: 300; max-height: 430"
+              class="uk-slideshow">
+              <div class="uk-position-relative">
+                <ul *ngIf="product.imageUrl || product.gallery"
+                  class="uk-slideshow-items uk-child-width-1-1"
+                  data-uk-lightbox="animation: scale"
+                  style="min-height: 430px;">
+                  <li *ngIf="product.imageUrl as img" tabindex="-1"
+                    class="uk-active uk-transition-active"
+                    style="transform: translate3d(0px, 0px, 0px);">
+                    <a [href]="img">
+                      <img class="uk-width-1-1 uk-cover" [src]="img"
+                        alt="img-gallery"
+                        data-uk-cover style="height: 471px; width: 786px;">
+                    </a>
+                  </li>
+                  <li *ngFor="let img of product.gallery" tabindex="-1"
+                    class="uk-active uk-transition-active"
+                    style="transform: translate3d(0px, 0px, 0px);">
+                    <a [href]="img">
+                      <img class="uk-width-1-1 uk-cover" [src]="img"
+                        alt="img-gallery"
+                        data-uk-cover style="height: 471px; width: 786px;">
+                    </a>
+                  </li>
+                </ul>
 
-                  <div class="equipment-item__list">
-                    <ul>
-                      <li *ngFor="let meta of equipment.meta | keyvalue">{{ meta.value }}</li>
-                    </ul>
-                  </div>
-                  <div class="equipment-item__prices pt-0">
-                    <ng-select *ngIf="equipment.prices" [items]="equipment.prices"
-                      placeholder="Select rent duration" bindLabel="" bindValue="value" [clearable]="false" class="pb-2"
-                      (change)="handlePriceChange($event, equipment)"></ng-select>
-                  </div>
-                  <div
-                    class="equipment-item__price pt-3 col-12 d-flex flex-row justify-content-between align-items-center flex-wrap gap-3">
-                    <div class="equipment-item__price-current col-6 fs-6"
-                      *ngIf="equipment.amount !== undefined && equipment.meta && equipment.meta.type !== 'service'">
-                      ₦{{ findSelectedPriceAmount(equipment.prices) | number }} <span class="fw-normal">Per {{
-                        findSelectedPrice(equipment.prices) }}</span>
-                    </div>
+                <a
+                  class="uk-position-center-left uk-position-small uk-hidden-hover uk-icon uk-slidenav-previous uk-slidenav"
+                  href="#" data-uk-slidenav-previous
+                  data-uk-slideshow-item="previous">
+                  <svg width="14" height="24" viewBox="0 0 14 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <polyline fill="none" stroke="#000" stroke-width="1.4"
+                      points="12.775,1 1.225,12 12.775,23 ">
+                    </polyline>
+                  </svg>
+                </a>
 
-                    <div class="col-4 d-flex flex-row justify-content-end"
-                      *ngIf="equipment.amount !== undefined && equipment.meta && equipment.meta.type !== 'service'">
-                      <button type="button" class="qty-btn" ngbTooltip="Increase quantity" [disabled]="equipment.qty === 1"
-                        (click)="dec(equipment)">-</button>
-                      <input type="text" class="col-3 text-center border-0" readonly [value]="equipment.qty">
-                      <button type="button" class="qty-btn" ngbTooltip="Decrease quantity" (click)="inc(equipment)">+</button>
-                    </div>
-
-                    <div class="equipment-item__price-current fs-6"
-                      *ngIf="equipment.amount !== undefined || equipment.meta && equipment.meta.type === 'service'">
-                      Amount: <span class="fw-normal">₦{{ (equipment.amount ? equipment.amount : equipment.amount) |
-                        number }}</span>
-                    </div>
-
-                    <div class="d-flex flex-row justify-content-end"
-                      *ngIf="equipment.amount !== undefined || equipment.meta && equipment.meta.type === 'service'">
-                      <button type="button" (click)="addToCart(equipment)" class="uk-button uk-button-default">
-                        Add to Cart
-                      </button>
-                    </div>
-                  </div>
-                  <div class="equipment-item__prices pt-2">
-                    <ul>
-                      <li *ngFor="let price of equipment.prices" class="text-capitalize">₦{{ price.value | number }}/{{ price.label }}
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="equipment-item__btn">
-                  <button routerLink="/products/equipments/{{ equipment.id }}"
-                    class="uk-button uk-button-default uk-button-large uk-width-1-1" type="button">
-                    <span>Order Now</span>
-                    <span data-uk-icon="arrow-right"></span>
-                  </button>
-                </div>
+                <a
+                  class="uk-position-center-right uk-position-small uk-hidden-hover uk-icon uk-slidenav-next uk-slidenav"
+                  href="#" data-uk-slidenav-next data-uk-slideshow-item="next">
+                  <svg width="14" height="24" viewBox="0 0 14 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <polyline fill="none" stroke="#000" stroke-width="1.4"
+                      points="1.225,23 12.775,12 1.225,1 ">
+                    </polyline>
+                  </svg>
+                </a>
               </div>
-            </div>
-          </div>
-        </div>
-        <div *ngIf="view === 'list'" class="uk-list col-12">
-          <div *ngFor="let equipment of Equipments" class="rental-item">
-            <div class="rental-item__media">
-              <img [src]="equipment.imageUrl" [alt]="equipment.name">
-            </div>
-            <div class="rental-item__desc">
-              <div class="rental-item__title">{{ equipment.name }}</div>
-              <div class="rental-item__specifications">
+              <div class="uk-margin-top uk-slider uk-slider-container"
+                data-uk-slider>
                 <ul
-                  class="uk-list uk-list-disc uk-column-1-2@xl uk-column-1-2@s">
-                  <li *ngFor="let meta of equipment.meta | keyvalue">{{ meta.value }}</li>
+                  *ngIf="product.gallery"
+                  class="uk-thumbnav uk-slider-items uk-grid uk-grid-small uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m uk-child-width-1-5@l"
+                  style="transform: translate3d(0px, 0px, 0px);">
+                  <li *ngFor="let img of product.gallery"
+                    data-uk-slideshow-item="0" tabindex="-1" class="uk-active">
+                    <a href="#">
+                      <img [src]="img" alt="img-gallery">
+                    </a>
+                  </li>
                 </ul>
               </div>
             </div>
-            <div class="rental-item__price">
-              <div class="rental-item__price-box">
-                <div class="rental-item__price-current">₦{{ equipment.prices.default | number }}</div>
+          </div>
+
+          <div class="container-fluid px-0">
+            <div class="row">
+              <div class="col-12 col-md-8">
+                <div class="equipment-detail__title">{{ product.name }}</div>
+                <div class="equipment-detail__location">
+                  <span data-uk-icon="location" class="uk-icon"></span>Nigeria
+                </div>
+
+                <div class="col-12">
+                  <ng-select *ngIf="product.prices" [items]="product.prices"
+                    placeholder="Select rent duration" bindLabel
+                    bindValue="value" [clearable]="false" class="pb-2"
+                    (change)="handlePriceChange($event, product)"></ng-select>
+                  <div
+                    class="equipment-item__price pt-3 col-12 d-flex flex-row justify-content-between align-items-center flex-wrap gap-3">
+
+                    <div class="equipment-item__price-current col-6 fs-6"
+                      *ngIf="product.amount !== undefined && product.meta && product.meta.type !== 'service'">
+                      ₦{{ findSelectedPriceAmount(product.prices) | number }}
+                      <span class="fw-normal">Per {{
+                        findSelectedPrice(product.prices) }}</span>
+                    </div>
+
+                    <div class="col-4 d-flex flex-row justify-content-end"
+                      *ngIf="product.amount !== undefined && product.meta && product.meta.type !== 'service'">
+                      <button type="button" class="qty-btn"
+                        ngbTooltip="Increase quantity"
+                        [disabled]="product.qty === 1"
+                        (click)="dec(product)">-</button>
+                      <input type="text" class="col-3 text-center border-0"
+                        #input readonly [value]="product.qty"
+                        (change)="updateQuantity(product, Number(input.value))">
+                      <button type="button" class="qty-btn"
+                        ngbTooltip="Decrease quantity"
+                        (click)="inc(product)">+</button>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class="rental-item__price-btn"><a
-                  class="uk-button col-12 uk-button-danger uk-button-large"
-                  [routerLink]="['/products/equipments', equipment.id]">Book now</a>
+
+              <div class="col-12 col-md-4">
+                <div class="equipment-order">
+                  <!-- <div class="equipment-order__title">[Equipment Current Price]</div> -->
+                  <div class="equipment-order__price">
+                    <span *ngIf="product.amount || product.price"
+                      class="current-price">
+                      ₦{{ (product.amount ? product.amount : product.price) |
+                      number }}
+                    </span>
+                    <span *ngIf="!product.amount && !product.price"
+                      class="current-price">
+                      ₦0.00
+                    </span>
+                    <!-- <span class="old-price">$75,300</span> -->
+                  </div>
+                </div>
+                <button
+                  class="uk-button uk-button-danger uk-button-large uk-width-1-1"
+                  (click)="addToCart(product)" [disabled]="!product.amount">
+                  <span>Order Now</span>
+                  <span data-uk-icon="arrow-right" class="uk-icon"></span>
+                </button>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-      <ul class="uk-pagination uk-flex-center uk-margin-large-top">
-        <li class="uk-active"><span>1</span></li>
-        <!-- <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li> -->
-      </ul>
-    </div>
 
+          <div class="equipment-detail__desc mt-4">
+            <div class="section-title">
+              <h3>Description</h3>
+            </div>
+            <article [innerHTML]="product.description"></article>
+
+          </div>
+          <div *ngIf="product.meta" class="equipment-detail__specification">
+            <div class="section-title">
+              <h3>Specification</h3>
+            </div>
+            <div class="tbody">
+            </div>
+            <table class="uk-table uk-table-striped">
+              <tbody>
+                <tr *ngFor="let item of product.meta | keyvalue">
+                  <td>
+                    <span class="text-capitalize">{{ item.key
+                      }}</span>:
+                  </td>
+                  <td>
+                    {{ item.value }}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <h1 *ngIf="!product" class="fs-1">
+          Product not found
+        </h1>
+      </div>
+    </div>
   </div>
 </div>
+
+<section class="s-equipments">
+  <div class="uk-section uk-container uk-container-large">
+    <div class="section-title --center">
+      <span></span>
+      <h3>Related Products Available</h3>
+    </div>
+    <app-asphalts [hideHead]="true"></app-asphalts>
+  </div>
+</section>

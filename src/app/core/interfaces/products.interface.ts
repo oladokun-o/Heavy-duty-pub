@@ -3,6 +3,7 @@ export interface AsphaltProduct {
   description?: string;
   brand?: Brand[];
   imageUrl: string;
+  gallery?: string[];
   price?: number;
   amount?: number;
   qty?: number;

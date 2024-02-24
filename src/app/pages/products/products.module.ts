@@ -8,8 +8,10 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { AsphaltListComponent } from './asphalt-list/asphalt-list.component';
 import { AsphaltComponent } from './asphalt/asphalt.component';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { CabinListComponent } from './cabin-list/cabin.component';
+import { HaulagesListComponent } from './haulages-list/haulages.component';
+import { HaulageComponent } from './haulage/haulage.component';
 import { CabinComponent } from './cabin/cabin.component';
-import { HaulagesComponent } from './haulages/haulages.component';
 
 
 @NgModule({
@@ -19,7 +21,9 @@ import { HaulagesComponent } from './haulages/haulages.component';
     AsphaltListComponent,
     AsphaltComponent,
     CabinComponent,
-    HaulagesComponent
+    CabinListComponent,
+    HaulagesListComponent,
+    HaulageComponent
   ],
   imports: [
     CommonModule,

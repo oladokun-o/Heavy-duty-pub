@@ -1,50 +1,40 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, Input, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { CartItem } from 'src/app/core/interfaces/cart.interface';
-import { Equipment, Haulage, AsphaltProduct } from 'src/app/core/interfaces/products.interface';
+import { AsphaltProduct, Brand, Equipment, Haulage } from 'src/app/core/interfaces/products.interface';
+import { EquipmentsList } from 'src/app/core/mocks/equipments.mock';
+import { PortaCabinsEquipmentsList } from 'src/app/core/mocks/porta-cabins.mock';
 import { ProductsService } from 'src/app/core/services/products.service';
 import { ShoppingCartComponent } from 'src/app/shared/components/cart/modals/shopping-cart/shopping-cart.component';
 
 @Component({
-  selector: 'app-cabin',
+  selector: 'app-cabin-list',
   templateUrl: './cabin.component.html',
   styleUrls: ['./cabin.component.css']
 })
-export class CabinComponent implements OnInit {
-  
-  product: any;
+export class CabinListComponent implements OnInit {
+
+  Equipments: any[] = [];
 
   constructor(
-    private productsService: ProductsService,
-    private activatedRoute: ActivatedRoute,
+    private toastr: ToastrService,
     private modalService: NgbModal,
-    private toastr: ToastrService
-  ) { 
-    this.getProduct();
+    private productsService: ProductsService
+  ) {
+    this.getProducts();
   }
 
-  getProduct() {
-    this.activatedRoute.params.subscribe(params => {
-      const productId = params['id'];
-      this.productsService.getProductById("porta-cabins", productId).subscribe(
-        (product: any) => {
-          this.product =  {
-              ...product,
-              qty: 1,
-              prices: this.removeDefaultFromObject(product.prices)
-            }
-        },
-        error => {
-          console.error('Error fetching product:', error);
+  getProducts() {
+    this.productsService.getProductsFromJson("porta-cabins").subscribe((products) => {
+      this.Equipments = products.map(equipments => {
+        return {
+          ...equipments,
+          qty: 1,
+          prices: this.removeDefaultFromObject(equipments.prices)
         }
-      );
+      });;
     });
-  }
-
-  ngOnInit(): void {
-    
   }
 
   toggleDescription(el: HTMLElement) {
@@ -55,39 +45,18 @@ export class CabinComponent implements OnInit {
     }
   }
 
-  Number = Number;
+  ngOnInit(): void { }
 
-  updateQuantity(product: Equipment | AsphaltProduct | Haulage, newQuantity: number) {
-    if ('qty' in product && newQuantity >= 0) {
-      product.qty = newQuantity;
-      if ('prices' in product && product.prices) {
-        const foundPrice = (product.prices as unknown as any[]).find(pr => pr.selected);
-        if (foundPrice) {
-          product.amount = product.qty * foundPrice.value;
-        }
-      } else if ('brand' in product) {
-        if (product.brand) {
-          const foundBrand = product.brand.find(p => p.selected);
-          if (foundBrand && foundBrand.price !== undefined) {
-            product.amount = product.qty * foundBrand.price;
-          }
-        } else {
-          let price = product.price as number;
-          product.amount = price * product.qty;
-        }
-      } else if ('price' in product) {
-        let price = product.price as number;
-        product.amount = price * product.qty;
-      }
-    } else {
-      console.error('Invalid product or quantity property missing or invalid quantity value.');
-    }
+  view: 'grid' | 'list' = sessionStorage.getItem('productsView') as 'grid' | 'list' || 'grid';
+
+  changeView(view: 'grid' | 'list'): void {
+    this.view = view;
+    sessionStorage.setItem('productsView', this.view);
   }
 
   handlePriceChange(event: any, product: any): void {
     product.amount = event.value;
     let foundPrice = product.prices.find((pr: any) => pr.label === event.label);
-    product.price = foundPrice ? foundPrice.value : 0;
     foundPrice.selected = true;
   }
 
@@ -120,6 +89,35 @@ export class CabinComponent implements OnInit {
       }
     } else {
       console.error('Invalid product or quantity property missing.');
+    }
+  }
+
+  Number = Number;
+
+  updateQuantity(product: Equipment | AsphaltProduct | Haulage, newQuantity: number) {
+    if ('qty' in product && newQuantity >= 0) {
+      product.qty = newQuantity;
+      if ('prices' in product && product.prices) {
+        const foundPrice = (product.prices as unknown as any[]).find(pr => pr.selected);
+        if (foundPrice) {
+          product.amount = product.qty * foundPrice.value;
+        }
+      } else if ('brand' in product) {
+        if (product.brand) {
+          const foundBrand = product.brand.find(p => p.selected);
+          if (foundBrand && foundBrand.price !== undefined) {
+            product.amount = product.qty * foundBrand.price;
+          }
+        } else {
+          let price = product.price as number;
+          product.amount = price * product.qty;
+        }
+      } else if ('price' in product) {
+        let price = product.price as number;
+        product.amount = price * product.qty;
+      }
+    } else {
+      console.error('Invalid product or quantity property missing or invalid quantity value.');
     }
   }
 
@@ -172,4 +170,5 @@ export class CabinComponent implements OnInit {
     product.qty = 1;
     (product.prices as unknown as any[]).forEach(price => price.selected = false);
   }
+
 }

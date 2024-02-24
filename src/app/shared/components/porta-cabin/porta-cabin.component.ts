@@ -5,6 +5,7 @@ import { CartItem } from 'src/app/core/interfaces/cart.interface';
 import { AsphaltProduct, Equipment, Haulage } from 'src/app/core/interfaces/products.interface';
 import { PortaCabinsEquipmentsList } from 'src/app/core/mocks/porta-cabins.mock';
 import { ShoppingCartComponent } from '../cart/modals/shopping-cart/shopping-cart.component';
+import { ProductsService } from 'src/app/core/services/products.service';
 
 @Component({
   selector: 'app-porta-cabin',
@@ -13,16 +14,26 @@ import { ShoppingCartComponent } from '../cart/modals/shopping-cart/shopping-car
 })
 export class PortaCabinComponent implements OnInit {
   constructor(
-    private toastr: ToastrService, private modalService: NgbModal) { }
+    private toastr: ToastrService, 
+    private modalService: NgbModal,
+    private productsService: ProductsService
+  ) { 
+    this.getProducts();
+  }
 
-  Equipments: any[] = PortaCabinsEquipmentsList.map(equipments => {
+  Equipments: any[] = [];
+
+  getProducts() {
+    this.productsService.getProductsFromJson("porta-cabins").subscribe((products) => {
+      this.Equipments = products.map(equipments => {
     return {
       ...equipments,
       qty: 1,
       prices: this.removeDefaultFromObject(equipments.prices)
     }
-  });
-
+  });;
+    });
+  }
 
   toggleDescription(el: HTMLElement) {
     if (el.classList.contains('text-truncate')) {
@@ -142,7 +153,7 @@ export class PortaCabinComponent implements OnInit {
 
     this.toastr.success('Item added to cart successfully');
     this.returnToDefault(product);
-    this.openShoppingCart();
+    // this.openShoppingCart();
   }
 
   openShoppingCart(): void {

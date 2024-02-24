@@ -12,13 +12,13 @@
               <div class="equipment-item flex-grow-1 h-100">
                 <div class="equipment-item__box d-flex flex-column justify-content-between h-100">
                   <div class="equipment-item__media">
-                    <a [routerLink]="['/products/asphalts', 2]">
+                    <a  [routerLink]="['/products/asphalts', product.id]">
                       <img [src]="product.imageUrl" />
                     </a>
                   </div>
                   <div class="equipment-item__info">
                     <div class="equipment-item__title">
-                      <a [routerLink]="['/products/asphalts', 2]">{{
+                      <a  [routerLink]="['/products/asphalts', product.id]">{{
                         product.name }}</a>
                       <article #desc [innerHTML]="product.description" class="text-truncate"></article>
                       <a class="btn- fw-normal fs-6" style="text-decoration: underline;"
@@ -48,7 +48,7 @@
                           ₦{{ product.price | number }} <span class="fw-normal">Per {{ product.meta?.type?.toLowerCase() === 'tons/litre' ? getSelectedBrand(product)?.name : product.meta.type }}</span>
                         </div>
 
-                        <div class="col-4 d-flex flex-row justify-content-end" *ngIf="product.price !== undefined && product.meta && product.meta.type !== 'service'">
+                        <div class="col-4 d-flex flex-row justify-content-end" *ngIf="product.price !== undefined">
                           <button type="button" class="qty-btn" ngbTooltip="Decrease quantity"
                             [disabled]="product.qty === 1" (click)="dec(product)">-</button>
                           <input type="text" NumbersOnly class="col-4 text-center border-0" [value]="product.qty" #input
@@ -71,7 +71,7 @@
                     </div>
                   </div>
                   <div class="equipment-item__btn">
-                    <button class="uk-button uk-button-default uk-button-large uk-width-1-1" type="button">
+                    <button [routerLink]="['/products/asphalts', product.id]" class="uk-button uk-button-default uk-button-large uk-width-1-1" type="button">
                       <span>Buy Now</span>
                       <span data-uk-icon="arrow-right">
                       </span>

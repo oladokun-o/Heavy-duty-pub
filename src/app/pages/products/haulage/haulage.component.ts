@@ -1,20 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductsService } from 'src/app/core/services/products.service';
 import { ActivatedRoute } from '@angular/router';
-import { AsphaltProduct, Brand, Equipment, Haulage } from 'src/app/core/interfaces/products.interface';
-import { CartItem } from 'src/app/core/interfaces/cart.interface';
-import { ShoppingCartComponent } from 'src/app/shared/components/cart/modals/shopping-cart/shopping-cart.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
+import { CartItem } from 'src/app/core/interfaces/cart.interface';
+import { Equipment, AsphaltProduct, Haulage } from 'src/app/core/interfaces/products.interface';
+import { ProductsService } from 'src/app/core/services/products.service';
+import { ShoppingCartComponent } from 'src/app/shared/components/cart/modals/shopping-cart/shopping-cart.component';
 
 @Component({
-  selector: 'app-asphalt',
-  templateUrl: './asphalt.component.html',
-  styleUrls: ['./asphalt.component.css']
+  selector: 'app-haulage',
+  templateUrl: './haulage.component.html',
+  styleUrls: ['./haulage.component.css']
 })
-export class AsphaltComponent implements OnInit {
+export class HaulageComponent implements OnInit {
 
-  product!: AsphaltProduct;
+  product: any;
 
   constructor(
     private productsService: ProductsService,
@@ -28,9 +28,9 @@ export class AsphaltComponent implements OnInit {
   getProduct() {
     this.activatedRoute.params.subscribe(params => {
       const productId = params['id'];
-      this.productsService.getProductById("asphalts", productId).subscribe(
+      this.productsService.getProductById("haulages", productId).subscribe(
         (product: any) => {
-          this.product = product;
+          this.product =  product;
         },
         error => {
           console.error('Error fetching product:', error);
@@ -43,66 +43,11 @@ export class AsphaltComponent implements OnInit {
     
   }
 
-  handleBrandChange(brand: Brand, product: AsphaltProduct): void {
-    product.brand?.forEach(b => b.selected = false);
-    brand.selected = true;
-
-    if (product.qty !== undefined && product.qty > 0) {
-      product.amount = brand.price * product.qty;
-      product.price = brand.price;
-    } else {
-      product.amount = brand.price;
-      product.price = brand.price;
-    }
-  }
-
   toggleDescription(el: HTMLElement) {
     if (el.classList.contains('text-truncate')) {
       el.classList.remove('text-truncate');
     } else {
       el.classList.add('text-truncate');
-    }
-  }
-
-  getSelectedBrand(product: AsphaltProduct): Brand | undefined {
-    return product.brand?.find(b => b.selected);
-  }
-
-  inc(product: AsphaltProduct) {
-    if (product.qty !== undefined) {
-      if (product.brand) {// Find the selected brand of the product
-        const foundBrand = this.product.brand?.find(p => p.selected);
-        product.qty++;
-        if (foundBrand && foundBrand.price !== undefined && product) {
-          product.amount = product.qty * foundBrand.price;
-        }
-      } else {
-        product.qty++;
-        let price = product.price as number;
-        let amount = price * product.qty;
-        product.amount = amount;
-      }
-    } else {
-      console.error('Invalid product or quantity property missing.');
-    }
-  }
-
-  dec(product: AsphaltProduct) {
-    if (product.qty !== undefined && product.qty > 1) {
-      if (product.brand) {// Find the selected brand of the product
-        const foundBrand = this.product.brand?.find(p => p.selected);
-        product.qty--;
-        if (foundBrand && foundBrand.price !== undefined && product) {
-          product.amount = product.qty * foundBrand.price;
-        }
-      } else {
-        product.qty--;
-        let price = product.price as number;
-        let amount = price * product.qty;
-        product.amount = amount;
-      }
-    } else {
-      console.error('Invalid product or quantity property missing.');
     }
   }
 
@@ -132,6 +77,53 @@ export class AsphaltComponent implements OnInit {
       }
     } else {
       console.error('Invalid product or quantity property missing or invalid quantity value.');
+    }
+  }
+
+  handlePriceChange(event: any, product: any): void {
+    product.amount = event.value;
+    let foundPrice = product.prices.find((pr: any) => pr.label === event.label);
+    product.price = foundPrice ? foundPrice.value : 0;
+    foundPrice.selected = true;
+  }
+
+  findSelectedPrice(prices: any[]): string {
+    let foundPrice = prices.find((pr: any) => pr.selected);
+    return foundPrice.label;
+  }
+
+  findSelectedPriceAmount(prices: any[]): number {
+    let foundPrice = prices.find((pr: any) => pr.selected);
+    return foundPrice.value;
+  }
+
+  Object = Object;
+  parseFloat = parseFloat
+
+  removeDefaultFromObject(obj: any): Array<{ label: string, value: number, selected: false }> {
+    delete obj.default;
+    return Object.keys(obj).map(key => ({ label: key, value: obj[key], selected: false }));
+  }
+
+  inc(product: Haulage) {
+    if (product.qty !== undefined) {
+      product.qty++;
+      let price = product.price as number;
+      let amount = price * product.qty;
+      product.amount = amount;
+    } else {
+      console.error('Invalid product or quantity property missing.');
+    }
+  }
+
+  dec(product: Haulage) {
+    if (product.qty !== undefined && product.qty > 1) {
+      product.qty--;
+      let price = product.price as number;
+      let amount = price * product.qty;
+      product.amount = amount;
+    } else {
+      console.error('Invalid product or quantity property missing.');
     }
   }
 
@@ -165,15 +157,9 @@ export class AsphaltComponent implements OnInit {
     });
   }
 
-  returnToDefault(product: AsphaltProduct) {
+  returnToDefault(product: Equipment) {
+    product.amount = undefined;
     product.qty = 1;
-    product.amount = product.qty * (product?.price as number);
-
-    if (product.brand) {
-      product.brand.forEach(price => price.selected = false);
-      product.price = undefined;
-      product.amount = undefined;
-    }
+    // (product.prices as unknown as any[]).forEach(price => price.selected = false);
   }
-
 }

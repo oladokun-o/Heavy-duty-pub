@@ -64,3 +64,16 @@ form.editable input.ng-invalid.ng-touched,
 form.editable textarea.ng-invalid.ng-touched {
   border-color: red;
 }
+
+.contract {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+}
+
+.expand {
+  max-height: 500px; /* Adjust height as needed */
+  transition: max-height 0.3s ease-in;
+  overflow-y: auto;
+  overflow-x: hidden;
+}

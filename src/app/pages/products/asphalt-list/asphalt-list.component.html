@@ -44,13 +44,13 @@
               <div class="equipment-item flex-grow-1">
                 <div class="equipment-item__box d-flex flex-column justify-content-between h-100">
                   <div class="equipment-item__media">
-                    <a [routerLink]="['/products/asphalts', 2]">
+                    <a  [routerLink]="['/products/asphalts', product.id]">
                       <img [src]="product.imageUrl" />
                     </a>
                   </div>
                   <div class="equipment-item__info">
                     <div class="equipment-item__title">
-                      <a [routerLink]="['/products/asphalts', 2]">{{
+                      <a  [routerLink]="['/products/asphalts', product.id]">{{
                         product.name }}</a>
                       <article #desc [innerHTML]="product.description" class="text-truncate"></article>
                       <a class="btn- fw-normal fs-6" style="text-decoration: underline;" (click)="toggleDescription(desc)">Read {{
@@ -74,7 +74,6 @@
                       </div>
                       <div
                         class="equipment-item__price pt-3 col-12 d-flex flex-row justify-content-between align-items-center flex-wrap gap-3">
-
                         <div class="equipment-item__price-current col-6 fs-6"
                           *ngIf="product.price !== undefined && product.meta && product.meta.type !== 'service'">
                           ₦{{ product.price | number }} <span class="fw-normal">Per {{ product.meta?.type?.toLowerCase() === 'tons/litre' ?
@@ -105,7 +104,7 @@
                     </div>
                   </div>
                   <div class="equipment-item__btn">
-                    <button class="uk-button uk-button-default uk-button-large uk-width-1-1" type="button">
+                    <button  [routerLink]="['/products/asphalts', product.id]" class="uk-button uk-button-default uk-button-large uk-width-1-1" type="button">
                       <span>Buy Now</span>
                       <span data-uk-icon="arrow-right">
                       </span>

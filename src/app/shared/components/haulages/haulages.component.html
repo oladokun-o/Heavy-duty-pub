@@ -12,7 +12,7 @@
               <div class="equipment-item">
                 <div class="equipment-item__box">
                   <div class="equipment-item__media">
-                    <a [routerLink]="['products/equipments', haulage.id]">
+                    <a [routerLink]="['products/haulages', haulage.id]">
                       <img [src]="haulage.imageUrl" [alt]="haulage.name" />
                     </a>
                   </div>
@@ -57,7 +57,7 @@
                     </div>
                   </div>
                   <div class="equipment-item__btn">
-                    <button routerLink="/products/equipments/{{ haulage.id }}" class="uk-button uk-button-default uk-button-large uk-width-1-1" type="button">
+                    <button routerLink="/products/haulages/{{ haulage.id }}" class="uk-button uk-button-default uk-button-large uk-width-1-1" type="button">
                       <span>Order Now</span>
                       <span data-uk-icon="arrow-right"></span>
                     </button>

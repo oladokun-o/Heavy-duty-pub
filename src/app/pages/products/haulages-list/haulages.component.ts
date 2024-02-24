@@ -2,23 +2,33 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { CartItem } from 'src/app/core/interfaces/cart.interface';
-import { Haulage } from 'src/app/core/interfaces/products.interface';
+import { AsphaltProduct, Equipment, Haulage } from 'src/app/core/interfaces/products.interface';
 import { MockHaulages } from 'src/app/core/mocks/haulages.mock';
+import { ProductsService } from 'src/app/core/services/products.service';
 import { ShoppingCartComponent } from 'src/app/shared/components/cart/modals/shopping-cart/shopping-cart.component';
 
 @Component({
-  selector: 'app-haulage',
+  selector: 'app-haulage-list',
   templateUrl: './haulages.component.html',
   styleUrls: ['./haulages.component.css']
 })
-export class HaulagesComponent implements OnInit {
+export class HaulagesListComponent implements OnInit {
 
-  Haulages: Haulage[] = MockHaulages;
+  Haulages: Haulage[] = [];
 
   constructor(
     public toastr: ToastrService,
-    public modalService: NgbModal
-    ) { }
+    public modalService: NgbModal,
+    private productsService: ProductsService
+  ) {
+    this.getProducts();
+  }
+
+  getProducts() {
+    this.productsService.getProductsFromJson("haulages").subscribe((products) => {
+      this.Haulages = products;
+    });
+  }
 
   ngOnInit(): void { }
 
@@ -39,10 +49,10 @@ export class HaulagesComponent implements OnInit {
 
   inc(product: Haulage) {
     if (product.qty !== undefined) {
-        product.qty++;
-        let price = product.price as number;
-        let amount = price * product.qty;
-        product.amount = amount;
+      product.qty++;
+      let price = product.price as number;
+      let amount = price * product.qty;
+      product.amount = amount;
     } else {
       console.error('Invalid product or quantity property missing.');
     }
@@ -50,12 +60,41 @@ export class HaulagesComponent implements OnInit {
 
   dec(product: Haulage) {
     if (product.qty !== undefined && product.qty > 1) {
-        product.qty--;
-        let price = product.price as number;
-        let amount = price * product.qty;
-        product.amount = amount;
+      product.qty--;
+      let price = product.price as number;
+      let amount = price * product.qty;
+      product.amount = amount;
     } else {
       console.error('Invalid product or quantity property missing.');
+    }
+  }
+
+  Number = Number;
+
+  updateQuantity(product: Equipment | AsphaltProduct | Haulage, newQuantity: number) {
+    if ('qty' in product && newQuantity >= 0) {
+      product.qty = newQuantity;
+      if ('prices' in product && product.prices) {
+        const foundPrice = (product.prices as unknown as any[]).find(pr => pr.selected);
+        if (foundPrice) {
+          product.amount = product.qty * foundPrice.value;
+        }
+      } else if ('brand' in product) {
+        if (product.brand) {
+          const foundBrand = product.brand.find(p => p.selected);
+          if (foundBrand && foundBrand.price !== undefined) {
+            product.amount = product.qty * foundBrand.price;
+          }
+        } else {
+          let price = product.price as number;
+          product.amount = price * product.qty;
+        }
+      } else if ('price' in product) {
+        let price = product.price as number;
+        product.amount = price * product.qty;
+      }
+    } else {
+      console.error('Invalid product or quantity property missing or invalid quantity value.');
     }
   }
 

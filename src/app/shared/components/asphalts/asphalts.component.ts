@@ -4,6 +4,8 @@ import { ToastrService } from 'ngx-toastr';
 import { CartItem } from 'src/app/core/interfaces/cart.interface';
 import { AsphaltProduct, Brand, Equipment, Haulage } from 'src/app/core/interfaces/products.interface';
 import { ShoppingCartComponent } from '../cart/modals/shopping-cart/shopping-cart.component';
+import { MockAsphalts } from 'src/app/core/mocks/asphalts.mock';
+import { ProductsService } from 'src/app/core/services/products.service';
 
 @Component({
   selector: 'app-asphalts',
@@ -12,101 +14,38 @@ import { ShoppingCartComponent } from '../cart/modals/shopping-cart/shopping-car
 })
 export class AsphaltsComponent implements OnInit {
 
-  constructor(
-    private toastr: ToastrService, private modalService: NgbModal) { }
+  asphaltProducts: AsphaltProduct[] = [];
 
-  asphaltProducts: AsphaltProduct[] = [
-    {
-      brand: [
-        { name: 'NANO ZMA', price: 500000 },
-        { name: 'LEVERAGE', price: 250000 },
-        { name: 'SEQUIOA', price: 350000 },
-        { name: 'LARALEK', price: 400000 },
-        { name: 'GATEWAY', price: 500000 },
-        { name: 'PW', price: 500000 },
-        { name: 'PLATINUM', price: 500000 },
-      ],
-      imageUrl: 'assets/img/asphalt-2.webp',
-      name: 'Asphalt - Binders Course',
-      description: `The binder course is an essential layer in asphalt pavement construction,
-      providing stability and durability to the road surface. It acts as a binder between the surface course and the base layer, distributing traffic loads
-      and preventing water penetration.`,
-      price: undefined,
-      qty: 1,
-      id: 1,
-      meta: {
-        type: 'ton'
-      }
-    },
-    {
-      brand: [
-        { name: 'NANO ZMA', price: 500000 },
-        { name: 'LEVERAGE', price: 250000 },
-        { name: 'SEQUIOA', price: 350000 },
-        { name: 'LARALEK', price: 400000 },
-        { name: 'GATEWAY', price: 500000 },
-        { name: 'PW', price: 500000 },
-        { name: 'PLATINUM', price: 500000 }
-      ],
-      imageUrl: 'assets/img/asphalt-1.jpg',
-      name: 'Asphalt - Wearing Course',
-      description: `The wearing course, also known as the surface course, is the top layer of asphalt pavement that directly interacts with
-      traffic. It provides skid resistance, smoothness, and durability to the road surface, protecting the underlying layers
-      from wear and tear.`,
-      price: undefined,
-      qty: 1,
-      id: 2,
-      meta: {
-        type: 'ton'
-      }
-    },
-    {
-      name: 'Bitumen - C.B.E + TERRASIL',
-      description: 'Similar to C.B.E bitumen, C.B.E + TERRASIL bitumen is a modified bitumen product that includes additional additives, such as TERRASIL, to further enhance its properties. TERRASIL additives may provide benefits such as improved durability, flexibility, and resistance to rutting.',
-      imageUrl: 'assets/img/bitumen-1.jpeg',
-      price: undefined,
-      meta: {
-        weight: '28 ltr',
-        usage: 'Enhanced bitumen blend for improved performance',
-        type: 'Tons/Litre'
-      },
-      qty: 1,
-      id: 3,
-      brand: [
-        { name: 'Tons', price: 500000 },
-        { name: 'Litre', price: 250000 },
-      ],
-    },
-    {
-      name: 'Bitumen - 60/70',
-      description: '60/70 bitumen refers to a specific grade of bitumen categorized by its penetration value and softening point. This grade of bitumen is commonly used in road construction for its medium viscosity and suitable temperature range, making it versatile for various asphalt applications.',
-      imageUrl: 'assets/img/bitumen-1.jpeg',
-      price: undefined,
-      meta: {
-        weight: '28 ltr',
-        usage: 'Versatile bitumen grade for various applications',
-        type: 'Tons/Litre'
-      },
-      qty: 1,
-      id: 4,
-      brand: [
-        { name: 'Tons', price: 500000 },
-        { name: 'Litre', price: 250000 },
-      ],
-    },
-    {
-      name: 'SURFACE DRESSING',
-      imageUrl: 'assets/img/aggregate-1.webp',
-      price: 40400,
-      description: 'Aggregate suitable for surface applications.',
-      meta: {
-        usage: 'Surface applications',
-        type: 'service'
-      },
-      qty: 1,
-      id: 5
+  constructor(
+    private toastr: ToastrService,
+    private modalService: NgbModal,
+    private productsService: ProductsService
+  ) {
+    this.getProducts();
+  }
+
+  selectRandomAsphaltProducts(products: AsphaltProduct[]): void {
+    // Shuffle the array
+    const shuffledProducts = this.shuffleArray(products);
+
+    // Select the first five products
+    this.asphaltProducts = shuffledProducts.slice(0, 5);
+  }
+
+  shuffleArray(array: any[]): any[] {
+    // Fisher-Yates shuffle algorithm
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
     }
-  ];
+    return array;
+  }
+
+  getProducts() {
+    this.productsService.getProductsFromJson("asphalts").subscribe((products) => {
+      this.selectRandomAsphaltProducts(products);
+    });
+  }
 
   @Input() hideHead: boolean = false;
 
@@ -225,7 +164,7 @@ export class AsphaltsComponent implements OnInit {
 
     this.toastr.success('Item added to cart successfully');
     this.returnToDefault(product);
-    this.openShoppingCart();
+    // this.openShoppingCart();
   }
 
   openShoppingCart(): void {

@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { CartItem } from 'src/app/core/interfaces/cart.interface';
 import { Equipment } from 'src/app/core/interfaces/products.interface';
 import { EquipmentsList } from 'src/app/core/mocks/equipments.mock';
+import { ProductsService } from 'src/app/core/services/products.service';
 import { ShoppingCartComponent } from 'src/app/shared/components/cart/modals/shopping-cart/shopping-cart.component';
 
 @Component({
@@ -13,15 +14,26 @@ import { ShoppingCartComponent } from 'src/app/shared/components/cart/modals/sho
 })
 export class ProductsListComponent implements OnInit {
   constructor(
-    private toastr: ToastrService, private modalService: NgbModal) { }
+    private toastr: ToastrService, 
+    private modalService: NgbModal,
+    private productsService: ProductsService
+  ) { 
+    this.getProducts();
+  }
 
-  Equipments: any[] = EquipmentsList.map(equipments => {
+  Equipments: any[] = [];
+
+  getProducts() {
+    this.productsService.getProductsFromJson("equipments").subscribe((products) => {
+      this.Equipments = products.map(equipments => {
     return {
       ...equipments,
       qty: 1,
       prices: this.removeDefaultFromObject(equipments.prices)
     }
-  });
+  });;
+    });
+  }
 
   ngOnInit(): void { }
 

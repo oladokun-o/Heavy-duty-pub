@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { CartItem } from 'src/app/core/interfaces/cart.interface';
 import { AsphaltProduct, Brand } from 'src/app/core/interfaces/products.interface';
 import { MockAsphalts } from 'src/app/core/mocks/asphalts.mock';
+import { ProductsService } from 'src/app/core/services/products.service';
 import { ShoppingCartComponent } from 'src/app/shared/components/cart/modals/shopping-cart/shopping-cart.component';
 
 @Component({
@@ -13,11 +14,23 @@ import { ShoppingCartComponent } from 'src/app/shared/components/cart/modals/sho
 })
 export class AsphaltListComponent implements OnInit {
 
-  asphaltProducts: AsphaltProduct[] = MockAsphalts;
+  asphaltProducts: AsphaltProduct[] = [];
 
   @Input() anInput: boolean = false;
 
-  constructor(private toastr: ToastrService, private modalService: NgbModal) { }
+  constructor(
+    private toastr: ToastrService, 
+    private modalService: NgbModal,
+    private productsService: ProductsService
+  ) { 
+    this.getProducts();
+  }
+
+  getProducts() {
+    this.productsService.getProductsFromJson("asphalts").subscribe((products) => {
+      this.asphaltProducts = products;
+    });
+  }
 
   ngOnInit(): void {
   }

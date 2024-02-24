@@ -5,7 +5,10 @@ import { ProductComponent } from './product/product.component';
 import { ProductsListComponent } from './products-list/products-list.component';
 import { AsphaltListComponent } from './asphalt-list/asphalt-list.component';
 import { AsphaltComponent } from './asphalt/asphalt.component';
+import { CabinListComponent } from './cabin-list/cabin.component';
 import { CabinComponent } from './cabin/cabin.component';
+import { HaulagesListComponent } from './haulages-list/haulages.component';
+import { HaulageComponent } from './haulage/haulage.component';
 
 const routes: Routes = [
   {
@@ -34,7 +37,19 @@ const routes: Routes = [
       },
       {
         path: 'porta-cabins',
+        component: CabinListComponent
+      },
+      {
+        path: 'cabins/:id',
         component: CabinComponent
+      },
+      {
+        path: 'haulages',
+        component: HaulagesListComponent
+      },
+      {
+        path: 'haulages/:id',
+        component: HaulageComponent
       }
     ]
   }

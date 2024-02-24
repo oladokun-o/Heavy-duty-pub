@@ -255,11 +255,35 @@ export class SummaryComponent implements OnInit, OnDestroy {
         this.toastr.success('Your order has been confirmed!');
       }, 5000);
     }
-  }  
+  }
 
   emptyCart() {
     this.cartItems = [];
     this.updateCart();
   }
+
+  userDetailsExpanded: boolean = !this.userDetails ? true : false;
+  cartExpanded: boolean = false;
+
+  toggleUserDetails(expander: HTMLElement) {
+    this.userDetailsExpanded = !this.userDetailsExpanded;
+    if (this.cartExpanded) {
+      this.cartExpanded = false;
+    }
+    setTimeout(() => {
+      window.scrollTo(0,0);
+    }, 500);
+  }
+
+  toggleCartDetails(expander: HTMLElement) {
+    this.cartExpanded = !this.cartExpanded;
+    if (this.userDetailsExpanded) {
+      this.userDetailsExpanded = false;
+    }
+    setTimeout(() => {
+      window.scrollTo(0,0);
+    }, 500);
+  }
+
 
 }
