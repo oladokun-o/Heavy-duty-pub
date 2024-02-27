@@ -9,9 +9,9 @@ import { NavList } from 'src/app/core/interfaces/nav.interface';
   styleUrls: ['./pages.component.scss']
 })
 export class PagesComponent {
-  currentPage: string = 'home';
+  currentPage: string = '';
   pages: Array<NavList> = [
-    { label: 'home', route: 'home' },
+    // { label: 'home', route: 'home' },
   ];
   pageLoading: boolean = false;
 

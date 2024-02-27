@@ -1,6 +1,7 @@
 <section class="container-fluid border p-md-5 d-flex justify-content-center align-items-center">
   <form [formGroup]="form" class="col-12 col-md-10 col-xl-4 py-5">
-    <div class="row py-5">
+    <h3>Login to Admin Dashboard</h3>
+    <div class="row pb-5">
       <div class="col-12 mb-3">
         <label for="" class="form-label">Email</label>
         <input
@@ -20,7 +21,7 @@
         </small>
       </div>
 
-      <div class="col-12 mb-3">
+      <div class="col-12 mb-4">
         <label for="" class="form-label">Password</label>
         <input type="password" id="password" class="form-control" placeholder="Enter your password" formControlName="password"
           aria-describedby="pwdId" />
@@ -28,6 +29,18 @@
           id="pwdId" class="text-danger">
           Your password is required to login
         </small>
+      </div>
+
+      <div class="col-12">
+        <button (click)="confirmLogin()" [disabled]="loggingIn" class="uk-button uk-button-secondary w-100 uk-button-large">
+          <span *ngIf="!loggingIn">login</span>
+          <span *ngIf="loggingIn">
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            <span class="ms-2">
+              checking...
+            </span>
+          </span>
+        </button>
       </div>
     </div>
   </form>
