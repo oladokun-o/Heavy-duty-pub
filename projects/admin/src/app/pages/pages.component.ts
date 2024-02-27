@@ -13,8 +13,18 @@ export class PagesComponent {
   pages: Array<NavList> = [
     { label: 'home', route: 'home' },
   ];
+  pageLoading: boolean = false;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) {
+    this.pageLoading = true;
+    this.router.events
+      .pipe(
+        filter(event => event instanceof NavigationEnd)
+      )
+      .subscribe(page => {
+        this.pageLoading = false;
+      });
+  }
 
   ngOnInit(): void {
     this.router.events
