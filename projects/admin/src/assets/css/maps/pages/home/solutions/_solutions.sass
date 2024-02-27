@@ -1,0 +1,57 @@
+
+
+.solution-item {
+  display: block;
+  position: relative;
+  &__box {
+    display: block;
+    position: relative;
+    &::before {
+      content: '';
+      display: block;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 400px;
+      background-image: linear-gradient(to top, black 0%, transparent 100%);
+      @include tr(0.3s); }
+    @include h {
+      &::before {
+        height: 100%; }
+      .solution-item__intro {
+        height: auto;
+        overflow: visible;
+        visibility: visible;
+        pointer-events: all;
+        @include tr(0.3s); } }
+    img {
+      width: 100%; }
+    .uk-overlay {
+      padding: 60px;
+      padding: vw(60px);
+      @include r(767) {
+        padding: 30px; } } }
+  &__title {
+    margin-bottom: 20px;
+    span {
+      color: white;
+      font-size: 18px;
+      font-weight: 400;
+      @include fz(18, 14); }
+    h3 {
+      color: white;
+      font-size: 36px;
+      font-weight: 600;
+      margin: 0;
+      @include fz(36, 24); } }
+  &__intro {
+    color: white;
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+    pointer-events: none;
+    @include tr(0.3s); }
+  &__link {
+    a.more {
+      color: #fff; } } }

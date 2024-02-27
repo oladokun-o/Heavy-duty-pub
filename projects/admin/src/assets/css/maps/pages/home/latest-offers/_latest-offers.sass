@@ -1,0 +1,71 @@
+.s-latest-offers {
+  display: block;
+  position: relative;
+  background-image: url(../img/bg_latest-offers.jpg);
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: cover;
+  background-color: #f9f9f9;
+  @include r(767) {
+    background-size: 340%;
+    background-position: left bottom; } }
+
+
+.offer-box {
+  display: block;
+  position: relative;
+  padding: 50px 40px;
+  background-color: #fff;
+  box-shadow: 0 0 36px 9px rgba(0, 0, 0, 0.05);
+  @include r(1199) {
+    padding: 30px; }
+  @include r(767) {
+    padding: 15px; } }
+.offer-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  @include r(767) {
+    flex-wrap: wrap; }
+  & + .offer-item {
+    margin-top: 40px;
+    @include r(1199) {
+      margin-top: 20px; }
+    @include r(767) {
+      margin-top: 10px; } } }
+.offer-media {
+  width: 100px;
+  flex: 0 0 100px;
+  @include r(767) {
+    flex: 0 0 60px;
+    width: 60px; }
+  img {
+    width: 100%; } }
+.offer-info {
+  margin: 0 20px;
+  flex-grow: 1;
+  @include r(767) {
+    margin: 0 0 0 10px;
+    max-width: calc(100% - 70px); } }
+
+.offer-title {
+  color: #222;
+  font-size: 20px;
+  font-weight: 600;
+  @include fz(20, 14); }
+.offer-intro {
+  color: #555;
+  font-size: 16px;
+  font-weight: 300;
+  @include fz(16, 12); }
+.offer-price {
+  white-space: nowrap;
+  color: #222;
+  font-size: 18px;
+  font-weight: 400;
+  @include fz(18, 12);
+  span {
+    color: #efb007;
+    font-size: 22px;
+    font-weight: 700;
+    @include fz(22, 16); } }

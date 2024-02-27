@@ -1,0 +1,46 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@ng-select/ng-select/themes/material.theme.css";
+@import "~ngx-toastr/toastr";
+
+button:disabled {
+  opacity: 0.5;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.uk-offcanvas-bar,
+.uk-navbar-nav {
+  img {
+    width: 20px;
+  }
+
+  a:hover>img {
+    fill: orange;
+  }
+}
+
+
+app-summary {
+  width: 100%;
+}
+
+
+.buttons {
+  border: 1px solid #000;
+  justify-content: space-between !important;
+  height: 50px;
+
+  button {
+    padding: 15px;
+    border: none;
+    font-size: 18px;
+  }
+}

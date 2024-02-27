@@ -1,0 +1,5 @@
+<swiper [config]="config" class="default">
+  <ng-template *ngFor="let slide of slides" swiperSlide class="swiper-slide">
+    <img [src]="slide.imageUrl" [alt]="slide?.alt">
+  </ng-template>
+</swiper>

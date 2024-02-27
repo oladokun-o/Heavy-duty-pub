@@ -1,0 +1,88 @@
+<section class="s-equipments">
+  <div class="uk-section uk-container uk-container-large">
+    <div class="section-title --center">
+      <span>
+
+      </span>
+      <h3>Porta Cabins On Rent</h3>
+    </div>
+    <div class="section-content">
+      <div data-uk-slider>
+        <div class="uk-position-relative" tabindex="-1">
+          <ul class="uk-slider-items uk-grid uk-child-width-1-1 uk-child-width-1-2@s uk-child-width-1-3@l">
+            <li *ngFor="let equipment of Equipments">
+              <div class="equipment-item">
+                <div class="equipment-item__box">
+                  <div class="equipment-item__media">
+                    <a [routerLink]="['products/cabins', equipment.id]">
+                      <img [src]="equipment.imageUrl" [alt]="equipment.name" />
+                    </a>
+                  </div>
+                  <div class="equipment-item__info">
+                    <div class="equipment-item__title">
+                      <a [routerLink]="['products', equipment.id]">{{ equipment.name }}</a>
+                    </div>
+
+                    <div class="equipment-item__list">
+                      <ul>
+                        <li *ngFor="let meta of equipment.meta | keyvalue">{{ meta.value }}</li>
+                      </ul>
+                    </div>
+                    <div class="equipment-item__prices pt-0">
+                      <ng-select *ngIf="equipment.prices" [items]="equipment.prices" appendTo=".s-equipments"
+                        placeholder="Select rent duration" bindLabel="" bindValue="value" [clearable]="false" class="pb-2"
+                        (change)="handlePriceChange($event, equipment)"></ng-select>
+                    </div>
+                    <div
+                      class="equipment-item__price pt-3 col-12 d-flex flex-row justify-content-between align-items-center flex-wrap gap-3">
+                      <div class="equipment-item__price-current text-nowrap col-6 fs-6"
+                        *ngIf="equipment.amount !== undefined && equipment.meta && equipment.meta.type !== 'service'">
+                        ₦{{ findSelectedPriceAmount(equipment.prices) | number }} <span class="fw-normal">Per {{ findSelectedPrice(equipment.prices) }}</span>
+                      </div>
+
+                      <div class="col-4 d-flex flex-row justify-content-end"
+                        *ngIf="equipment.amount !== undefined && equipment.meta && equipment.meta.type !== 'service'">
+                        <button type="button" class="qty-btn" ngbTooltip="Increase quantity" [disabled]="equipment.qty === 1"
+                          (click)="dec(equipment)">-</button>
+                          <input type="text" NumbersOnly class="col-4 text-center border-0" [value]="equipment.qty" #input
+                          (change)="updateQuantity(equipment, Number(input.value))">
+                        <button type="button" class="qty-btn" ngbTooltip="Decrease quantity" (click)="inc(equipment)">+</button>
+                      </div>
+
+                      <div class="equipment-item__price-current fs-6"
+                        *ngIf="equipment.amount !== undefined || equipment.meta && equipment.meta.type === 'service'">
+                        Amount: <span class="fw-normal">₦{{ (equipment.amount ? equipment.amount : equipment.amount) |
+                          number }}</span>
+                      </div>
+
+                      <div class="d-flex flex-row justify-content-end"
+                        *ngIf="equipment.amount !== undefined || equipment.meta && equipment.meta.type === 'service'">
+                        <button type="button" (click)="addToCart(equipment)" class="uk-button uk-button-default">
+                          Add to Cart
+                        </button>
+                      </div>
+                    </div>
+                    <div class="equipment-item__prices pt-2">
+                      <ul>
+                        <li *ngFor="let price of equipment.prices" class="text-capitalize">₦{{ price.value | number }}/{{ price.label }}</li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="equipment-item__btn">
+                    <button routerLink="/products/cabins/{{ equipment.id }}" class="uk-button uk-button-default uk-button-large uk-width-1-1" type="button">
+                      <span>Order Now</span>
+                      <span data-uk-icon="arrow-right"></span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <ul class="uk-slider-nav uk-dotnav uk-flex-center uk-margin-medium-top">
+
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
