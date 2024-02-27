@@ -279,7 +279,7 @@ export class SummaryComponent implements OnInit, OnDestroy {
         products: this.cartItems.map(c => {
           let item = c.item;
           return {
-            amount: item.amount,
+            amount: item.amount ? item.amount : item.qty * item!.price,
             name: item.name,
             product_id: item.id,
             qty: item.qty
