@@ -17,6 +17,7 @@ interface newproduct {
   name: string;
   qty: number;
   amount: number;
+  price: number;
 }
 
 export enum OrderStatus {

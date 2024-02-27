@@ -1,3 +1,5 @@
+import { Brand } from "./products.interface";
+
 export interface CartItem {
   id: string | number;
   datetime: Date;
@@ -16,6 +18,7 @@ export interface Item {
   gallery?: string[]
   price?: number
   category?: string;
+  brand?: Brand[];
 }
 
 interface Price {

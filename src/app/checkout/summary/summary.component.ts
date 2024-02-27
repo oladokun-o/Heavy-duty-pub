@@ -247,59 +247,88 @@ export class SummaryComponent implements OnInit, OnDestroy {
         firstInvalidInput.scrollIntoView({ behavior: "smooth", block: "center" });
         firstInvalidInput.focus();
       }
+    } else if (this.userForm.valid && this.editable) {
+      this.saveDetails();
+      this.proceedOrder();
     } else if (this.cartItems.length === 0) {
       this.toastr.info('Your cart is empty. Please add items before confirming your order.');
     } else {
-      // Proceed to confirm the order
-      this.confirming = true;
-
-      let totalPrice = this.cartItems.reduce((acc, curr) => {
-        if (curr.item.amount !== undefined) {
-          return acc + curr.item.amount;
-        } else {
-          return acc;
-        }
-      }, 0);
-
-      let totalQuantity = this.cartItems.reduce((acc, curr) => {
-        if (curr.item.qty !== undefined) {
-          return acc + curr.item.qty;
-        } else {
-          return acc;
-        }
-      }, 0);
-
-      let order: NewOrder = {
-        customer_name: this.userForm.value.firstname + ' ' + this.userForm.value.lastname,
-        address: this.userForm.value.address,
-        email: this.userForm.value.email,
-        order_date: new Date().toISOString().slice(0, 19).replace('T', ' '),
-        phone: this.userForm.value.phone,
-        quantity: totalQuantity,
-        products: this.cartItems.map(c => {
-          let item = c.item;
-          return {
-            amount: item.amount ? item.amount : item.qty * item!.price,
-            name: item.name,
-            product_id: item.id,
-            qty: item.qty
-          } as any
-        }),
-        total_price: totalPrice,
-        status: OrderStatus.Pending
-      };
-      this.ordersService.createOrder(order).subscribe(
-        res => {
-          this.confirming = false;
-          this.emptyCart();
-          this.toastr.success('Your order has been confirmed!');
-        },
-        err => {
-          this.confirming = false;
-          this.toastr.error("An error has occurred, please try again");
-        }
-      );
+      this.proceedOrder();
     }
+  }
+
+  findSelectedPrice(productId: number): number {
+    let founditem = this.cartItems.find((pr) => pr.item.id === productId)?.item;
+    if (founditem && founditem.brand) {
+      let foundPrice = founditem.brand.find(i => i.selected)?.price;
+      if (foundPrice) return foundPrice;
+    } else if (founditem && founditem.prices) {
+      let foundPrice = founditem.prices.find(i => i.selected)?.value;
+      if (foundPrice) return foundPrice;
+    }
+
+    return 0;
+  }
+
+  proceedOrder() {
+    // Proceed to confirm the order
+    this.confirming = true;
+
+    let totalPrice = this.cartItems.reduce((acc, curr) => {
+      if (curr.item.amount !== undefined) {
+        return acc + curr.item.amount;
+      } else {
+        return acc;
+      }
+    }, 0);
+
+    let totalQuantity = this.cartItems.reduce((acc, curr) => {
+      if (curr.item.qty !== undefined) {
+        return acc + curr.item.qty;
+      } else {
+        return acc;
+      }
+    }, 0);
+
+    let order: NewOrder = {
+      customer_name: this.userForm.value.firstname + ' ' + this.userForm.value.lastname,
+      address: this.userForm.value.address,
+      email: this.userForm.value.email,
+      order_date: new Date().toISOString().slice(0, 19).replace('T', ' '),
+      phone: this.userForm.value.phone,
+      quantity: totalQuantity,
+      products: this.cartItems.map(c => {
+        let item = c.item;
+        let sanitizedProductName =  item.name // this.escapeSpecialCharacters(item.name); // Remove non-ASCII characters
+        let price = item.price ? item.price : this.findSelectedPrice(item.id);
+        let amount = item.amount ? item.amount : (item.qty * price);
+        return {
+          amount: amount,
+          name: sanitizedProductName,
+          product_id: item.id,
+          qty: item.qty,
+          price: price
+        } as any
+      }),
+      total_price: totalPrice,
+      status: OrderStatus.Pending
+    };
+    this.ordersService.createOrder(order).subscribe(
+      res => {
+        this.confirming = false;
+        this.emptyCart();
+        this.toastr.success('Your order has been confirmed!');
+      },
+      err => {
+        this.confirming = false;
+        this.toastr.error("An error has occurred, please try again");
+      }
+    );
+  }
+
+  escapeSpecialCharacters(str: string): string {
+    // Replace special characters with their escaped counterparts
+    return str.replace(/[^\x00-\x7F]/g, ''); // Replace non-ASCII characters
   }
 
   emptyCart() {
@@ -315,6 +344,13 @@ export class SummaryComponent implements OnInit, OnDestroy {
     if (this.cartExpanded) {
       this.cartExpanded = false;
     }
+
+    if (!this.editable) {
+      this.editable = true;
+      this.saved = false;
+      this.submitted = false;
+    }
+
     setTimeout(() => {
       const firstInvalidInput = document.querySelector("form")?.querySelector("input.ng-invalid, ng-select.ng-invalid > input");
       if (firstInvalidInput instanceof HTMLInputElement) {
