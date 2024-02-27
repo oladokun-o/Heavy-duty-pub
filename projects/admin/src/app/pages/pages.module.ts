@@ -10,6 +10,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { CreateUserComponent } from './create-user/create-user.component';
 import { PagesComponent } from './pages.component';
 import { RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -25,7 +27,10 @@ import { RouterModule } from '@angular/router';
     PagesRoutingModule,
     LayoutModule,
     SharedModule,
-    RouterModule
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule,
+    ToastrModule.forRoot()
   ]
 })
 export class PagesModule { }
