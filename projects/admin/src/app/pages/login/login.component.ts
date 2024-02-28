@@ -24,7 +24,14 @@ export class LoginComponent implements OnInit {
     toastr.toastrConfig.preventDuplicates = true;
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.authService.isAuthenticated().subscribe(
+      res => {
+        this.toastr.success(res.message, "Login Successful");
+        this.router.navigate(['/dashboard']);
+      }
+    )
+  }
 
   loggingIn: boolean = false;
 
@@ -42,12 +49,12 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.form.value).subscribe(
       res => {
         this.loggingIn = false;
-        sessionStorage.setItem("admin", JSON.stringify(res.user));
+        this.toastr.success(res.message, "Login Successful");
         this.router.navigate(['/dashboard']);
       },
       err => {
         this.loggingIn = false;
-        this.toastr.error(err.message, "Login failed");
+        this.toastr.error(err.error.message, "Login failed");
       }
     )
   }

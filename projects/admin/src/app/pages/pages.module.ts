@@ -11,6 +11,7 @@ import { CreateUserComponent } from './create-user/create-user.component';
 import { PagesComponent } from './pages.component';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LogoutComponent } from './logout/logout.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     LoginComponent,
     DashboardComponent,
     CreateUserComponent,
-    PagesComponent
+    PagesComponent,
+    LogoutComponent
   ],
   imports: [
     CommonModule,
