@@ -36,7 +36,7 @@ const routes: Routes = [
       },
       {
         path: 'services',
-        component: ServicesComponent
+        loadChildren: () => import("./services/services.module").then(m => m.ServicesModule)
       },
       {
         path: 'news',
