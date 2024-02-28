@@ -18,6 +18,7 @@ export class AuthGuard implements CanActivate {
       map((user) => {
         if (user) {
           // User is authenticated, allow access to the route
+          this.router.navigate(['/dashboard']);
           return true;
         } else {
           // User is not authenticated, redirect to login page

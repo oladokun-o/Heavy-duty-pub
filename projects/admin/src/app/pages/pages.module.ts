@@ -7,7 +7,6 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { CreateUserComponent } from './create-user/create-user.component';
 import { PagesComponent } from './pages.component';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -19,7 +18,6 @@ import { LogoutComponent } from './logout/logout.component';
     PageNotFoundComponent,
     LoginComponent,
     DashboardComponent,
-    CreateUserComponent,
     PagesComponent,
     LogoutComponent
   ],

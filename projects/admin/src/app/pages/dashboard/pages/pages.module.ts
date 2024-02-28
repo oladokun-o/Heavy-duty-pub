@@ -14,4 +14,4 @@ import { UsersComponent } from './users/users.component';
     CommonModule
   ]
 })
-export class PagesModule { }
+export class DashboardPagesModule { }

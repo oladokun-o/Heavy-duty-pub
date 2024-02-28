@@ -10,11 +10,16 @@ export const apiConfig = {
     getUser: (id: number) => `${apiUrl}/getuser/${id}`,
     logout: () => `${apiUrl}/logout`,
     validateLogin: () => `${apiUrl}/protected`,
-    getUsers: () => `${apiUrl}/getusers`,
   },
   orders: {
     getOrders: () => `${apiUrl}/orders`,
     deleteOrder:(orderId: number) => `${apiUrl}/orders/${orderId}`,
     updateOrderStatus:(orderId: number) => `${apiUrl}/orders/${orderId}/status`,
+  },
+  user: {
+    getUsers: () => `${apiUrl}/getusers`,
+    createUser: () => `${apiUrl}/users/new`,
+    deleteUser: (id: number) => `${apiUrl}/users/${id}`,
+    updateUser: (id: number) => `${apiUrl}/users/${id}`,
   }
 };

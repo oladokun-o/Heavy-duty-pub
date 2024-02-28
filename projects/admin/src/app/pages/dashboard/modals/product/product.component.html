@@ -1,0 +1,16 @@
+<div class="container-fluid p-3">
+  <div class="col-12">
+    <h2>Products for Order #{{ order_id }}</h2>
+  </div>
+  <ul>
+    <li *ngFor="let product of products;let i = index;" class="product-item">
+      <p><strong>Name</strong>: {{ product.name }}</p>
+      <p><strong>Quantity</strong>: {{ product.qty | number }}</p>
+      <p><strong>Amount</strong>: ₦{{ product.amount | number }}</p>
+      <p><strong>Price</strong>: ₦{{ product.price | number }}</p>
+    </li>
+  </ul>
+  <div class="col-12 mt-3">
+    <button type="button" (click)="activeModal.dismiss()" class="uk-button uk-button-default w-100" data-bs-dismiss="modal">Close</button>
+  </div>
+</div>

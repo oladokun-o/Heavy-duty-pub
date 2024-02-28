@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../../core/services/auth.service';
 import { Router } from '@angular/router';
+import { User } from '../../core/interfaces/auth.interface';
 
 @Component({
   selector: 'app-login',
@@ -16,6 +17,10 @@ export class LoginComponent implements OnInit {
     password: new FormControl(null, [Validators.required])
   });
 
+  get user(): User | null {
+    return JSON.parse(sessionStorage.getItem('admin') as string);
+  }
+
   constructor(
     private toastr: ToastrService,
     private authService: AuthService,
@@ -24,14 +29,7 @@ export class LoginComponent implements OnInit {
     toastr.toastrConfig.preventDuplicates = true;
   }
 
-  ngOnInit(): void {
-    this.authService.isAuthenticated().subscribe(
-      res => {
-        this.toastr.success(res.message, "Login Successful");
-        this.router.navigate(['/dashboard']);
-      }
-    )
-  }
+  ngOnInit(): void { }
 
   loggingIn: boolean = false;
 

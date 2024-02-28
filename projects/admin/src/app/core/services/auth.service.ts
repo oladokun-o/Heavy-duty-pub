@@ -79,7 +79,7 @@ export class AuthService {
   }
 
   getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(apiConfig.auth.getUsers()).pipe(
+    return this.http.get<User[]>(apiConfig.user.getUsers()).pipe(
       switchMap((res) => {
         return res && res.length > 0 ? of(res) : throwError("Error getting users");
       }),

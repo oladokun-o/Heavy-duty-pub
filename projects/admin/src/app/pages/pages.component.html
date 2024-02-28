@@ -1,9 +1,9 @@
 <div class="page-wrapper">
   <app-header [currentPage]="currentPage" [pages]="pages"></app-header>
-  <main class="page-main">
+  <main class="page-main pb-5">
     <router-outlet></router-outlet>
   </main>
-  <!-- <app-footer [currentPage]="currentPage" [pages]="pages"></app-footer> -->
+  <app-footer *ngIf="user" [currentPage]="currentPage" [pages]="pages"></app-footer>
 </div>
 
 <app-loader [isLoading]="pageLoading"></app-loader>

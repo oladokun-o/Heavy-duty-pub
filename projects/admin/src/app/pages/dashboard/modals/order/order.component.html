@@ -1,0 +1,61 @@
+<div class="col-12 p-3">
+  <h2>Edit Order</h2>
+  <form *ngIf="form" [formGroup]="form" (keydown.enter)="$event.preventDefault()" class="col-12">
+    <div class="row">
+      <div class="form-group col-12 mb-3">
+        <label for="name" class="form-label">Status</label>
+        <ng-select
+          [items]="order_status"
+          [clearable]="false"
+          formControlName="status"
+        ></ng-select>
+      </div>
+
+      <div class="form-group col-6 mb-3">
+        <label for="qty" class="form-label">Quantity</label>
+        <p class="m-0">{{ form.get("quantity")?.value | number }}</p>
+      </div>
+
+      <div class="form-group col-6 mb-3">
+        <label for="total" class="form-label">Total</label>
+        <p class="m-0">₦{{ form.get("total_price")?.value | number }}</p>
+      </div>
+
+      <h3>Products</h3>
+      <div class="col-12" formArrayName="products">
+        <!-- Iterate over each product in the form array and display form controls -->
+        <div *ngFor="let product of products.controls; let i = index" class="row mb-3">
+          <div [formGroupName]="i" class="col-12">
+            <div class="row">
+              <div class="form-group col-12">
+                <label for="productName{{ i }}" class="form-label">Product Name</label>
+                <input type="text" id="productName{{ i }}" readonly [disabled]="true" class="form-control" formControlName="name">
+              </div>
+              <div class="form-group col-4 mt-3">
+                <label for="productPrice{{ i }}" class="form-label">Price</label>
+                <p class="m-0">₦{{ product.get("price")?.value | number }}</p>
+              </div>
+              <div class="form-group col-4 mt-3">
+                <label for="productAmount{{ i }}" class="form-label">Amount</label>
+                <p class="m-0">₦{{ product.get("amount")?.value | number }}</p>
+              </div>
+              <div class="form-group col-4 mt-3">
+                <label for="productQty{{ i }}" class="form-label">Quantity</label>
+                <input type="number" readonly [disabled]="true" id="productQty{{ i }}" #qty (change)="handleQtyChange(i, qty.value)" min="1" class="form-control" formControlName="qty">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 d-flex flex-row mt-5">
+          <button (click)="activeModal.dismiss()" class="uk-button uk-button-default w-50 uk-button-large">
+            cancel
+          </button>
+          <button (click)="activeModal.close(form.value.status)"  class="uk-button uk-button-secondary w-50 uk-button-large">
+            save
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

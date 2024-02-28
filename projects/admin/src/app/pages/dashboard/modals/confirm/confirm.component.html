@@ -1,0 +1,11 @@
+<div class="modal-header">
+  <h5 class="modal-title">Confirm the action</h5>
+  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+<div class="modal-body">
+  <p>{{ text }}</p>
+</div>
+<div class="modal-footer">
+  <button type="button" (click)="activeModal.dismiss()" class="uk-button uk-button-default" data-bs-dismiss="modal">Close</button>
+  <button type="button" (click)="activeModal.close()" class="uk-button uk-button-{{ type }}">{{ confirm }}</button>
+</div>
