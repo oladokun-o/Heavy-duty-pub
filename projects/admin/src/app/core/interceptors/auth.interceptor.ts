@@ -27,8 +27,6 @@ export class AuthInterceptor implements HttpInterceptor {
           Authorization: `${authToken}`
         }
       });
-    } else {
-      this.router.navigate(['/logout']);
     }
 
     // Pass the cloned request to the next handler

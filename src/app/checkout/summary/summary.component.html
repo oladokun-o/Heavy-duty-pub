@@ -18,7 +18,7 @@
 
             <div class="d-flex justify-content-start align-items-center gap-3">
               <a class="uk-button uk-button-default uk-button-small"
-                (click)="toggleUserDetails(expander1);">{{ editable ? 'Cancel' : 'Change' }}</a>
+                (click)="toggleEdit();">{{ editable ? 'Cancel' : 'Change' }}</a>
               <a class="uk-button uk-button-secondary uk-button-small"
                 *ngIf="editable && !saved" (click)="saveDetails()">Save</a>
             </div>

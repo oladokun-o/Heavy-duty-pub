@@ -17,12 +17,12 @@ const routes: Routes = [
     },
     children: [
       {
-        path: '',
-        redirectTo: 'orders'
-      },
-      {
         path: 'orders',
         component: OrdersComponent
+      },
+      {
+        path: '',
+        redirectTo: 'orders'
       },
       {
         path: 'users',

@@ -220,19 +220,22 @@ export class SummaryComponent implements OnInit, OnDestroy {
     this.editable = !this.editable;
     this.saved = false;
     this.submitted = false;
+
+    if (!this.userDetailsExpanded) {
+      this.userDetailsExpanded = true;
+    }
   }
 
   saved: boolean = false;
   submitted: boolean = false;
   saveDetails() {
     this.submitted = true;
-
-    console.log(this.userForm.value);
-
     if (this.userForm?.valid) {
       localStorage.setItem('userDetails', JSON.stringify(this.userForm?.value));
       this.saved = true;
       this.editable = false;
+    } else {
+      this.toastr.info('Please fill in all required fields.');
     }
   }
 
@@ -336,19 +339,13 @@ export class SummaryComponent implements OnInit, OnDestroy {
     this.updateCart();
   }
 
-  userDetailsExpanded: boolean = !this.userDetails ? true : false;
+  userDetailsExpanded: boolean = false;
   cartExpanded: boolean = false;
 
   toggleUserDetails(expander: HTMLElement) {
     this.userDetailsExpanded = !this.userDetailsExpanded;
     if (this.cartExpanded) {
       this.cartExpanded = false;
-    }
-
-    if (!this.editable) {
-      this.editable = true;
-      this.saved = false;
-      this.submitted = false;
     }
 
     setTimeout(() => {

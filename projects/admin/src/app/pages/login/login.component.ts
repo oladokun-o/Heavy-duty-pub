@@ -46,9 +46,9 @@ export class LoginComponent implements OnInit {
   proceed(): void {
     this.authService.login(this.form.value).subscribe(
       res => {
+        this.router.navigate(['/dashboard']);
         this.loggingIn = false;
         this.toastr.success(res.message, "Login Successful");
-        this.router.navigate(['/dashboard']);
       },
       err => {
         this.loggingIn = false;

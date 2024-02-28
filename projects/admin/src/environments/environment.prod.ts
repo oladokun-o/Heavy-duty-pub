@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiBaseUrl: 'http://admin.heavydutypub.com/api'
+  apiBaseUrl: 'https://api.heavydutypub.com/api/admin'
 };
