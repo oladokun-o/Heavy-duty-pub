@@ -5,6 +5,7 @@ import { apiConfig } from '../apis/config.api';
 import { catchError, switchMap, tap } from 'rxjs/operators';
 import { LoggedInUser, User } from '../interfaces/auth.interface';
 import { Router } from '@angular/router';
+import { Order, OrderResponse, OrderStatus } from '../interfaces/orders.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -70,6 +71,50 @@ export class AuthService {
     return this.http.get<User>(apiConfig.auth.getUser(this.user?.id as number)).pipe(
       switchMap((res) => {
         return res ? of(res) : throwError("Error getting user");
+      }),
+      catchError(err => {
+        return throwError(err);
+      })
+    );
+  }
+
+  getUsers(): Observable<User[]> {
+    return this.http.get<User[]>(apiConfig.auth.getUsers()).pipe(
+      switchMap((res) => {
+        return res && res.length > 0 ? of(res) : throwError("Error getting users");
+      }),
+      catchError(err => {
+        return throwError(err);
+      })
+    );
+  }
+
+  getOrders(): Observable<Order[]> {
+    return this.http.get<Order[]>(apiConfig.orders.getOrders()).pipe(
+      switchMap((res) => {
+        return res && res.length > 0 ? of(res) : throwError("Error getting orders");
+      }),
+      catchError(err => {
+        return throwError(err);
+      })
+    );
+  }
+
+  deleteOrders(id: number): Observable<OrderResponse> {
+    return this.http.delete<OrderResponse>(apiConfig.orders.deleteOrder(id)).pipe(
+      switchMap((res) => {
+        return res ? of(res) : throwError("Error deleting order");
+      }),
+      catchError(err => {
+        return throwError(err);
+      })
+    );
+  }
+
+  updateOrderStatus(id: number, status: OrderStatus): Observable<LoggedInUser> {
+    return this.http.put<LoggedInUser>(apiConfig.orders.updateOrderStatus(id), { status: status }).pipe(
+      switchMap((res) => {
+        return res ? of(res) : throwError("Error updating order status");
       }),
       catchError(err => {
         return throwError(err);

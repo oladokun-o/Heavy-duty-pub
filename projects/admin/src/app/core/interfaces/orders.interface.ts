@@ -1,23 +1,5 @@
-import { Item } from "./cart.interface";
+export interface Order {
 
-export interface NewOrder {
-  products: newproduct[];
-  quantity: number;
-  status: OrderStatus;
-  address: string;
-  customer_name: string;
-  total_price: number;
-  order_date: string;
-  email: string;
-  phone: string;
-}
-
-interface newproduct {
-  product_id: number;
-  name: string;
-  qty: number;
-  amount: number;
-  price: number;
 }
 
 export enum OrderStatus {
@@ -25,4 +7,9 @@ export enum OrderStatus {
   Processing = 'processing',
   Completed = 'completed',
   Cancelled = 'cancelled'
+}
+
+export interface OrderResponse {
+  message: string;
+  status: number;
 }
