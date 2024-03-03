@@ -32,37 +32,39 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let order of orders">
-            <td>{{ order.order_id }}</td>
-            <td>{{ order.customer_name }}</td>
-            <td>{{ order.email }}</td>
-            <td>{{ order.phone }}</td>
-            <td>{{ order.address }}</td>
-            <td>{{ order.quantity | number }}</td>
-            <td>₦{{ order.total_price | number }}</td>
-            <td>{{ order.order_date | date: 'medium' }}</td>
-            <td>
-              <div class="d-flex align-items-center justify-content-center gap-2">
-                <div class="status bg-{{ getStatusColor(order.status) }}"></div>
-                {{ order.status | titlecase }}
-              </div>
-            </td>
-            <td>
-              <a class="view" (click)="viewProduct(order)" title="View" data-toggle="tooltip">
-                <i class="material-icons">&#xE8F4;</i>
-              </a>
-            </td>
-            <td>
-              <ng-container *ngIf="user">
-                <a class="edit" (click)="editOrder(order)" title="Edit" data-toggle="tooltip">
-                  <i class="material-icons">&#xE254;</i>
+          <ng-container *ngIf="orders.length > 0">
+            <tr *ngFor="let order of orders">
+              <td>{{ order.order_id }}</td>
+              <td>{{ order.customer_name }}</td>
+              <td>{{ order.email }}</td>
+              <td>{{ order.phone }}</td>
+              <td>{{ order.address }}</td>
+              <td>{{ order.quantity | number }}</td>
+              <td>₦{{ order.total_price | number }}</td>
+              <td>{{ order.order_date | date: 'medium' }}</td>
+              <td>
+                <div class="d-flex align-items-center justify-content-center gap-2">
+                  <div class="status bg-{{ getStatusColor(order.status) }}"></div>
+                  {{ order.status | titlecase }}
+                </div>
+              </td>
+              <td>
+                <a class="view" (click)="viewProduct(order)" title="View" data-toggle="tooltip">
+                  <i class="material-icons">&#xE8F4;</i>
                 </a>
-                <a (click)="deleteOrder(order.order_id)" class="delete" title="Delete" data-toggle="tooltip">
-                  <i class="material-icons">&#xE5C9;</i>
-                </a>
-              </ng-container>
-            </td>
-          </tr>
+              </td>
+              <td>
+                <ng-container *ngIf="user">
+                  <a class="edit" (click)="editOrder(order)" title="Edit" data-toggle="tooltip">
+                    <i class="material-icons">&#xE254;</i>
+                  </a>
+                  <a (click)="deleteOrder(order.order_id)" class="delete" title="Delete" data-toggle="tooltip">
+                    <i class="material-icons">&#xE5C9;</i>
+                  </a>
+                </ng-container>
+              </td>
+            </tr>
+          </ng-container>
         </tbody>
       </table>
     </div>

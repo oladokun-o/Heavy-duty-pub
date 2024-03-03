@@ -28,32 +28,33 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let admin of users">
-            <td>{{ admin.id }}</td>
-            <td>{{ admin.email }}</td>
-            <td>{{ admin.created_at | date: 'medium' }}</td>
-            <td>{{ admin.login_time | date: 'medium' }}</td>
-            <td class="text-capitalize">{{ admin.level }}</td>
-            <td>
-              <div
-                class="d-flex align-items-center justify-content-center gap-2">
+          <ng-container *ngIf="users.length > 0">
+            <tr *ngFor="let admin of users">
+              <td>{{ admin.id }}</td>
+              <td>{{ admin.email }}</td>
+              <td>{{ admin.created_at | date: 'medium' }}</td>
+              <td>{{ admin.login_time | date: 'medium' }}</td>
+              <td class="text-capitalize">{{ admin.level }}</td>
+              <td>
                 <div
-                  class="status bg-{{ admin.status === 'active' ? 'success' : 'danger' }}"></div>
-                {{ admin.status === 'active' ? 'Active' : 'Inactive' }}
-              </div>
-            </td>
-            <td>
-              <ng-container
-                *ngIf="user && user.level === 'superadmin' && admin.level === 'admin'">
-                <!-- <a href="#" class="settings" title="Settings"
-                  data-toggle="tooltip"><i
-                    class="material-icons">&#xE8B8;</i></a> -->
-                <a (click)="deleteUser(admin.id)" class="delete" title="Delete"
-                  data-toggle="tooltip"><i
-                    class="material-icons">&#xE5C9;</i></a>
-              </ng-container>
-            </td>
-          </tr>
+                  class="d-flex align-items-center justify-content-center gap-2">
+                  <div
+                    class="status bg-{{ admin.status === 'active' ? 'success' : 'danger' }}"></div>
+                  {{ admin.status === 'active' ? 'Active' : 'Inactive' }}
+                </div>
+              </td>
+              <td>
+                <ng-container
+                  *ngIf="user && user.level === 'superadmin' && admin.level === 'admin'">
+                  <!-- <a href="#" class="settings" title="Settings"
+                    data-toggle="tooltip"><i
+                      class="material-icons">&#xE8B8;</i></a> -->
+                  <a (click)="deleteUser(admin.id)" class="delete" title="Delete"
+                    data-toggle="tooltip"><i
+                      class="material-icons">&#xE5C9;</i></a>
+                </ng-container>
+              </td>
+            </tr></ng-container>
         </tbody>
       </table>
     </div>

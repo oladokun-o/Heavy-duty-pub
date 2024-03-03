@@ -24,6 +24,8 @@ export class UsersComponent extends DashboardBase implements OnInit {
     super(userService, orderService, router, activatedRoute, toastr, modal);
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.getUsers();
+  }
 
 }

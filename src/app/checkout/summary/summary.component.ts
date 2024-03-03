@@ -293,11 +293,18 @@ export class SummaryComponent implements OnInit, OnDestroy {
       }
     }, 0);
 
+    const userTimezoneOffset = new Date().getTimezoneOffset();
+    const userTimezoneOffsetHours = -userTimezoneOffset / 60;
+    const order_date = new Date(new Date().getTime() + userTimezoneOffsetHours * 60 * 60 * 1000)
+    .toISOString()
+    .slice(0, 19)
+    .replace('T', ' ');
+
     let order: NewOrder = {
       customer_name: this.userForm.value.firstname + ' ' + this.userForm.value.lastname,
       address: this.userForm.value.address,
       email: this.userForm.value.email,
-      order_date: new Date().toISOString().slice(0, 19).replace('T', ' '),
+      order_date: order_date,
       phone: this.userForm.value.phone,
       quantity: totalQuantity,
       products: this.cartItems.map(c => {

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
 import { apiConfig } from '../apis/config.api';
@@ -14,6 +14,8 @@ export class AuthService {
   get user(): User | null {
     return JSON.parse(sessionStorage.getItem('admin') as string);
   }
+
+  token: string = (JSON.parse(sessionStorage.getItem('admin') as string) as User)?.token || '';
 
   constructor(
     private http: HttpClient,
@@ -49,7 +51,7 @@ export class AuthService {
 
   getToken(): string | null {
     if (!this.user || !this.user.token) {
-      this.router.navigate(['login']);
+      // this.router.navigate(['login']);
       return null;
     };
 
@@ -57,7 +59,17 @@ export class AuthService {
   }
 
   isAuthenticated(): Observable<LoggedInUser> {
-    return this.http.get<LoggedInUser>(apiConfig.auth.validateLogin()).pipe(
+    const headers = new HttpHeaders();
+
+    // Check if user is logged in and has a token
+    if (this.token) {
+      // Set the Authorization header
+      headers.set('Authorization', this.token);
+    }
+
+    console.log(headers);
+
+    return this.http.get<LoggedInUser>(apiConfig.auth.validateLogin(), { headers }).pipe(
       switchMap((res) => {
         return res && res.user ? of(res) : throwError("Error logging in");
       }),

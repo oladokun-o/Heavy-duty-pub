@@ -4,7 +4,7 @@ import { LoginComponent } from './login/login.component';
 import { PagesComponent } from './pages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserDetailsResolver, UsersResolver } from '../core/resolvers/users.resolver';
-import { AuthGuard } from '../core/guards/auth.guard';
+import { AuthGuard, LoginGuard } from '../core/guards/auth.guard';
 import { LogoutComponent } from './logout/logout.component';
 import { OrdersResolver } from '../core/resolvers/orders.resolver';
 
@@ -19,7 +19,8 @@ const routes: Routes = [
       },
       {
         path: 'login',
-        component: LoginComponent
+        component: LoginComponent,
+        // canActivate: [LoginGuard]
       },
       {
         path: 'dashboard',
