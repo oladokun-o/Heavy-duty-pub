@@ -37,7 +37,9 @@ const components = [
     RouterModule,
     LayoutModule,
     SharedModule,
-    RouterModule
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class PagesModule { }
