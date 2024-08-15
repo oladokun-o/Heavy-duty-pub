@@ -13,7 +13,7 @@ import { ShoppingCartComponent } from 'src/app/shared/components/cart/modals/sho
   styleUrls: ['./cabin.component.css']
 })
 export class CabinComponent implements OnInit {
-  
+
   product: any;
 
   constructor(
@@ -21,7 +21,7 @@ export class CabinComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private modalService: NgbModal,
     private toastr: ToastrService
-  ) { 
+  ) {
     this.getProduct();
   }
 
@@ -33,6 +33,7 @@ export class CabinComponent implements OnInit {
           this.product =  {
               ...product,
               qty: 1,
+              amount: undefined,
               prices: this.removeDefaultFromObject(product.prices)
             }
         },
@@ -44,7 +45,7 @@ export class CabinComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
+
   }
 
   toggleDescription(el: HTMLElement) {

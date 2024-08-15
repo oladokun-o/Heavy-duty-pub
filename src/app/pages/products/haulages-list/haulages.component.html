@@ -30,13 +30,13 @@
               <div class="equipment-item">
                 <div class="equipment-item__box">
                   <div class="equipment-item__media">
-                    <a [routerLink]="['products/haulages', haulage.id]">
+                    <a [routerLink]="['products/haulages', haulage._id]">
                       <img [src]="haulage.imageUrl" [alt]="haulage.name" />
                     </a>
                   </div>
                   <div class="equipment-item__info">
                     <div class="equipment-item__title">
-                      <a [routerLink]="['products', haulage.id]">{{ haulage.name }}</a>
+                      <a [routerLink]="['products', haulage._id]">{{ haulage.name }}</a>
                       <article #desc [innerHTML]="haulage.description" class="text-truncate"></article>
                         <!-- <a class="btn- fw-normal fs-6" style="text-decoration: underline;" (click)="toggleDescription(desc)">Read {{
                           desc.classList.contains('text-truncate') ? 'more' :
@@ -78,7 +78,7 @@
                     </div>
                   </div>
                   <div class="equipment-item__btn">
-                    <button routerLink="/products/haulages/{{ haulage.id }}"
+                    <button routerLink="/products/haulages/{{ haulage._id }}"
                       class="uk-button uk-button-default uk-button-large uk-width-1-1" type="button">
                       <span>Order Now</span>
                       <span data-uk-icon="arrow-right"></span>

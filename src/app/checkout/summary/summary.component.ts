@@ -261,7 +261,7 @@ export class SummaryComponent implements OnInit, OnDestroy {
   }
 
   findSelectedPrice(productId: number): number {
-    let founditem = this.cartItems.find((pr) => pr.item.id === productId)?.item;
+    let founditem = this.cartItems.find((pr) => pr.item._id === productId)?.item;
     if (founditem && founditem.brand) {
       let foundPrice = founditem.brand.find(i => i.selected)?.price;
       if (foundPrice) return foundPrice;
@@ -310,12 +310,12 @@ export class SummaryComponent implements OnInit, OnDestroy {
       products: this.cartItems.map(c => {
         let item = c.item;
         let sanitizedProductName =  item.name // this.escapeSpecialCharacters(item.name); // Remove non-ASCII characters
-        let price = item.price ? item.price : this.findSelectedPrice(item.id);
+        let price = item.price ? item.price : this.findSelectedPrice(item._id);
         let amount = item.amount ? item.amount : (item.qty * price);
         return {
           amount: amount,
           name: sanitizedProductName,
-          product_id: item.id,
+          product_id: item._id,
           qty: item.qty,
           price: price
         } as any

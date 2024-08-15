@@ -42,7 +42,7 @@ export class AsphaltsComponent implements OnInit {
   }
 
   getProducts() {
-    this.productsService.getProductsFromJson("asphalts").subscribe((products) => {
+    this.productsService.getProducts("asphalts").subscribe((products) => {
       this.selectRandomAsphaltProducts(products);
     });
   }
@@ -81,7 +81,7 @@ export class AsphaltsComponent implements OnInit {
   inc(product: AsphaltProduct) {
     if (product.qty !== undefined) {
       if (product.brand) {// Find the selected brand of the product
-        const foundBrand = this.asphaltProducts.find(p => p.id === product.id)?.brand?.find(p => p.selected);
+        const foundBrand = this.asphaltProducts.find(p => p._id === product._id)?.brand?.find(p => p.selected);
         product.qty++;
         if (foundBrand && foundBrand.price !== undefined && product) {
           product.amount = product.qty * foundBrand.price;
@@ -100,7 +100,7 @@ export class AsphaltsComponent implements OnInit {
   dec(product: AsphaltProduct) {
     if (product.qty !== undefined && product.qty > 1) {
       if (product.brand) {// Find the selected brand of the product
-        const foundBrand = this.asphaltProducts.find(p => p.id === product.id)?.brand?.find(p => p.selected);
+        const foundBrand = this.asphaltProducts.find(p => p._id === product._id)?.brand?.find(p => p.selected);
         product.qty--;
         if (foundBrand && foundBrand.price !== undefined && product) {
           product.amount = product.qty * foundBrand.price;
@@ -184,6 +184,23 @@ export class AsphaltsComponent implements OnInit {
       product.price = undefined;
       product.amount = undefined;
     }
+  }
+
+  removeNullObjs(obj: any): any {
+    if (obj !== null && typeof obj === 'object') {
+      Object.keys(obj).forEach(key => {
+        if (obj[key] === null || obj[key] === undefined) {
+          delete obj[key];
+        } else if (typeof obj[key] === 'object') {
+          this.removeNullObjs(obj[key]);
+          // If after removing nulls, the nested object is empty, remove it too
+          if (Object.keys(obj[key]).length === 0) {
+            delete obj[key];
+          }
+        }
+      });
+    }
+    return obj;
   }
 
 }

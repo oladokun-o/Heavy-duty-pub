@@ -26,11 +26,12 @@ export class CabinListComponent implements OnInit {
   }
 
   getProducts() {
-    this.productsService.getProductsFromJson("porta-cabins").subscribe((products) => {
+    this.productsService.getProducts("porta-cabins").subscribe((products) => {
       this.Equipments = products.map(equipments => {
         return {
           ...equipments,
           qty: 1,
+          amount: undefined,
           prices: this.removeDefaultFromObject(equipments.prices)
         }
       });;

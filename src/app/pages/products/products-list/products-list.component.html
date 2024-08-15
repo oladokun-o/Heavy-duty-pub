@@ -43,19 +43,33 @@
             <div class="equipment-item">
               <div class="equipment-item__box">
                 <div class="equipment-item__media">
-                  <a [routerLink]="['products/equipments', equipment.id]">
+                  <a [routerLink]="['products/equipments', equipment._id]">
                     <img [src]="equipment.imageUrl" [alt]="equipment.name" />
                   </a>
                 </div>
                 <div class="equipment-item__info">
                   <div class="equipment-item__title">
-                    <a [routerLink]="['products', equipment.id]">{{ equipment.name }}</a>
+                    <a [routerLink]="['products', equipment._id]">{{ equipment.name }}</a>
                   </div>
 
                   <div class="equipment-item__list">
-                    <ul>
-                      <li *ngFor="let meta of equipment.meta | keyvalue">{{ meta.value }}</li>
-                    </ul>
+                     <ul>
+                        <li
+                          *ngFor="
+                            let meta of removeNullObjs(equipment.meta)
+                              | keyvalue
+                          "
+                        >
+                          <ng-container
+                            *ngIf="meta.key === 'brands'; else defaultView"
+                          >
+                            {{ meta.value | nestedBrand }}
+                          </ng-container>
+                          <ng-template #defaultView>
+                            {{ meta.value }}
+                          </ng-template>
+                        </li>
+                      </ul>
                   </div>
                   <div class="equipment-item__prices pt-0">
                     <ng-select *ngIf="equipment.prices" [items]="equipment.prices"
@@ -99,7 +113,7 @@
                   </div>
                 </div>
                 <div class="equipment-item__btn">
-                  <button routerLink="/products/equipments/{{ equipment.id }}"
+                  <button routerLink="/products/equipments/{{ equipment._id }}"
                     class="uk-button uk-button-default uk-button-large uk-width-1-1" type="button">
                     <span>Order Now</span>
                     <span data-uk-icon="arrow-right"></span>
@@ -129,7 +143,7 @@
               </div>
               <div class="rental-item__price-btn"><a
                   class="uk-button col-12 uk-button-danger uk-button-large"
-                  [routerLink]="['/products/equipments', equipment.id]">Book now</a>
+                  [routerLink]="['/products/equipments', equipment._id]">Book now</a>
               </div>
             </div>
           </div>

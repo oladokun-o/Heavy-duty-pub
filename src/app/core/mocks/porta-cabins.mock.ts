@@ -2,7 +2,7 @@ import { Equipment } from "../interfaces/products.interface";
 
 export const PortaCabinsEquipmentsList: Equipment[] = [
   {
-      id: 1,
+      _id: 1,
       name: 'Porta Cabin',
       description: 'A basic porta cabin suitable for various temporary accommodations.',
       imageUrl: 'assets/img/porta-cabin-1.jpg',
@@ -19,7 +19,7 @@ export const PortaCabinsEquipmentsList: Equipment[] = [
       }
   },
   {
-      id: 2,
+      _id: 2,
       name: 'Deluxe Porta Cabin',
       description: 'A luxurious and spacious porta cabin perfect for executive use.',
       imageUrl: 'assets/img/porta-cabin-2.webp',
@@ -36,7 +36,7 @@ export const PortaCabinsEquipmentsList: Equipment[] = [
       }
   },
   {
-      id: 3,
+      _id: 3,
       name: 'Portable Office Cabin',
       description: 'An office cabin solution that is easy to transport and set up.',
       imageUrl: 'assets/img/porta-cabin-3.webp',

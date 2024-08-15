@@ -2,7 +2,7 @@ import { Haulage } from "../interfaces/products.interface";
 
 export const MockHaulages: Haulage[] = [
   {
-    id: 1,
+    _id: 1,
     name: "Small Haulage",
     price: 40000,
     imageUrl: "assets/img/truck-1.png",
@@ -14,7 +14,7 @@ export const MockHaulages: Haulage[] = [
     }
   },
   {
-    id: 2,
+    _id: 2,
     name: "Medium Haulage",
     price: 45000,
     imageUrl: "assets/img/truck-2.png",
@@ -26,7 +26,7 @@ export const MockHaulages: Haulage[] = [
     }
   },
   {
-    id: 3,
+    _id: 3,
     name: "Large Haulage",
     price: 55000,
     imageUrl: "assets/img/truck-3.png",

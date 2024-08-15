@@ -17,6 +17,7 @@ import { PortaCabinComponent } from './porta-cabin/porta-cabin.component';
 import { HaulagesComponent } from './haulages/haulages.component';
 import { NumbersOnlyDirective } from '../directives/NumbersOnly.directive';
 import { PhoneNumberDirective } from '../directives/InputNumbersOnly.directive';
+import { SharedPipesModule } from '../pipes/shared-pipes.module';
 @NgModule({
   declarations: [
     SwiperComponent,
@@ -37,7 +38,8 @@ import { PhoneNumberDirective } from '../directives/InputNumbersOnly.directive';
     SwiperModule,
     RouterModule,
     NgSelectModule,
-    NgbTooltipModule
+    NgbTooltipModule,
+    SharedPipesModule
   ],
   exports: [
     SwiperComponent,

@@ -21,7 +21,7 @@ export class AsphaltComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private modalService: NgbModal,
     private toastr: ToastrService
-  ) { 
+  ) {
     this.getProduct();
   }
 
@@ -40,7 +40,7 @@ export class AsphaltComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
+
   }
 
   handleBrandChange(brand: Brand, product: AsphaltProduct): void {

@@ -1,4 +1,4 @@
-<app-page-head parent="Asphalt" [title]="product.name ? product.name : ''"></app-page-head>
+<app-page-head parent="Asphalt" [title]="product && product.name ? product.name : ''"></app-page-head>
 
 <div class="page-content">
   <div class="uk-section uk-container">
@@ -122,7 +122,7 @@
                       ₦{{ (product.amount ? product.amount : product.price) |
                         number }}
                     </span>
-                    <span *ngIf="!product.amount || !product.price" class="current-price">
+                    <span *ngIf="!product.amount && !product.price" class="current-price">
                       ₦0.00
                     </span>
                     <!-- <span class="old-price">$75,300</span> -->

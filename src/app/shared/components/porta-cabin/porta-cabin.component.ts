@@ -14,21 +14,22 @@ import { ProductsService } from 'src/app/core/services/products.service';
 })
 export class PortaCabinComponent implements OnInit {
   constructor(
-    private toastr: ToastrService, 
+    private toastr: ToastrService,
     private modalService: NgbModal,
     private productsService: ProductsService
-  ) { 
+  ) {
     this.getProducts();
   }
 
   Equipments: any[] = [];
 
   getProducts() {
-    this.productsService.getProductsFromJson("porta-cabins").subscribe((products) => {
+    this.productsService.getProducts("porta-cabins").subscribe((products) => {
       this.Equipments = products.map(equipments => {
     return {
       ...equipments,
       qty: 1,
+      amount: undefined,
       prices: this.removeDefaultFromObject(equipments.prices)
     }
   });;

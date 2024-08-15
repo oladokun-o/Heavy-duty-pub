@@ -21,7 +21,7 @@ export class HaulageComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private modalService: NgbModal,
     private toastr: ToastrService
-  ) { 
+  ) {
     this.getProduct();
   }
 
@@ -30,6 +30,7 @@ export class HaulageComponent implements OnInit {
       const productId = params['id'];
       this.productsService.getProductById("haulages", productId).subscribe(
         (product: any) => {
+          product.qty = 1
           this.product =  product;
         },
         error => {
@@ -40,7 +41,7 @@ export class HaulageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
+
   }
 
   toggleDescription(el: HTMLElement) {

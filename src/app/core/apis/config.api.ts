@@ -1,7 +1,6 @@
 import { environment } from "src/environments/environment";
 
-
-const apiUrl = environment.apiBaseUrl;
+const apiUrl = environment.apiBaseUrl, cmsUrl = environment.cmsBaseUrl;
 
 export const apiConfig = {
   orders: {
@@ -9,5 +8,8 @@ export const apiConfig = {
   },
   contact: {
     support: () => `${apiUrl}/contact`
+  },
+  products: {
+    query: (query: string) => `${cmsUrl}/?query=${query}`
   }
 };

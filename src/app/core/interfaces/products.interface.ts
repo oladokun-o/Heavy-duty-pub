@@ -12,7 +12,7 @@ export interface AsphaltProduct {
     usage?: string;
     type?: string;
   },
-  id?: number | string;
+  _id: number | string;
 };
 
 export interface Brand {
@@ -26,7 +26,7 @@ export interface EquipmentManufacturer {
 }
 
 export interface Equipment {
-  id: number | string;
+  _id: number | string;
   name: string;
   description?: string;
   imageUrl: string;
@@ -50,7 +50,7 @@ export interface Equipment {
 }
 
 export interface Haulage {
-  id: number | string;
+  _id: number | string;
   name: string;
   description?: string;
   imageUrl: string;
@@ -63,3 +63,105 @@ export interface Haulage {
     type?: string;
   }
 }
+
+export type ProductType = "asphalts" | "equipments" | "haulages" | "porta-cabins";
+
+export enum ProductTypeEnum {
+  Asphalts = "asphalts",
+  Equipments = "equipments",
+  Haulages = "haulages",
+  PortaCabins = "porta-cabins"
+}
+
+export const ProductQueries = [
+  {
+    name: ProductTypeEnum.Asphalts,
+    query: `
+      *[_type == 'asphaltProduct']{
+        _id,
+        name,
+        description,
+        brand[] -> {
+          name,
+          price
+        },
+        imageUrl,
+        price,
+        amount,
+        qty,
+        meta
+    }`
+  },
+  {
+    name: ProductTypeEnum.Equipments,
+    query: `
+      *[_type == 'equipment']{
+        _id,
+        name,
+        description,
+        imageUrl,
+        gallery,
+        qty,
+        amount,
+        price,
+        prices,
+        meta {
+          "brands":
+            brand {
+              brand -> {
+                name
+              }
+            }
+          ,
+          weight,
+          usage,
+          model,
+          year,
+          type
+        }
+      }`
+  },
+  {
+    name: ProductTypeEnum.PortaCabins,
+    query: `
+      *[_type == 'cabins']{
+        _id,
+        name,
+        description,
+        imageUrl,
+        gallery,
+        qty,
+        amount,
+        price,
+        prices {
+          default,
+          day,
+          week,
+          month
+        },
+        meta {
+          type,
+          weight
+        }
+      }
+    `
+  },
+  {
+    name: ProductTypeEnum.Haulages,
+    query: `
+      *[_type == 'haulage']{
+        _id,
+        name,
+        description,
+        imageUrl,
+        qty,
+        amount,
+        price,
+        meta {
+          weight,
+          type
+        }
+      }
+    `
+  }
+];

@@ -12,13 +12,13 @@
               <div class="equipment-item">
                 <div class="equipment-item__box">
                   <div class="equipment-item__media">
-                    <a [routerLink]="['products/haulages', haulage.id]">
+                    <a [routerLink]="['products/haulages', haulage._id]">
                       <img [src]="haulage.imageUrl" [alt]="haulage.name" />
                     </a>
                   </div>
                   <div class="equipment-item__info">
                     <div class="equipment-item__title">
-                      <a [routerLink]="['products', haulage.id]">{{ haulage.name }}</a>
+                      <a [routerLink]="['products', haulage._id]">{{ haulage.name }}</a>
                     </div>
 
                     <div class="equipment-item__list">
@@ -57,7 +57,7 @@
                     </div>
                   </div>
                   <div class="equipment-item__btn">
-                    <button routerLink="/products/haulages/{{ haulage.id }}" class="uk-button uk-button-default uk-button-large uk-width-1-1" type="button">
+                    <button routerLink="/products/haulages/{{ haulage._id }}" class="uk-button uk-button-default uk-button-large uk-width-1-1" type="button">
                       <span>Order Now</span>
                       <span data-uk-icon="arrow-right"></span>
                     </button>

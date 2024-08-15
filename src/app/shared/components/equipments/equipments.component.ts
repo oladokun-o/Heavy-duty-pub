@@ -17,7 +17,7 @@ export class EquipmentsComponent implements OnInit {
     private toastr: ToastrService,
     private modalService: NgbModal,
     private productsService: ProductsService
-  ) { 
+  ) {
     this.getProducts();
   }
 
@@ -26,11 +26,12 @@ export class EquipmentsComponent implements OnInit {
   ngOnInit(): void { }
 
   getProducts() {
-    this.productsService.getProductsFromJson("equipments").subscribe((products) => {
+    this.productsService.getProducts("equipments").subscribe((products) => {
       this.Equipments = products.map(equipments => {
         return {
           ...equipments,
           qty: 1,
+          amount: undefined,
           prices: this.removeDefaultFromObject(equipments.prices)
         }
       });
@@ -154,6 +155,23 @@ export class EquipmentsComponent implements OnInit {
     product.amount = undefined;
     product.qty = 1;
     (product.prices as unknown as any[]).forEach(price => price.selected = false);
+  }
+
+  removeNullObjs(obj: any): any {
+    if (obj !== null && typeof obj === 'object') {
+      Object.keys(obj).forEach(key => {
+        if (obj[key] === null || obj[key] === undefined) {
+          delete obj[key];
+        } else if (typeof obj[key] === 'object') {
+          this.removeNullObjs(obj[key]);
+          // If after removing nulls, the nested object is empty, remove it too
+          if (Object.keys(obj[key]).length === 0) {
+            delete obj[key];
+          }
+        }
+      });
+    }
+    return obj;
   }
 
 }

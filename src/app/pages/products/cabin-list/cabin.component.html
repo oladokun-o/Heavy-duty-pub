@@ -30,13 +30,13 @@
             <div class="equipment-item">
               <div class="equipment-item__box">
                 <div class="equipment-item__media">
-                  <a [routerLink]="['products/cabins', equipment.id]">
+                  <a [routerLink]="['products/cabins', equipment._id]">
                     <img [src]="equipment.imageUrl" [alt]="equipment.name" />
                   </a>
                 </div>
                 <div class="equipment-item__info">
                   <div class="equipment-item__title">
-                    <a [routerLink]="['products', equipment.id]">{{ equipment.name }}</a>
+                    <a [routerLink]="['products', equipment._id]">{{ equipment.name }}</a>
                     <article #desc [innerHTML]="equipment.description" class="text-truncate"></article>
                       <!-- <a class="btn- fw-normal fs-6" style="text-decoration: underline;" (click)="toggleDescription(desc)">Read {{
                         desc.classList.contains('text-truncate') ? 'more' :
@@ -90,7 +90,7 @@
                   </div>
                 </div>
                 <div class="equipment-item__btn">
-                  <button routerLink="/products/cabins/{{ equipment.id }}"
+                  <button routerLink="/products/cabins/{{ equipment._id }}"
                     class="uk-button uk-button-default uk-button-large uk-width-1-1" type="button">
                     <span>Order Now</span>
                     <span data-uk-icon="arrow-right"></span>
@@ -120,7 +120,7 @@
               </div>
               <div class="rental-item__price-btn"><a
                   class="uk-button col-12 uk-button-danger uk-button-large"
-                  [routerLink]="['/products/cabins', equipment.id]">Book now</a>
+                  [routerLink]="['/products/cabins', equipment._id]">Book now</a>
               </div>
             </div>
           </div>

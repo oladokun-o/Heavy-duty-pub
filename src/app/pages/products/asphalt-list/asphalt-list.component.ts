@@ -19,15 +19,15 @@ export class AsphaltListComponent implements OnInit {
   @Input() anInput: boolean = false;
 
   constructor(
-    private toastr: ToastrService, 
+    private toastr: ToastrService,
     private modalService: NgbModal,
     private productsService: ProductsService
-  ) { 
+  ) {
     this.getProducts();
   }
 
   getProducts() {
-    this.productsService.getProductsFromJson("asphalts").subscribe((products) => {
+    this.productsService.getProducts("asphalts").subscribe((products) => {
       this.asphaltProducts = products;
     });
   }
@@ -70,7 +70,7 @@ export class AsphaltListComponent implements OnInit {
   inc(product: AsphaltProduct) {
     if (product.qty !== undefined) {
       if (product.brand) {// Find the selected brand of the product
-        const foundBrand = this.asphaltProducts.find(p => p.id === product.id)?.brand?.find(p => p.selected);
+        const foundBrand = this.asphaltProducts.find(p => p._id === product._id)?.brand?.find(p => p.selected);
         product.qty++;
         if (foundBrand && foundBrand.price !== undefined && product) {
           product.amount = product.qty * foundBrand.price;
@@ -89,7 +89,7 @@ export class AsphaltListComponent implements OnInit {
   dec(product: AsphaltProduct) {
     if (product.qty !== undefined && product.qty > 1) {
       if (product.brand) {// Find the selected brand of the product
-        const foundBrand = this.asphaltProducts.find(p => p.id === product.id)?.brand?.find(p => p.selected);
+        const foundBrand = this.asphaltProducts.find(p => p._id === product._id)?.brand?.find(p => p.selected);
         product.qty--;
         if (foundBrand && foundBrand.price !== undefined && product) {
           product.amount = product.qty * foundBrand.price;

@@ -7,7 +7,7 @@ export interface CartItem {
 }
 
 export interface Item {
-  id: number
+  _id: number
   name: string
   description: string
   imageUrl: string

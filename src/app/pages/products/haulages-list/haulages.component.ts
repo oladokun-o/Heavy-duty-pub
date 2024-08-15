@@ -25,7 +25,7 @@ export class HaulagesListComponent implements OnInit {
   }
 
   getProducts() {
-    this.productsService.getProductsFromJson("haulages").subscribe((products) => {
+    this.productsService.getProducts("haulages").subscribe((products) => {
       this.Haulages = products;
     });
   }

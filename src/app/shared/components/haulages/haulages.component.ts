@@ -20,7 +20,7 @@ export class HaulagesComponent implements OnInit {
     public toastr: ToastrService,
     public modalService: NgbModal,
     private productsService: ProductsService
-  ) { 
+  ) {
     this.getProducts();
   }
 
@@ -28,7 +28,7 @@ export class HaulagesComponent implements OnInit {
   }
 
   getProducts() {
-    this.productsService.getProductsFromJson("haulages").subscribe((products) => {
+    this.productsService.getProducts("haulages").subscribe((products) => {
       this.Haulages = products;
     });
   }

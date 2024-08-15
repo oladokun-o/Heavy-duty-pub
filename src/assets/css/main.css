@@ -3644,6 +3644,7 @@ textarea.uk-form-large {
   font-size: 16px;
   font-weight: 400;
   line-height: 1.88;
+  text-align: center;
 }
 
 .review-item__user {
@@ -3659,6 +3660,8 @@ textarea.uk-form-large {
   display: -ms-flexbox;
   display: flex;
   align-items: flex-start;
+  justify-content: center;
+  text-align: center;
 }
 
 .user__avatar {
@@ -3702,7 +3705,7 @@ textarea.uk-form-large {
   display: -ms-flexbox;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   margin: 0;
   padding: 0;
 }
@@ -4596,6 +4599,7 @@ ul.time-work {
   font-size: 13px;
   font-weight: 600;
   line-height: 1.2;
+  text-transform: capitalize;
 }
 
 .equipment-item__list ul li + li {
@@ -5700,6 +5704,10 @@ ul.time-work {
 
 .equipment-detail__specification {
   margin-top: 60px;
+}
+
+.equipment-detail__specification table tr td {
+  text-transform: capitalize;
 }
 
 .equipment-detail__specification table tr td:last-child {

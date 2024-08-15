@@ -12,6 +12,7 @@ import { CabinListComponent } from './cabin-list/cabin.component';
 import { HaulagesListComponent } from './haulages-list/haulages.component';
 import { HaulageComponent } from './haulage/haulage.component';
 import { CabinComponent } from './cabin/cabin.component';
+import { SharedPipesModule } from 'src/app/shared/pipes/shared-pipes.module';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { CabinComponent } from './cabin/cabin.component';
     CommonModule,
     ProductsRoutingModule,
     SharedModule,
-    NgSelectModule
+    NgSelectModule,
+    SharedPipesModule
   ]
 })
 export class ProductsModule { }
