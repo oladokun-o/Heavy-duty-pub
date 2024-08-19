@@ -89,7 +89,8 @@ export const ProductQueries = [
         price,
         amount,
         qty,
-        meta
+        meta,
+        popular
     }`
   },
   {

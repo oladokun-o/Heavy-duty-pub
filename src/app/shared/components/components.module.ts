@@ -18,6 +18,7 @@ import { HaulagesComponent } from './haulages/haulages.component';
 import { NumbersOnlyDirective } from '../directives/NumbersOnly.directive';
 import { PhoneNumberDirective } from '../directives/InputNumbersOnly.directive';
 import { SharedPipesModule } from '../pipes/shared-pipes.module';
+import { PopularProductsComponent } from './popular-products/popular-products.component';
 @NgModule({
   declarations: [
     SwiperComponent,
@@ -31,7 +32,8 @@ import { SharedPipesModule } from '../pipes/shared-pipes.module';
     PortaCabinComponent,
     HaulagesComponent,
     NumbersOnlyDirective,
-    PhoneNumberDirective
+    PhoneNumberDirective,
+    PopularProductsComponent
   ],
   imports: [
     CommonModule,
@@ -52,6 +54,7 @@ import { SharedPipesModule } from '../pipes/shared-pipes.module';
     CartComponent,
     PortaCabinComponent,
     HaulagesComponent,
+    PopularProductsComponent,
     NumbersOnlyDirective,
     PhoneNumberDirective
   ]
