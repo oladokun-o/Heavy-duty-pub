@@ -8,6 +8,7 @@ import { ServicesComponent } from './services/services.component';
 import { NewsComponent } from './news/news.component';
 import { ContactComponent } from './contact/contact.component';
 import { CheckoutComponent } from '../checkout/checkout.component';
+import { AboutUsResolver, ServicesResolver } from '../core/resolvers/cms.resolver';
 
 const routes: Routes = [
   {
@@ -28,7 +29,10 @@ const routes: Routes = [
       },
       {
         path: 'about-us',
-        component: AboutUsComponent
+        component: AboutUsComponent,
+        resolve: {
+          aboutUs: AboutUsResolver
+        }
       },
       {
         path: 'about',
@@ -36,7 +40,10 @@ const routes: Routes = [
       },
       {
         path: 'services',
-        loadChildren: () => import("./services/services.module").then(m => m.ServicesModule)
+        loadChildren: () => import("./services/services.module").then(m => m.ServicesModule),
+        resolve: {
+          services: ServicesResolver
+        }
       },
       {
         path: 'news',

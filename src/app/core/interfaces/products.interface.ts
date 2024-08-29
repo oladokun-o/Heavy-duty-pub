@@ -190,3 +190,21 @@ export const aboutUsQuery = `
     vision
   }
 `;
+
+export const servicesQuery = `
+  *[_type == 'services'][0]{
+    servicesList[] {
+      title,
+      description,
+      image {
+        asset -> {
+          _id,
+          url
+        }
+      },
+      link
+    },
+    pageDescription
+  }
+`;
+

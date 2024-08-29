@@ -13,6 +13,7 @@ export const apiConfig = {
     query: (query: string) => `${cmsUrl}/?query=${query}`
   },
   content: {
-    aboutUs: (query: string) => `${cmsUrl}/?query=${query}`
+    aboutUs: (query: string) => `${cmsUrl}/?query=${query}`,
+    services: (query: string) => `${cmsUrl}/?query=${query}`
   }
 };

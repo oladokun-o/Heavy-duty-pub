@@ -38,3 +38,29 @@ interface Image {
 interface SocialMediaLinks {
   [key: string]: string;
 }
+
+export interface ServicesData {
+  servicesList: Service[];
+  pageDescription: string;
+}
+
+export interface Service {
+  title: string;
+  description: BlockContent[];
+  image: Image;
+  link: string;
+}
+
+interface BlockContent {
+  _type: string;
+  children: Array<{
+    _type: string;
+    text: string;
+  }>;
+  markDefs: any[];
+  style: string;
+  asset?: {
+    _type: string;
+    url: string;
+  };
+}

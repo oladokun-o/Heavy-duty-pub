@@ -1,20 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { ServicesData } from 'src/app/core/interfaces/index.interface';
+import { ActivatedRoute } from '@angular/router';
+import { Service, ServicesData } from 'src/app/core/interfaces/index.interface';
 import { GeneralService } from 'src/app/core/services/general.service';
 
 @Component({
-  selector: 'app-list',
-  templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
+  selector: 'app-display',
+  templateUrl: './display.component.html',
+  styleUrls: ['./display.component.css']
 })
-export class ListComponent implements OnInit {
+export class DisplayComponent implements OnInit {
 
   loading: boolean = false;
   servicesData: ServicesData | null = null;
+  service: string = '';
+  serviceData: Service | undefined = undefined;
 
   constructor(
-    private router: Router,
     private generalService: GeneralService,
     private activatedRoute: ActivatedRoute
   ) {
@@ -22,6 +23,15 @@ export class ListComponent implements OnInit {
       (data) => {
         if (data && data.services) {
           this.servicesData = data.services;
+          this.setServiceData();
+        }
+      }
+    );
+
+    this.activatedRoute.params.subscribe(
+      (params) => {
+        if (params && params.service) {
+          this.service = params.service;
         }
       }
     );
@@ -33,10 +43,6 @@ export class ListComponent implements OnInit {
     }
   }
 
-  goToRoute(route: string): void {
-    this.router.navigate([route]);
-  }
-
   private getServicesData(): void {
     this.loading = true;
     this.generalService.getServices().subscribe(
@@ -44,6 +50,7 @@ export class ListComponent implements OnInit {
         this.loading = false;
         if (data) {
           this.servicesData = data;
+          this.setServiceData();
         }
       },
       (err) => {
@@ -51,6 +58,14 @@ export class ListComponent implements OnInit {
         console.error(err);
       }
     );
+  }
+
+  private setServiceData(): void {
+    if (this.servicesData) {
+      this.serviceData = this.servicesData.servicesList.find(
+        (service) => service.link.toLowerCase() === this.service
+      );
+    }
   }
 
 }

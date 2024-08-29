@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { AboutUsData } from 'src/app/core/interfaces/index.interface';
 import { GeneralService } from 'src/app/core/services/general.service';
 
@@ -14,11 +15,22 @@ export class AboutUsComponent implements OnInit {
   Object = Object;
 
   constructor(
-    private generalService: GeneralService
-  ) { }
+    private generalService: GeneralService,
+    private activatedRoute: ActivatedRoute
+  ) {
+    this.activatedRoute.data.subscribe(
+      (data) => {
+        if (data && data.aboutUs) {
+          this.aboutUsData = data.aboutUs;
+        }
+      }
+    );
+  }
 
   ngOnInit(): void {
-    this.getAboutUsData();
+    if (!this.aboutUsData) {
+      this.getAboutUsData();
+    }
   }
 
   private getAboutUsData(): void {

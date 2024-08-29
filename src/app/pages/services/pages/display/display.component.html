@@ -1,4 +1,4 @@
-<div class="page-head">
+<div class="page-head" *ngIf="serviceData">
   <div class="page-head__bg" style="background-image: url(assets/img/bg_page-about.jpg)">
     <div class="d-block text-center">
       <div class="page-head__title">
@@ -10,7 +10,7 @@
       <ul class="uk-breadcrumb">
         <li><a routerLink="/">Home</a></li>
         <li><a routerLink="/services">Services</a></li>
-        <li><span>Design</span></li>
+        <li><span [innerHTML]="serviceData.title"></span></li>
       </ul>
     </div>
   </div>
@@ -20,16 +20,11 @@
     <div class="container p-5">
       <div class="row pb-5">
         <div class="col-12">
-          <img src="assets/img/design.jpg" alt="">
+          <img [src]="serviceData?.image?.asset?.url" [alt]="serviceData?.title">
         </div>
         <div class="col-12">
-          <h1 class="fw-bold pt-3">DESIGN</h1>
-          <article class="fs-6" style="line-height: 25px;">
-            We offer professional services in the underlisted
-            ROAD- Earth roads, Asphalt roads, Drain designs.
-            BUILDING: Architectural drawings, Structural drawings
-            LANDSCAPING
-          </article>
+          <h1 class="fw-bold pt-3" [innerHTML]="serviceData?.title"></h1>
+          <article class="fs-6" style="line-height: 25px;" [innerHTML]="serviceData?.description?.[0]?.children?.[0]?.text"></article>
         </div>
       </div>
     </div>
