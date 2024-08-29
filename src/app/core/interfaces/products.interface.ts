@@ -166,3 +166,27 @@ export const ProductQueries = [
     `
   }
 ];
+
+export const aboutUsQuery = `
+  *[_type == 'aboutUs'][0]{
+    founders[] {
+      name,
+      role,
+      image {
+        asset -> {
+          _id,
+          url
+        }
+      },
+      bio,
+      socialMedia {
+        twitter,
+        linkedin,
+        instagram
+      }
+    },
+    description,
+    mission,
+    vision
+  }
+`;

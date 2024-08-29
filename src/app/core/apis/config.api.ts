@@ -11,5 +11,8 @@ export const apiConfig = {
   },
   products: {
     query: (query: string) => `${cmsUrl}/?query=${query}`
+  },
+  content: {
+    aboutUs: (query: string) => `${cmsUrl}/?query=${query}`
   }
 };
