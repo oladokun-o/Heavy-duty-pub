@@ -19,6 +19,7 @@ import { NumbersOnlyDirective } from '../directives/NumbersOnly.directive';
 import { PhoneNumberDirective } from '../directives/InputNumbersOnly.directive';
 import { SharedPipesModule } from '../pipes/shared-pipes.module';
 import { PopularProductsComponent } from './popular-products/popular-products.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     SwiperComponent,
@@ -41,7 +42,9 @@ import { PopularProductsComponent } from './popular-products/popular-products.co
     RouterModule,
     NgSelectModule,
     NgbTooltipModule,
-    SharedPipesModule
+    SharedPipesModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     SwiperComponent,

@@ -1,5 +1,5 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/your_username/public_html
+    - export DEPLOYPATH=/home/heavydu2/public_html
     - /bin/cp -R $DIST_DIR/* $DEPLOYPATH

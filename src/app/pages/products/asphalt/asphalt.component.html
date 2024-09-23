@@ -84,7 +84,7 @@
                 <div class="col-12">
                   <ng-select *ngIf="product.brand" [items]="product.brand" appendTo=".s-equipments"
                     placeholder="Select {{product.meta?.type?.toLowerCase() === 'tons/litre' ? 'type' : 'manufaturer' }} to see price" [clearable]="false" class="pb-2"
-                    bindLabel="name" bindValue="price" (change)="handleBrandChange($event, product)"></ng-select>
+                    [(ngModel)]="product.selectedBrand!.selected" bindLabel="name" bindValue="selected" (change)="handleBrandChange($event, product)"></ng-select>
 
                   <div *ngIf="!product.brand && product.meta" class="equipment-item__list">
                     <ul class="flex-column d-flex">
@@ -104,11 +104,11 @@
 
                         <div class="col-4 d-flex flex-row justify-content-end" *ngIf="product.price !== undefined && product.meta && product.meta.type !== 'service'">
                           <button type="button" class="qty-btn" ngbTooltip="Decrease quantity"
-                            [disabled]="product.qty === 1" (click)="dec(product)">-</button>
+                            [disabled]="product.minQty === product.qty" (click)="dec(product)">-</button>
                           <input type="text" NumbersOnly class="col-4 text-center border-0" [value]="product.qty" #input
-                          (change)="updateQuantity(product, Number(input.value))">
+                          [disabled]="product.hasOwnProperty('step')" (change)="updateQuantity(product, Number(input.value))">
                           <button type="button" class="qty-btn" ngbTooltip="Increase quantity"
-                            (click)="inc(product)">+</button>
+                            [disabled]="product.maxQty === product.qty" (click)="inc(product)">+</button>
                         </div>
                       </div>
                 </div>

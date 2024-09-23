@@ -7,6 +7,10 @@ export interface AsphaltProduct {
   price?: number;
   amount?: number;
   qty?: number;
+  minQty?: number;
+  maxQty?: number;
+  step?: number;
+  selectedBrand?: Brand;
   meta?: {
     weight?: string;
     usage?: string;
@@ -89,6 +93,9 @@ export const ProductQueries = [
         price,
         amount,
         qty,
+        minQty,
+        maxQty,
+        step,
         meta,
         popular
     }`
@@ -103,6 +110,9 @@ export const ProductQueries = [
         imageUrl,
         gallery,
         qty,
+        minQty,
+        maxQty,
+        step,
         amount,
         price,
         prices,
@@ -132,6 +142,9 @@ export const ProductQueries = [
         imageUrl,
         gallery,
         qty,
+        minQty,
+        maxQty,
+        step,
         amount,
         price,
         prices {
@@ -156,6 +169,9 @@ export const ProductQueries = [
         description,
         imageUrl,
         qty,
+        minQty,
+        maxQty,
+        step,
         amount,
         price,
         meta {

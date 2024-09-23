@@ -31,12 +31,30 @@ export class AsphaltComponent implements OnInit {
       this.productsService.getProductById("asphalts", productId).subscribe(
         (product: any) => {
           this.product = product;
+          this.checkProductForMinQty(this.product);
         },
         error => {
           console.error('Error fetching product:', error);
         }
       );
     });
+  }
+
+  checkProductForMinQty(product: AsphaltProduct): void {
+    // if the qty and minQty properties are defined and the qty is less than the minQty
+    if (product.qty !== undefined && product.minQty !== undefined && product.qty < product.minQty) {
+      product.qty = product.minQty;
+    };
+
+    // If the qty property is undefined, set it to 1
+    if (product.qty === undefined || product.qty < 1) {
+      product.qty = 1;
+    }
+
+    // if no brand is selected then select the first brand using this.handleBrandChange
+    if (product.brand && !product.brand.some(b => b.selected)) {
+      this.handleBrandChange(product.brand[0], product);
+    }
   }
 
   ngOnInit(): void {
@@ -54,6 +72,7 @@ export class AsphaltComponent implements OnInit {
       product.amount = brand.price;
       product.price = brand.price;
     }
+    product.selectedBrand = brand;
   }
 
   toggleDescription(el: HTMLElement) {
@@ -69,37 +88,55 @@ export class AsphaltComponent implements OnInit {
   }
 
   inc(product: AsphaltProduct) {
-    if (product.qty !== undefined) {
-      if (product.brand) {// Find the selected brand of the product
-        const foundBrand = this.product.brand?.find(p => p.selected);
-        product.qty++;
-        if (foundBrand && foundBrand.price !== undefined && product) {
-          product.amount = product.qty * foundBrand.price;
-        }
-      } else {
-        product.qty++;
-        let price = product.price as number;
-        let amount = price * product.qty;
-        product.amount = amount;
-      }
-    } else {
-      console.error('Invalid product or quantity property missing.');
-    }
+    this.updateIntQuantity(product, 'increment');
   }
 
   dec(product: AsphaltProduct) {
-    if (product.qty !== undefined && product.qty > 1) {
-      if (product.brand) {// Find the selected brand of the product
-        const foundBrand = this.product.brand?.find(p => p.selected);
-        product.qty--;
-        if (foundBrand && foundBrand.price !== undefined && product) {
-          product.amount = product.qty * foundBrand.price;
+    this.updateIntQuantity(product, 'decrement');
+  }
+
+  /**
+   * Updates the product's quantity based on the action (increment or decrement),
+   * taking into account minQty, maxQty, and step properties.
+   *
+   * @param product The product to update
+   * @param action 'increment' or 'decrement'
+   */
+  private updateIntQuantity(product: AsphaltProduct, action: 'increment' | 'decrement') {
+    // Ensure the step value is set, default to 1 if not provided
+    const step = product.step ?? 1;
+
+    if (product.qty != null) {
+      if (action === 'increment') {
+        // Increment the quantity, ensuring it doesn't exceed maxQty
+        if (product.maxQty != null && product.qty + step > product.maxQty) {
+          console.error('Quantity exceeds maximum allowed value.');
+          return;
         }
+        product.qty += step;
+      } else if (action === 'decrement') {
+        // Decrement the quantity, ensuring it doesn't go below minQty or 1 (if no minQty is set)
+        const minQty = product.minQty ?? 1;
+        if (product.qty - step < minQty) {
+          console.error('Quantity cannot go below the minimum allowed value.');
+          return;
+        }
+        product.qty -= step;
+      }
+
+      // If the product has a brand, find the selected brand's price
+      const foundBrand = product.brand
+        ? this.product.brand?.find(p => p.selected)
+        : null;
+
+      // Use the brand's price if available, otherwise use the product's own price
+      const price = foundBrand?.price ?? product.price;
+
+      if (price != null) {
+        // Update the product amount based on the new quantity and price
+        product.amount = product.qty * price;
       } else {
-        product.qty--;
-        let price = product.price as number;
-        let amount = price * product.qty;
-        product.amount = amount;
+        console.error('Invalid price found for product.');
       }
     } else {
       console.error('Invalid product or quantity property missing.');

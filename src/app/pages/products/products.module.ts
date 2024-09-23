@@ -13,6 +13,7 @@ import { HaulagesListComponent } from './haulages-list/haulages.component';
 import { HaulageComponent } from './haulage/haulage.component';
 import { CabinComponent } from './cabin/cabin.component';
 import { SharedPipesModule } from 'src/app/shared/pipes/shared-pipes.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -31,7 +32,9 @@ import { SharedPipesModule } from 'src/app/shared/pipes/shared-pipes.module';
     ProductsRoutingModule,
     SharedModule,
     NgSelectModule,
-    SharedPipesModule
+    SharedPipesModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class ProductsModule { }
