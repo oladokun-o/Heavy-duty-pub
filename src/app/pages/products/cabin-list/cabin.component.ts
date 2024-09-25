@@ -74,10 +74,21 @@ export class CabinListComponent implements OnInit {
   Object = Object;
   parseFloat = parseFloat
 
-  removeDefaultFromObject(obj: any): Array<{ label: string, value: number, selected: false }> {
-    delete obj.default;
-    return Object.keys(obj).map(key => ({ label: key, value: obj[key], selected: false }));
-  }
+removeDefaultFromObject(obj: any): Array<{ label: string, value: number, selected: false }> {
+  delete obj.default;
+
+  const orderedKeys = ['day', 'week', 'month']; // Define the order: day(s), week(s), month(s)
+
+  return orderedKeys
+    .filter(key => key in obj)
+    .map(key => ({
+      label: `${key}(s)`, // Adding (s) to the label
+      value: obj[key] as number,
+      selected: false
+    }));
+}
+
+
 
   inc(product: Equipment) {
     if (product.qty !== undefined) {

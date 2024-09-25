@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
 import { apiConfig } from '../apis/config.api';
 import { catchError, switchMap } from 'rxjs/operators';
-import { aboutUsQuery, servicesQuery } from '../interfaces/products.interface';
-import { AboutUsData, SanityAPIResponse, ServicesData } from '../interfaces/index.interface';
+import { aboutUsQuery, layoutQuery, servicesQuery } from '../interfaces/products.interface';
+import { AboutUsData, LayoutData, SanityAPIResponse, ServicesData } from '../interfaces/index.interface';
 
 interface NewMessage {
   name: string;
@@ -57,6 +57,21 @@ export class GeneralService {
     const query = servicesQuery;
 
     return this.http.get<SanityAPIResponse>(apiConfig.content.services(query)).pipe(
+      switchMap((res: any) => {
+        // Check if the result has data, otherwise return null
+        return res.result ? of(res.result) : of(null);
+      }),
+      catchError((err) => {
+        // Handle errors properly by throwing them
+        return throwError(err);
+      })
+    );
+  }
+
+  getLayout(): Observable<LayoutData | null> {
+    const query = layoutQuery;
+
+    return this.http.get<SanityAPIResponse>(apiConfig.content.layout(query)).pipe(
       switchMap((res: any) => {
         // Check if the result has data, otherwise return null
         return res.result ? of(res.result) : of(null);

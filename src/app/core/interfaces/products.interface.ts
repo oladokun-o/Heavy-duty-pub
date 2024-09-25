@@ -224,3 +224,10 @@ export const servicesQuery = `
   }
 `;
 
+export const layoutQuery = `
+  *[_type == 'layout'][0]{
+    headerLogo,
+    footerLogo,
+    footerText,
+  }
+`;

@@ -64,3 +64,9 @@ interface BlockContent {
     url: string;
   };
 }
+
+export interface LayoutData {
+  headerLogo: string;
+  footerLogo: string;
+  footerText: any[];
+}

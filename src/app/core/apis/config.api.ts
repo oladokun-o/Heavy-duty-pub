@@ -14,6 +14,7 @@ export const apiConfig = {
   },
   content: {
     aboutUs: (query: string) => `${cmsUrl}/?query=${query}`,
-    services: (query: string) => `${cmsUrl}/?query=${query}`
+    services: (query: string) => `${cmsUrl}/?query=${query}`,
+    layout: (query: string) => `${cmsUrl}/?query=${query}`
   }
 };
